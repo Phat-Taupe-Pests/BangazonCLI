@@ -8,14 +8,14 @@ namespace BangazonCLI.Tests
     // Tests Functionality of Product manager; adds new Product and gets a list of Products.
     public class ProductManagerShould : IDisposable
     {
-        private readonly ProductManager _cm;
+        private readonly ProductManager _pm;
         private readonly dbUtilities _db;
         // Creates a Product manager and connection with the database..
         
         public ProductManagerShould ()
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
-            _cm = new ProductManager(_db);
+            _pm = new ProductManager(_db);
             _db.CheckProduct();
         }
         // Tests to see if Products are really being added by our methods.
@@ -31,7 +31,7 @@ namespace BangazonCLI.Tests
 
             
 
-        var result = _cm.AddNewProduct(newProduct);
+        var result = _pm.AddNewProduct(newProduct);
 
             Assert.True(result !=0);
         }
@@ -40,7 +40,7 @@ namespace BangazonCLI.Tests
         public void ListProducts()
         {
 
-            List<Product> ProductList = _cm.GetProductList();
+            List<Product> ProductList = _pm.GetProductList();
 
             Product newProduct = new Product();
                 newProduct.Name = "Ball"; 
