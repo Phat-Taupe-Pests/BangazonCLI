@@ -1,14 +1,14 @@
 ﻿using System;
 
-namespace Bangazon
+namespace BangazonCLI
 {
     class Program
     {
         static void Main(string[] args)
         {
             // Seed the database if none exists
-            var db = new DatabaseInitializer();
-            db.VerifyDataExists();
+            var db = new dbUtilities("BANGAZONCLI_DB");
+            db.CheckCustomer();
 
             // Present the main menu
             Console.WriteLine ("*************************************************");

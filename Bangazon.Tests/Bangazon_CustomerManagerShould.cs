@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BangazonCLI;
 using Xunit;
 
-namespace Bangazon.Tests
+namespace BangazonCLI.Tests
 {
     public class CustomerManagerShould : IDisposable
     {
@@ -19,7 +19,7 @@ namespace Bangazon.Tests
         [Fact]
         public void AddNewCustomer()
         {
-            Customer newCustomer = newCustomer(){ firstName: "Brain", lastName: "Pinky", streetAddress: "114 Street Place", state: "Tennesseetopia", postalCode: 55555, phoneNumber: "555-123-4567" };
+            Customer newCustomer = new Customer(){ firstName: "Brain", lastName: "Pinky", streetAddress: "114 Street Place", state: "Tennesseetopia", postalCode: 55555, phoneNumber: "555-123-4567" };
             var result = _cm.AddNewCustomer(newCustomer);
 
             Assert.True(result !=0);
