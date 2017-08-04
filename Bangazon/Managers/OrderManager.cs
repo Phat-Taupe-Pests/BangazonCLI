@@ -3,7 +3,7 @@ using System.Collections.Generic;
 //Written by: Adam Reidelbach
 namespace BangazonCLI
 {
-    // Manages customer related methods
+    // Manages order related methods
     public class OrderManager
     {
         private dbUtilities _db;
@@ -12,7 +12,7 @@ namespace BangazonCLI
         {
             _db = db;
         }
-        // Adds a new customer--passed in as an argument--to the database
+        // Adds a product to the active customer's order
         public bool AddProductToOrder(Product product){
             return true;
         }
