@@ -11,7 +11,6 @@ namespace BangazonCLI
         public int customerID {get; set;}
         public int accountNumber {get; set;}
         public string name {get; set;}
-        public Customer customer {get; set;}
 
     }
 }
