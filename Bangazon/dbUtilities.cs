@@ -71,6 +71,49 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
+        //Written By Chaz Henricks
+        //DB checks if a Product Table exists
+        public void CheckProduct ()
+        {
+            using (_connection)
+            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+
+                // Query the product table to see if table is created
+                dbcmd.CommandText = $"select productID from product";
+
+                try
+                {
+                    // Try to run the query. If it throws an exception, create the table
+                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
+                    {
+                        
+                    }
+                }
+                catch (Microsoft.Data.Sqlite.SqliteException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (ex.Message.Contains("no such table"))
+                    {
+                        dbcmd.CommandText = $@"create table product (
+                            `ProductID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `Name`	varchar(80) not null, 
+                            `Description`	varchar(80) not null, 
+                            `ProductTypeID`	integer not null,
+                            `Price`	integer not null,
+                            `CustomerID`	integer not null,
+                            `DateCreated`   varchar(80) not null,
+                            FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`),
+                            FOREIGN KEY(`ProductTypeID`) REFERENCES `ProductType`(`ProductTypeID`)
+                        )";
+                        dbcmd.ExecuteNonQuery ();
+                    }
+                }
+                _connection.Close ();
+            }
+        }
 
 
         
