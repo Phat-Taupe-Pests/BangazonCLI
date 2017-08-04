@@ -7,18 +7,31 @@ using System.Collections;
 
 namespace BangazonCLI
 {
+    // Written by: Eliza Meeks, Adam Reidelbach, Chaz Henricks, Ben Greaves, Matt Augsburger
     public class dbUtilities
     {
         private string _connectionString;
         private SqliteConnection _connection;
-
+        // Constructor methodm sets up the database. "Constructors the database"
         public dbUtilities(string database)
         {
             string env = $"{Environment.GetEnvironmentVariable(database)}";
             _connectionString = $"Data Source={env}";
             _connection = new SqliteConnection(_connectionString);
         }
-
+        // Deletes things from the database based upon the command passed in as an argument.
+        public void Delete(string command)
+        {
+            using(_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+                dbcmd.CommandText = command;
+                dbcmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
+        // Checks to see if a customer table exists, if it doesn't it creates the table in the database.
         public void CheckCustomer ()
         {
             using (_connection)
