@@ -19,6 +19,18 @@ namespace BangazonCLI
             _connection = new SqliteConnection(_connectionString);
         }
 
+        public void Delete(string command)
+        {
+            using(_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+                dbcmd.CommandText = command;
+                dbcmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
+
         public void CheckCustomer ()
         {
             using (_connection)

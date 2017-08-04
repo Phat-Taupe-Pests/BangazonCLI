@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace BangazonCLI
 {
     public class CustomerManager
@@ -11,6 +13,12 @@ namespace BangazonCLI
 
         public int AddNewCustomer(Customer newCustomer){
             return 4;
+        }
+
+        public List<Customer> GetCustomerList()
+        {
+            
+            return new List<Customer>();
         }
     }
 }
