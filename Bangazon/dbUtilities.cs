@@ -81,7 +81,7 @@ namespace BangazonCLI
             {
                 _connection.Open();
 
-                // Query the customer table to see if table is created
+                // Query the order table to see if table is created
                 dbcmd.CommandText = $"select orderId from order";
 
                 try
