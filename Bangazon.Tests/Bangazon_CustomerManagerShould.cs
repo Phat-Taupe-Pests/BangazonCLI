@@ -46,6 +46,23 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<Customer>>(customerList);
             Assert.True(customerList.Count > 0);
         }
+        // Tests to see if the method sets the Current Customer - Matt Augsburger
+        [Fact]
+        public void SetCurrentCustomer()
+        {
+            _cm.SetCurrentCustomer(new Customer(){firstName="Brain", lastName="Pinky", streetAddress="114 Street Place", state= "Tennesseetopia", postalCode= 55555, phoneNumber= "555-123-4567"});
+            Customer currentCustomer = _cm.GetCurrentCustomer();
+            Assert.IsType<Customer>(currentCustomer);
+        }
+        // Tests to see if the method returns the current customer - Matt Augsburger
+        [Fact]
+        public void GetCurrentCustomer()
+        {
+            _cm.SetCurrentCustomer(new Customer(){firstName="Brain", lastName="Pinky", streetAddress="114 Street Place", state= "Tennesseetopia", postalCode= 55555, phoneNumber= "555-123-4567"});
+            Customer currentCustomer = _cm.GetCurrentCustomer();
+            Assert.IsType<Customer>(currentCustomer);
+
+        }
         // Burns the database down because the paint color is wrong.
             public void Dispose()
         {
