@@ -1,18 +1,17 @@
 using System;
 
-//Written by: Eliza Meeks, Adam Reidelbach, Chaz Henricks, Ben Greaves, Matt Augsburger
-
+//Written by:  Chaz Henricks
 namespace BangazonCLI
 {
-    // Gets and sets public properties of a customer.
+    // Gets and sets public properties of a Product.
     public class Product
     {
-        public string productTypeID {get; set;}
-        public string price {get; set;}
-        public string name {get; set;}
-        public string description {get; set;}
-        public int customerID {get; set;}
-        public DateTime dateCreated {get; set;}
-
+        public int ProductId {get;}
+        public string Name {get; set;}
+        public string Description {get; set;}
+        public int Price {get; set;}
+        public DateTime? DateCreated {get; set;}
+        public Customer customer {get; set;}
+    public ProductType productType {get; set;}
     }
-}
+} 
