@@ -11,7 +11,7 @@ namespace BangazonCLI
         public string price {get; set;}
         public string name {get; set;}
         public string description {get; set;}
-        public int cusomterID {get; set;}
+        public int customerID {get; set;}
         public DateTime dateCreated {get; set;}
 
     }

@@ -97,12 +97,12 @@ namespace BangazonCLI
                     Console.WriteLine(ex.Message);
                     if (ex.Message.Contains("no such table"))
                     {
-                        //list of products, not sure how to test for this 
+                        //double check syntax for all of the command below
                         dbcmd.CommandText = $@"create table customer (
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `customerID`	varchar(80) not null, 
-                            `paymentTypeID`	varchar(80) not null, 
-                            `product` varchar(80) not null
+                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
+                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`),
+                            FOREIGN KEY(`productID`) REFERENCES `product`(`id`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
