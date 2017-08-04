@@ -4,10 +4,13 @@ using Xunit;
 
 namespace BangazonCLI.Tests
 {
+    // Written by: Chaz Henricks, Ben Greaves, Matt Augsburger, Eliza Meeks, Adam Reidelbach
+    // Tests Functionality of customer manager; adds new customer and gets a list of customers.
     public class CustomerManagerShould : IDisposable
     {
         private readonly CustomerManager _cm;
         private readonly dbUtilities _db;
+        // Creates a customer manager and connection with the database..
         
         public CustomerManagerShould ()
         {
@@ -15,6 +18,7 @@ namespace BangazonCLI.Tests
             _cm = new CustomerManager(_db);
             _db.CheckCustomer();
         }
+        // Tests to see if customers are really being added by our methods.
         [Fact]
         public void AddNewCustomer()
         {
@@ -32,7 +36,7 @@ namespace BangazonCLI.Tests
 
             Assert.True(result !=0);
         }
-
+        // Tests to see if our methods are getting a list of customers.
         [Fact]
         public void ListCustomers()
         {
@@ -42,6 +46,7 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<Customer>>(customerList);
             Assert.True(customerList.Count > 0);
         }
+        // Burns the database down because the paint color is wrong.
             public void Dispose()
         {
             _db.Delete("DELETE FROM customer");
