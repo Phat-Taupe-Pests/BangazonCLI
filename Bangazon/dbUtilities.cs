@@ -114,7 +114,42 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
+        //Checks for the existence of the productOrder table... creates it if table doesn't exist
+        public void CheckProductOrder ()
+        {
+            using (_connection)
+            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
 
+                // Query the product table to see if table is created
+                dbcmd.CommandText = $"select productOrderID from productOrder";
+
+                try
+                {
+                    // Try to run the query. If it throws an exception, create the table
+                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
+                    {
+                        
+                    }
+                }
+                catch (Microsoft.Data.Sqlite.SqliteException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (ex.Message.Contains("no such table"))
+                    {
+                        dbcmd.CommandText = $@"create table productOrder (
+                            `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
+                            FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
+                        )";
+                        dbcmd.ExecuteNonQuery ();
+                    }
+                }
+                _connection.Close ();
+            }
+        }
 
         
         
