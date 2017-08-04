@@ -102,7 +102,7 @@ namespace BangazonCLI
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
                             FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`),
-                            FOREIGN KEY(`productID`) REFERENCES `product`(`id`)
+                            FOREIGN KEY(`productID`) REFERENCES `productOrder`(`id`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
