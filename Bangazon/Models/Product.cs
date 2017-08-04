@@ -9,9 +9,9 @@ namespace BangazonCLI
         public int ProductId {get;}
         public string Name {get; set;}
         public string Description {get; set;}
-        public int Price {get; set;}
+        public Double Price {get; set;}
         public DateTime? DateCreated {get; set;}
-        public Customer customer {get; set;}
-        public ProductType productType {get; set;}
+        public int CustomerID {get; set;}
+        public int ProductTypeID {get; set;}
     }
 }

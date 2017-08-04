@@ -8,14 +8,14 @@ namespace BangazonCLI.Tests
     // Tests Functionality of customer manager; adds new customer and gets a list of customers.
     public class CustomerManagerShould : IDisposable
     {
-        private readonly CustomerManager _cm;
+        private readonly CustomerManager _pm;
         private readonly dbUtilities _db;
         // Creates a customer manager and connection with the database..
         
         public CustomerManagerShould ()
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
-            _cm = new CustomerManager(_db);
+            _pm = new CustomerManager(_db);
             _db.CheckCustomer();
         }
         // Tests to see if customers are really being added by our methods.
@@ -32,7 +32,7 @@ namespace BangazonCLI.Tests
                 newCustomer.phoneNumber= "555-123-4567"; 
             
 
-        var result = _cm.AddNewCustomer(newCustomer);
+        var result = _pm.AddNewCustomer(newCustomer);
 
             Assert.True(result !=0);
         }
@@ -41,7 +41,7 @@ namespace BangazonCLI.Tests
         public void ListCustomers()
         {
 
-            List<Customer> customerList = _cm.GetCustomerList();
+            List<Customer> customerList = _pm.GetCustomerList();
             customerList.Add(new Customer(){firstName="Brain", lastName="Pinky", streetAddress="114 Street Place", state= "Tennesseetopia", postalCode= 55555, phoneNumber= "555-123-4567"});
             Assert.IsType<List<Customer>>(customerList);
             Assert.True(customerList.Count > 0);
