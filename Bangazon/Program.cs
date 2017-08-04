@@ -1,4 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Data.Sqlite;
+using System.Collections;
+
 
 namespace BangazonCLI
 {
@@ -7,7 +13,7 @@ namespace BangazonCLI
         static void Main(string[] args)
         {
             // Seed the database if none exists
-            var db = new dbUtilities("BANGAZONCLI_DB");
+            dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
             db.CheckCustomer();
 
             // Present the main menu
@@ -42,7 +48,7 @@ namespace BangazonCLI
                 Console.WriteLine ("Enter customer phone number");
                 Console.Write ("> ");
                 string phoneNumber = Console.ReadLine();
-                CustomerManager manager = new CustomerManager();
+                CustomerManager manager = new CustomerManager(db);
             }
         }
     }
