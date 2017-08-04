@@ -24,12 +24,11 @@ namespace BangazonCLI.Tests
         {
             Product newProduct = new Product();
             
-                // newProduct.Name = "Ball"; 
-                // newProduct.Description= "Its a ball"; 
-                // newProduct.Price = 9000; 
-                // newProduct.DateCreated= "1989-09-22"; 
-                // newProduct.CustomerID= 1; 
-                // newProduct.ProductTypeID= 1; 
+                newProduct.Name = "Ball"; 
+                newProduct.Description= "Its a ball"; 
+                newProduct.Price = 9000; 
+                newProduct.DateCreated= DateTime.Today; 
+
             
 
         var result = _cm.AddNewProduct(newProduct);
@@ -43,13 +42,12 @@ namespace BangazonCLI.Tests
 
             List<Product> ProductList = _cm.GetProductList();
 
-            // Product newProduct = new Product();
-            //     newProduct.Name = "Ball"; 
-            //     newProduct.Description= "Its a ball"; 
-            //     newProduct.Price = 9000; 
-            //     newProduct.DateCreated= DateTime.Today; 
-            //     newProduct.CustomerID= Customer.CustomerID; 
-            //     newProduct.ProductTypeID= 1; 
+            Product newProduct = new Product();
+                newProduct.Name = "Ball"; 
+                newProduct.Description= "Its a ball"; 
+                newProduct.Price = 9000; 
+                newProduct.DateCreated= DateTime.Today; 
+
 
             // ProductList.Add(newProduct);
             Assert.IsType<List<Product>>(ProductList);
