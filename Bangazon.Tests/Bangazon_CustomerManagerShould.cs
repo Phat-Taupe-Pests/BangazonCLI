@@ -1,20 +1,41 @@
 using System;
+using System.Collections.Generic;
+using BangazonCLI;
 using Xunit;
 
 namespace Bangazon.Tests
 {
-    public class CustomerManagerShould
+    public class CustomerManagerShould : IDisposable
     {
+        private readonly CustomerManager _cm;
+        private readonly dbUtilities _db;
+        
+        public CustomerManagerShould ()
+        {
+            _db = new dbUtilities("BANGAZONCLI_TEST_DB");
+            _cm = new CustomerManager(_db);
+            _db.CheckCustomer();
+        }
         [Fact]
         public void AddNewCustomer()
         {
+            Customer newCustomer = newCustomer(){ firstName: "Brain", lastName: "Pinky", streetAddress: "114 Street Place", state: "Tennesseetopia", postalCode: 55555, phoneNumber: "555-123-4567" };
+            var result = _cm.AddNewCustomer(newCustomer);
 
+            Assert.True(result !=0);
         }
 
         [Fact]
         public void ListCustomers()
         {
+            List<Customer> customerList = _cm.GetCustomerList();
+            Assert.IsType<List<Customer>>(customerList);
+            Assert.True(customerList.Count > 0);
+        }
 
+        public void Dispose()
+        {
+            _db.Delete("DELETE FROM customer");
         }
     }
 }
