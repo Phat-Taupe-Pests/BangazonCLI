@@ -16,7 +16,7 @@ namespace BangazonCLI.Tests
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _ptm = new PaymentTypeManager(_db);
-            _db.CheckCustomer();
+            // _db.CheckCustomer();
         }
         // Tests to see if customers are really being added by our methods.
         [Fact]
