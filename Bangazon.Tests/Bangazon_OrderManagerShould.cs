@@ -22,7 +22,8 @@ namespace Bangazon.Tests
         public void AddProductToOrder()
         {
             Product basketball = new Product();
-            _om.AddProductToOrder(basketball);
+            var result = _om.AddProductToOrder(basketball);
+            Assert.True(result);
         }
 
         // [Fact]

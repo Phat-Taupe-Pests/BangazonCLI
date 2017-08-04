@@ -13,8 +13,8 @@ namespace BangazonCLI
             _db = db;
         }
         // Adds a new customer--passed in as an argument--to the database
-        public int AddProductToOrder(Product product){
-            return 5;
+        public bool AddProductToOrder(Product product){
+            return true;
         }
     }
 }
