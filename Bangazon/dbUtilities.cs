@@ -31,6 +31,45 @@ namespace BangazonCLI
                 _connection.Close();
             }
         }
+
+        public void Query(string command, Action<SqliteDataReader> handler)
+        {
+            using (_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open ();
+                dbcmd.CommandText = command;
+
+                using (SqliteDataReader dataReader = dbcmd.ExecuteReader()) 
+                {
+                    handler (dataReader);
+                }
+                _connection.Close ();
+            }
+        }
+
+        public int Insert(string command)
+        {
+            int insertedItemId = 0;
+
+            using (_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open ();
+                dbcmd.CommandText = command;
+                dbcmd.ExecuteNonQuery ();
+                this.Query("select last_insert_rowid()",
+                    (SqliteDataReader reader) => {
+                        while (reader.Read ())
+                        {
+                            insertedItemId = reader.GetInt32(0);
+                        }
+                    }
+                );
+                _connection.Close ();
+            }
+            return insertedItemId;
+        }
         // Checks to see if a customer table exists, if it doesn't it creates the table in the database.
         public void CheckCustomer ()
         {
@@ -153,10 +192,6 @@ namespace BangazonCLI
                 }
                 _connection.Close ();
             }
-        }
-
-
-        
-        
+        }   
     }
 }
