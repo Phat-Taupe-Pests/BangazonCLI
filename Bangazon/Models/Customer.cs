@@ -4,16 +4,15 @@ using System;
 
 namespace BangazonCLI
 {
-    // Gets and sets public properties of a customer.
+    //Represents a customer in the SQL database, including the customerID, firstName, lastName, streetAddress, state, postalCode, and phoneNumber.
     public class Customer
     {
-        public int customerID {get; set;}
-        public string firstName {get; set;}
-        public string lastName {get; set;}
-        public string streetAddress {get; set;}
-        public string state {get; set;}
-        public int postalCode {get; set;}
-        public string phoneNumber {get; set;}
-
+        public int customerID { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string streetAddress { get; set; }
+        public string state { get; set; }
+        public int postalCode { get; set; }
+        public string phoneNumber { get; set; }
     }
 }

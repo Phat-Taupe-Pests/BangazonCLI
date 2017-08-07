@@ -9,6 +9,7 @@ namespace BangazonCLI
 
         // Hold the Current Customer. -Matt Augsburger
         private Customer _currentCustomer;
+
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
         public CustomerManager(dbUtilities db)
         {
@@ -16,7 +17,10 @@ namespace BangazonCLI
         }
         // Adds a new customer--passed in as an argument--to the database
         public int AddNewCustomer(Customer newCustomer){
-            return 4;
+
+            int id = _db.Insert( $"insert into customer values (null, '{newCustomer.firstName}', '{newCustomer.lastName}', '{newCustomer.streetAddress}', '{newCustomer.state}', {newCustomer.postalCode}, '{newCustomer.phoneNumber}')");
+
+            return id;
         }
         // Gets a list of customers.
         public List<Customer> GetCustomerList()
