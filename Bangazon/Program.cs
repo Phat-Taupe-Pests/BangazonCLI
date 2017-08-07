@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Sqlite;
 using System.Collections;
+using BangazonCLI.MenuActions;
 
 
 namespace BangazonCLI
@@ -14,7 +15,12 @@ namespace BangazonCLI
         {
             // Seed the database if none exists
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
+            CustomerManager cm = new CustomerManager(db);
+            ProductManager pm = new ProductManager(db);
+            OrderManager om = new OrderManager(om);
             db.CheckCustomer();
+            db.CheckProduct();
+            db.CheckOrder();
 
             // Present the main menu
             Console.WriteLine ("*************************************************");
@@ -22,6 +28,8 @@ namespace BangazonCLI
             Console.WriteLine ("*************************************************");
             Console.WriteLine ("1. Create a customer account");
 			Console.Write ("> ");
+            Console.WriteLine ("5. Add a product to the active customer's order");
+			Console.Write ("> ")
 
 			// Read in the user's choice
 			int choice;
@@ -49,6 +57,12 @@ namespace BangazonCLI
                 Console.Write ("> ");
                 string phoneNumber = Console.ReadLine();
                 CustomerManager manager = new CustomerManager(db);
+            }
+
+            // If option 5 was chosen, user can add a product to the active customer's order
+            if (choice == 5)
+            {
+                AddProductOrder.DoAction(cm, db, pm, om);
             }
         }
     }
