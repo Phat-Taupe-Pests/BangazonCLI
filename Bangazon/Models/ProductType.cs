@@ -6,7 +6,7 @@ namespace BangazonCLI
     //Represents a ProductType in the SQL database, constisting of the the productTypeID and name.
     public class ProductType
     {
-        public int produtTypeID {get; set;}
+        public int productTypeID {get; set;}
         public string name {get; set;}
     }
 }
