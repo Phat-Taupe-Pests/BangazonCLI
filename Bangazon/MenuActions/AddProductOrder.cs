@@ -28,15 +28,15 @@ public class AddProductOrder
 
         //add productChoice to customer's order
         //** set code below equal to something?
-        Product product = om.AddProductToOrder(int.Parse(productChoice));      
+        Product productToAdd = om.AddProductToOrder(int.Parse(productChoice));      
 
         // After the user selects a product to add to the customer's order, display the menu of products again. Make sure the last option provides the option to go back to main menu.
 
 
-      Console.WriteLine ("Enter toy");
-      Console.Write ("> ");
-      string toyName = Console.ReadLine();
-      bag.Add(toyName, kid);
+      // Console.WriteLine ("Enter toy");
+      // Console.Write ("> ");
+      // string toyName = Console.ReadLine();
+      // bag.Add(toyName, kid);
     }
   }
 }
