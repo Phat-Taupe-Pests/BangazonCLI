@@ -3,7 +3,7 @@ using System;
 //Written by:  Chaz Henricks
 namespace BangazonCLI
 {
-    // Gets and sets public properties of a Product.
+    //Represents a product in the SQL database, including the productID, name, description,, price, date created, customerID, and productTypeID.
     public class Product
     {
         public int productID {get; set;}
