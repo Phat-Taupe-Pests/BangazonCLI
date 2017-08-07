@@ -10,15 +10,15 @@ namespace BangazonCLI.Tests
     {
         private readonly PaymentTypeManager _ptm;
         private readonly dbUtilities _db;
-        // Creates a customer manager and connection with the database..
+        // Creates a payment type manager and connection with the database..
         
         public PaymentTypeManagerShould ()
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _ptm = new PaymentTypeManager(_db);
-            // _db.CheckCustomer();
+            _db.CheckPaymentType();
         }
-        // Tests to see if customers are really being added by our methods.
+        // Tests to see if payment types are really being added by our methods.
         [Fact]
         public void AddNewPaymentType()
         {
@@ -29,10 +29,10 @@ namespace BangazonCLI.Tests
             Assert.True(paymentTypeID !=0);
         }
 
-        // Burns the database down because the paint color is wrong.
+        // Burns the database down because the paint color is wrong (resets the test database).
             public void Dispose()
         {
-            // _db.Delete("DELETE FROM customer");
+            _db.Delete("DELETE FROM paymentType");
         }
     }
 }
