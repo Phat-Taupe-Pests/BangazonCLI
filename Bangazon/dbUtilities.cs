@@ -217,8 +217,8 @@ namespace BangazonCLI
                         dbcmd.CommandText = $@"create table productOrder (
                             `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             `OrderID`	integer not null,
-                            `ProductID`	integer not null,
                             FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
+                            `ProductID`	integer not null,
                             FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
                         )";
                         dbcmd.ExecuteNonQuery ();
@@ -255,9 +255,9 @@ namespace BangazonCLI
                         dbcmd.CommandText = $@"create table order (
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             `customerID`	integer not null,
-                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
+                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`customerID`),
                             `paymentTypeID`	integer not null,
-                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
+                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`paymentTypeID`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }

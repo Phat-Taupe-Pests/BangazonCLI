@@ -21,6 +21,7 @@ namespace BangazonCLI
             db.CheckCustomer();
             db.CheckProduct();
             db.CheckOrder();
+            db.CheckProductOrder();
 
             MainMenu menu = new MainMenu();
 

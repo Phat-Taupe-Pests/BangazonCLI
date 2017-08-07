@@ -16,34 +16,9 @@ namespace BangazonCLI
         }
         // Adds a product to the active customer's order
         public int AddProductToOrder(ProductOrder productOrder){
+            int id = _db.Insert( $"insert into productOrder values (null, '{productOrder.productID}', '{productOrder.orderID}')");
 
-            int _lastId = 0; // Will store the id of the last inserted record
-            using (_connection)
-            {
-                _connection.Open ();
-                SqliteCommand dbcmd = _connection.CreateCommand();
-
-                dbcmd.CommandText = ($"insert into ProductOrder values (null, '{productOrder.productID}', {productOrder.orderID})");
-                Console.WriteLine(dbcmd.CommandText);
-                dbcmd.ExecuteNonQuery();
-
-                // Get the id of the new row
-                dbcmd.CommandText = $"select last_insert_rowid()";
-                using (SqliteDataReader dr = dbcmd.ExecuteReader()) 
-                {
-                    if (dr.Read()) {
-                        _lastId = dr.GetInt32(0);
-                    } else {
-                        throw new Exception("Unable to insert value");
-                    }
-                }
-
-                // clean up
-                dbcmd.Dispose ();
-                _connection.Close ();
-            }
-
-            return _lastId;
+            return id;
         }
     }
 }
