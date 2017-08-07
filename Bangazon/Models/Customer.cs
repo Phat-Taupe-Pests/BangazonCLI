@@ -14,6 +14,5 @@ namespace BangazonCLI
         public string state { get; set; }
         public int postalCode { get; set; }
         public string phoneNumber { get; set; }
-
     }
 }

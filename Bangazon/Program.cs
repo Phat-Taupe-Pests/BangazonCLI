@@ -17,21 +17,42 @@ namespace BangazonCLI
             CustomerManager cm = new CustomerManager(db);
             db.CheckCustomer();
 
-            // Present the main menu
-            Console.WriteLine ("*************************************************");
-            Console.WriteLine ("Welcome to Bangazon! Command Line Ordering System");
-            Console.WriteLine ("*************************************************");
-            Console.WriteLine ("1. Create a customer account");
-			Console.Write ("> ");
+            MainMenu menu = new MainMenu();
 
-			// Read in the user's choice
-			int choice;
-			Int32.TryParse (Console.ReadLine(), out choice);
+            int choice;
 
-            // If option 1 was chosen, create a new customer account
-            if (choice == 1)
+            do
             {
-            }
+                // Show the Main Menu
+                choice = menu.ShowMainMenu();
+
+                switch (choice)
+                {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                    case 10:
+                        break;
+                    case 11:
+                        break;
+                }
+
+            } while(choice != 12);
         }
     }
 }
