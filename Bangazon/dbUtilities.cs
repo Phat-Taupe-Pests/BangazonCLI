@@ -141,11 +141,12 @@ namespace BangazonCLI
                     if (ex.Message.Contains("no such table"))
                     {
                         //double check syntax for all of the command below
-                        dbcmd.CommandText = $@"create table customer (
+                        dbcmd.CommandText = $@"create table order (
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `customerID`	integer not null,
                             FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
-                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`),
-                            FOREIGN KEY(`productID`) REFERENCES `productOrder`(`id`)
+                            `paymentTypeID`	integer not null,
+                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
