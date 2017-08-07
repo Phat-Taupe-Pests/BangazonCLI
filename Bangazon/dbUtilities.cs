@@ -125,7 +125,6 @@ namespace BangazonCLI
 
                 // Query the product table to see if table is created
                 dbcmd.CommandText = $"select productOrderID from productOrder";
-
                 try
                 {
                     // Try to run the query. If it throws an exception, create the table
@@ -141,6 +140,8 @@ namespace BangazonCLI
                     {
                         dbcmd.CommandText = $@"create table productOrder (
                             `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `OrderID`	integer not null,
+                            `ProductID`	integer not null,
                             FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
                             FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
                         )";
@@ -150,8 +151,5 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
-
-        
-        
     }
 }
