@@ -6,14 +6,18 @@ namespace BangazonCLI
     public class PaymentTypeManager
     {
         private dbUtilities _db;
+        private CustomerManager _cm;
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
         public PaymentTypeManager(dbUtilities db)
         {
+            _cm = new CustomerManager(db);
             _db = db;
         }
         // Adds a new PaymentType--passed in as an argument--to the database
-        public int AddNewPaymentType(PaymentType newPaymentType){
-            return 4;
+        public int AddNewPaymentType(int newAccountNumber, string newAccountName){
+            Customer activeCustomer = _cm.GetCurrentCustomer();
+            int returnedID = _db.Insert($"insert into paymentType values (null, {activeCustomer.customerID}, {newAccountNumber}, '{newAccountName}')");
+            return returnedID;
         }
     }
 }
