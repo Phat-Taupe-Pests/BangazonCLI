@@ -16,7 +16,7 @@ namespace BangazonCLI.Tests
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _ptm = new ProductTypeManager(_db);
-            // _db.CheckProductType();
+            _db.CheckProductType();
         }
         // Tests to see if our methods are getting a list of ProductTypes.
         [Fact]
@@ -27,10 +27,10 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<ProductType>>(productTypeList);
             Assert.True(productTypeList.Count > 0);
         }
-        // Burns the database down because the paint color is wrong.
+        // Burns the database down because the paint color is wrong (deletes product type table from test.
             public void Dispose()
         {
-            // _db.Delete("DELETE FROM customer");
+            _db.Delete("DELETE FROM productType");
         }
     }
 }

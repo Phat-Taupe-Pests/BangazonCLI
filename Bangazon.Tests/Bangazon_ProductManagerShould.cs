@@ -19,40 +19,66 @@ namespace BangazonCLI.Tests
             _db.CheckProduct();
         }
         // Tests to see if Products are really being added by our methods.
-        [Fact]
-        public void AddNewProduct()
+        [Theory]
+        [InlineData("Ball", "Its a ball", 9000)]
+        [InlineData("Double Ball", "Its, like 2 balls", 8000)]
+        [InlineData("2 CHAINZ", "TRu", 19.99)]
+        public void AddNewProduct(string name, string desc, double price)
         {
             Product newProduct = new Product();
             
-                newProduct.Name = "Ball"; 
-                newProduct.Description= "Its a ball"; 
-                newProduct.Price = 9000; 
-                newProduct.DateCreated= DateTime.Today; 
+                newProduct.name = name; 
+                newProduct.description= desc; 
+                newProduct.price = price; 
+                newProduct.dateCreated= DateTime.Today; 
 
+
+            int customer = 1;
+            int productType = 1;
             
 
-        var result = _pm.AddNewProduct(newProduct);
+        var result = _pm.AddNewProduct(newProduct, customer, productType);
 
             Assert.True(result !=0);
         }
-        // Tests to see if our methods are getting a list of Products.
-        [Fact]
-        public void ListProducts()
+        [Theory]
+        [InlineData("Ball", "Its a ball", 9000)]
+        [InlineData("Double Ball", "Its, like 2 balls", 8000)]
+        [InlineData("2 CHAINZ", "TRu", 19.99)]
+        //this test will add 3 products to the products table and then return a list of all the products added. 
+        //Takes a name, description and a price as arguments
+        public void ListProducts(string name, string desc, double price)
         {
+            // builds a new product to add
+            Product newProduct = new Product();
+                newProduct.name = name; 
+                newProduct.description= desc; 
+                newProduct.price = price; 
+                newProduct.dateCreated= DateTime.Today;
+
+            //attached customer id and product type to the product being added
+            //in production these valuses will be saved from a previous selection
+            int customer = 1;
+            int productType = 1;
+
+            _pm.AddNewProduct(newProduct, customer, productType);
 
             List<Product> ProductList = _pm.GetProductList();
-
-            Product newProduct = new Product();
-                newProduct.Name = "Ball"; 
-                newProduct.Description= "Its a ball"; 
-                newProduct.Price = 9000; 
-                newProduct.DateCreated= DateTime.Today; 
-
-
-            // ProductList.Add(newProduct);
+            foreach(Product product in ProductList)
+            {
+                Console.WriteLine($"{product.dateCreated}");
+            }
             Assert.IsType<List<Product>>(ProductList);
-            // Assert.True(ProductList.Count > 0);
+            Assert.True(ProductList.Count > 0);
         }
+
+
+
+
+
+
+
+
         // Burns the database down because the paint color is wrong.
             public void Dispose()
         {

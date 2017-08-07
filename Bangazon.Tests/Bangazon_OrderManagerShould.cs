@@ -26,23 +26,6 @@ namespace Bangazon.Tests
             Assert.True(result);
         }
 
-        // [Fact]
-        // public void CreateNewOrder()
-        // {
-        //     Product kite = new Product();
-        //     _manager.CreateOrder(kite);
-        // }
 
-        // [Fact]
-        // public void ListOrders()
-        // {
-
-        // }
-
-        // [Fact]
-        // public void AddPaymentTypeToOrder()
-        // {
-
-        // }
     }
 }
