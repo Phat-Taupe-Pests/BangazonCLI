@@ -14,6 +14,7 @@ namespace BangazonCLI
         {
             // Seed the database if none exists
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
+            CustomerManager cm = new CustomerManager(db);
             db.CheckCustomer();
 
             MainMenu menu = new MainMenu();
