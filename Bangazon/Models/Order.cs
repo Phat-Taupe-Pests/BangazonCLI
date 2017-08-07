@@ -6,12 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BangazonCLI
 {
-    // Gets public properties of an order.
+    //Represents an order in the SQL database, including the orderID, customerID, paymentTypeID, and a list of the products associated with that order.
     public class Order
     {
+        public int orderID { get; set; }
         public int customerID { get; set; }
         public int paymentTypeID { get; set; }
         public List<Product> products { get; set; }
-
    }
 }
