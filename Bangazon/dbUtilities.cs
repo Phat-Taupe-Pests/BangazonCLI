@@ -110,41 +110,6 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
-        // Checks to see if a product type table exists, if it doesn't it creates the table in the database.
-        public void CheckProductType ()
-        {
-            using (_connection)
-            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
-            using (SqliteCommand dbcmd = _connection.CreateCommand ())
-            {
-                _connection.Open();
-
-                // Query the productType table to see if table is created
-                dbcmd.CommandText = $"select productTypeID from productType";
-
-                try
-                {
-                    // Try to run the query. If it throws an exception, create the table
-                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
-                    {
-                        
-                    }
-                }
-                catch (Microsoft.Data.Sqlite.SqliteException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    if (ex.Message.Contains("no such table"))
-                    {
-                        dbcmd.CommandText = $@"create table productType (
-                            `productTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `name`	varchar(80) not null
-                        )";
-                        dbcmd.ExecuteNonQuery ();
-                    }
-                }
-                _connection.Close ();
-            }
-        }
         //Written By Chaz Henricks
         //DB checks if a Product Table exists
         public void CheckProduct ()
