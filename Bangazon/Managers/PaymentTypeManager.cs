@@ -13,6 +13,7 @@ namespace BangazonCLI
         }
         // Adds a new PaymentType--passed in as an argument--to the database
         public int AddNewPaymentType(PaymentType newPaymentType){
+            
             return 4;
         }
     }
