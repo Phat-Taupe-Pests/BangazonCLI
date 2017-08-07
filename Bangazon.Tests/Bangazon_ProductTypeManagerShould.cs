@@ -16,7 +16,7 @@ namespace BangazonCLI.Tests
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _ptm = new ProductTypeManager(_db);
-            _db.CheckProductType();
+            _db.CheckTables();
         }
         // Tests to see if our methods are getting a list of ProductTypes.
         [Fact]

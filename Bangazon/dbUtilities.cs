@@ -70,8 +70,7 @@ namespace BangazonCLI
             }
             return insertedItemId;
         }
-        // Checks to see if a customer table exists, if it doesn't it creates the table in the database.
-        public void CheckCustomer ()
+        public void CheckTables ()
         {
             using (_connection)
             // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
@@ -79,9 +78,7 @@ namespace BangazonCLI
             {
                 _connection.Open();
 
-                // Query the customer table to see if table is created
                 dbcmd.CommandText = $"select customerID from customer";
-
                 try
                 {
                     // Try to run the query. If it throws an exception, create the table
@@ -97,32 +94,18 @@ namespace BangazonCLI
                     {
                         dbcmd.CommandText = $@"create table customer (
                             `customerID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `firstName`	varchar(80) not null, 
-                            `lastName`	varchar(80) not null, 
+                            `firstName`	    varchar(80) not null, 
+                            `lastName`	    varchar(80) not null, 
                             `streetAddress`	varchar(160) not null, 
-                            `state`	varchar(80) not null, 
-                            `postalCode` integer not null,
+                            `state`	        varchar(80) not null, 
+                            `postalCode`    integer not null,
                             `phoneNumber`	varchar(20) not null
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
                 }
-                _connection.Close ();
-            }
-        }
-        //Written By Chaz Henricks
-        //DB checks if a Product Table exists
-        public void CheckProduct ()
-        {
-            using (_connection)
-            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
-            using (SqliteCommand dbcmd = _connection.CreateCommand ())
-            {
-                _connection.Open();
-
-                // Query the product table to see if table is created
+                dbcmd.Dispose();
                 dbcmd.CommandText = $"select productID from product";
-
                 try
                 {
                     // Try to run the query. If it throws an exception, create the table
@@ -139,33 +122,19 @@ namespace BangazonCLI
                         dbcmd.CommandText = $@"create table product (
                             `ProductID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             `Name`	varchar(80) not null, 
-                            `Description`	varchar(1000) not null, 
-                            `ProductTypeID`	integer not null,
-                            `Price`	double not null,
-                            `CustomerID`	integer not null,
-                            `DateCreated`   varchar(80) not null,
+                            `Description`	    varchar(1000) not null, 
+                            `ProductTypeID`	    integer not null,
+                            `Price`	            double not null,
+                            `CustomerID`	    integer not null,
+                            `DateCreated`       varchar(80) not null,
                             FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`),
                             FOREIGN KEY(`ProductTypeID`) REFERENCES `ProductType`(`ProductTypeID`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
                 }
-                _connection.Close ();
-            }
-        }
-        //Written By Eliza Meeks
-        //DB checks if a Product Type Table exists
-        public void CheckProductType ()
-        {
-            using (_connection)
-            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
-            using (SqliteCommand dbcmd = _connection.CreateCommand ())
-            {
-                _connection.Open();
-
-                // Query the product table to see if table is created
+                dbcmd.Dispose();
                 dbcmd.CommandText = $"select productTypeID from productType";
-
                 try
                 {
                     // Try to run the query. If it throws an exception, create the table
@@ -181,25 +150,12 @@ namespace BangazonCLI
                     {
                         dbcmd.CommandText = $@"create table productType (
                             `ProductTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `Name`	varchar(80) not null
+                            `Name`	        varchar(80) not null
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
                 }
-                _connection.Close ();
-            }
-        }
-
-        //Checks for the existence of the productOrder table... creates it if table doesn't exist
-        public void CheckProductOrder ()
-        {
-            using (_connection)
-            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
-            using (SqliteCommand dbcmd = _connection.CreateCommand ())
-            {
-                _connection.Open();
-
-                // Query the product table to see if table is created
+                dbcmd.Dispose();
                 dbcmd.CommandText = $"select productOrderID from productOrder";
                 try
                 {
@@ -216,68 +172,16 @@ namespace BangazonCLI
                     {
                         dbcmd.CommandText = $@"create table productOrder (
                             `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `OrderID`	integer not null,
-                            `ProductID`	integer not null,
+                            `OrderID`	        integer not null,
+                            `ProductID`	        integer not null,
                             FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
                             FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
                 }
-                _connection.Close ();
-            }
-        }  
-        public void CheckOrder ()
-        {
-            using (_connection)
-            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
-            using (SqliteCommand dbcmd = _connection.CreateCommand ())
-            {
-                _connection.Open();
-
-                // Query the order table to see if table is created
-                dbcmd.CommandText = $"select orderId from order";
-
-                try
-                {
-                    // Try to run the query. If it throws an exception, create the table
-                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
-                    {
-                        
-                    }
-                }
-                catch (Microsoft.Data.Sqlite.SqliteException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    if (ex.Message.Contains("no such table"))
-                    {
-                        //double check syntax for all of the command below
-                        dbcmd.CommandText = $@"create table order (
-                            `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `customerID`	integer not null,
-                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
-                            `paymentTypeID`	integer not null,
-                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
-                        )";
-                        dbcmd.ExecuteNonQuery ();
-                    }
-                }
-                _connection.Close ();
-            }
-
-        }
-        // Checks to see if PaymentType exists, if it doesn't it creates the table.
-        public void CheckPaymentType ()
-        {
-            using (_connection)
-            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
-            using (SqliteCommand dbcmd = _connection.CreateCommand ())
-            {
-                _connection.Open();
-
-                // Query the product table to see if table is created
+                dbcmd.Dispose();
                 dbcmd.CommandText = $"select paymentTypeID from paymentType";
-
                 try
                 {
                     // Try to run the query. If it throws an exception, create the table
@@ -292,18 +196,44 @@ namespace BangazonCLI
                     if (ex.Message.Contains("no such table"))
                     {
                         dbcmd.CommandText = $@"create table paymentType (
-                            `PaymentTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `AccountNumber`	integer not null,
-                            `CustomerID`	integer not null,
-                            `Name`   varchar(80) not null,
+                            `PaymentTypeID`	    integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `AccountNumber`	    integer not null,
+                            `CustomerID`	    integer not null,
+                            `Name`              varchar(80) not null,
                             FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
                 }
+                dbcmd.Dispose();
+                dbcmd.CommandText = $"select orderId from `order`";
+                try
+                {
+                    // Try to run the query. If it throws an exception, create the table
+                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
+                    {
+                        
+                    }
+                }
+                catch (Microsoft.Data.Sqlite.SqliteException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (ex.Message.Contains("no such table"))
+                    {
+                        //double check syntax for all of the command below
+                        dbcmd.CommandText = $@"create table `order` (
+                            `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `customerID`	integer not null,
+                            `paymentTypeID`	integer not null,
+                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`customerID`),
+                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`paymentTypeID`)
+                        )";
+                        dbcmd.ExecuteNonQuery ();
+                    }
+                }
+                dbcmd.Dispose();
                 _connection.Close ();
             }
         }
-
     }
 }
