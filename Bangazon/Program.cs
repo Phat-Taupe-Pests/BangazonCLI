@@ -17,7 +17,7 @@ namespace BangazonCLI
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
             CustomerManager cm = new CustomerManager(db);
             ProductManager pm = new ProductManager(db);
-            OrderManager om = new OrderManager(om);
+            OrderManager om = new OrderManager(db);
             db.CheckCustomer();
             db.CheckProduct();
             db.CheckOrder();
@@ -29,7 +29,7 @@ namespace BangazonCLI
             Console.WriteLine ("1. Create a customer account");
 			Console.Write ("> ");
             Console.WriteLine ("5. Add a product to the active customer's order");
-			Console.Write ("> ")
+			Console.Write ("> ");
 
 			// Read in the user's choice
 			int choice;

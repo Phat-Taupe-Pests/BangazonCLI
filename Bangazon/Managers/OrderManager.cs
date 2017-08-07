@@ -8,7 +8,7 @@ namespace BangazonCLI
     // Manages order related methods
     public class OrderManager
     {
-        private string _connectionString = $"Data Source={Environment.GetEnvironmentVariable("BAGOLOOT_DB")}";
+        private string _connectionString = $"Data Source={Environment.GetEnvironmentVariable("BANGAZONCLI_DB")}";
         private SqliteConnection _connection;
         private dbUtilities _db;
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
@@ -17,7 +17,7 @@ namespace BangazonCLI
             _db = db;
         }
         // Adds a product to the active customer's order
-        public int AddProductToOrder(Product product){
+        public int AddProductToOrder(ProductOrder productOrder){
 
             int _lastId = 0; // Will store the id of the last inserted record
             using (_connection)
@@ -25,7 +25,7 @@ namespace BangazonCLI
                 _connection.Open ();
                 SqliteCommand dbcmd = _connection.CreateCommand();
 
-                dbcmd.CommandText = ($"insert into ToyBag values (null, '{toyName}', {childId})");
+                dbcmd.CommandText = ($"insert into ProductOrder values (null, '{productOrder.productID}', {productOrder.orderID})");
                 Console.WriteLine(dbcmd.CommandText);
                 dbcmd.ExecuteNonQuery();
 
