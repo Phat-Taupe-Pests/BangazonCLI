@@ -61,19 +61,5 @@ namespace BangazonCLI
             return _products;
 
         }
-
-        public Product GetProduct(int id)
-        {
-        Product returnProduct = new Product();
-         foreach(Product item in _products)
-         {
-             if(item.productID == id)
-             {
-                 returnProduct = item;
-             }
-         }
-        return returnProduct;
-        }
-            
     }
 }
