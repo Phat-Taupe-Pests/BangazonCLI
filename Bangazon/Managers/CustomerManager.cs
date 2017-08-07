@@ -56,14 +56,6 @@ namespace BangazonCLI
         // Gets/returns the current customer
         public Customer GetCurrentCustomer()
         {
-            _currentCustomer = new Customer();
-                _currentCustomer.customerID = 1;
-                _currentCustomer.firstName = "Brain"; 
-                _currentCustomer.lastName= "Pinky"; 
-                _currentCustomer.streetAddress = "114 Street Place"; 
-                _currentCustomer.state= "Tennesseetopia"; 
-                _currentCustomer.postalCode= 55555; 
-                _currentCustomer.phoneNumber= "555-123-4567"; 
             return _currentCustomer;
         }
     }
