@@ -19,19 +19,25 @@ namespace BangazonCLI.Tests
             _db.CheckProduct();
         }
         // Tests to see if Products are really being added by our methods.
-        [Fact]
-        public void AddNewProduct()
+        [Theory]
+        [InlineData("Ball", "Its a ball", 9000)]
+        [InlineData("Double Ball", "Its, like 2 balls", 8000)]
+        [InlineData("2 CHAINZ", "TRu", 19.99)]
+        public void AddNewProduct(string name, string desc, double price)
         {
             Product newProduct = new Product();
             
-                newProduct.Name = "Ball"; 
-                newProduct.Description= "Its a ball"; 
-                newProduct.Price = 9000; 
+                newProduct.Name = name; 
+                newProduct.Description= desc; 
+                newProduct.Price = price; 
                 newProduct.DateCreated= DateTime.Today; 
 
+
+            int customer = 1;
+            int productType = 1;
             
 
-        var result = _pm.AddNewProduct(newProduct);
+        var result = _pm.AddNewProduct(newProduct, customer, productType);
 
             Assert.True(result !=0);
         }
