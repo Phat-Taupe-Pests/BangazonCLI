@@ -17,18 +17,18 @@ namespace BangazonCLI
         }
         // Adds a new Product--passed in as an argument--to the database
         public int AddNewProduct(Product newProduct, int customer, int productType){
-             int id = _db.Insert( $"insert into Product values (null, '{newProduct.Name}', '{newProduct.Description}', '{newProduct.Price}', '{newProduct.DateCreated}', '{customer}', '{productType}')");
+             int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{customer}', '{productType}')");
 
             _products.Add(
                 new Product()
                 {
-                    ProductID = id,
-                    Name = newProduct.Name,
-                    Description = newProduct.Description,
-                    Price = newProduct.Price,
-                    DateCreated = newProduct.DateCreated,
-                    CustomerID = customer,
-                    ProductTypeID = productType,
+                    productID = id,
+                    name = newProduct.name,
+                    description = newProduct.description,
+                    price = newProduct.price,
+                    dateCreated = newProduct.dateCreated,
+                    customerID = customer,
+                    productTypeID = productType,
 
                 }
             );
@@ -40,7 +40,26 @@ namespace BangazonCLI
         public List<Product> GetProductList()
         {
             
-            return new List<Product>();
+             _db.Query("select * from Product",
+                (SqliteDataReader reader) => {
+                    _products.Clear();
+                    while (reader.Read ())
+                    {
+                        _products.Add(new Product(){
+                            productID = reader.GetInt32(0),
+                            name = reader[1].ToString(),
+                            description = reader[2].ToString(),
+                            price = reader.GetDouble(3),
+                            dateCreated = reader.GetDateTime(4),
+                            customerID = reader.GetInt32(5),
+                            productTypeID = reader.GetInt32(6)
+                        });
+                    }
+                }
+            );
+
+            return _products;
+
         }
     }
 }

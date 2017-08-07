@@ -27,10 +27,10 @@ namespace BangazonCLI.Tests
         {
             Product newProduct = new Product();
             
-                newProduct.Name = name; 
-                newProduct.Description= desc; 
-                newProduct.Price = price; 
-                newProduct.DateCreated= DateTime.Today; 
+                newProduct.name = name; 
+                newProduct.description= desc; 
+                newProduct.price = price; 
+                newProduct.dateCreated= DateTime.Today; 
 
 
             int customer = 1;
@@ -47,17 +47,12 @@ namespace BangazonCLI.Tests
         {
 
             List<Product> ProductList = _pm.GetProductList();
-
-            Product newProduct = new Product();
-                newProduct.Name = "Ball"; 
-                newProduct.Description= "Its a ball"; 
-                newProduct.Price = 9000; 
-                newProduct.DateCreated= DateTime.Today; 
-
-
-            // ProductList.Add(newProduct);
+            foreach(Product product in ProductList)
+            {
+                Console.WriteLine($"{product.name} {product.description}");
+            }
             Assert.IsType<List<Product>>(ProductList);
-            // Assert.True(ProductList.Count > 0);
+            Assert.True(ProductList.Count > 0);
         }
         // Burns the database down because the paint color is wrong.
             public void Dispose()
