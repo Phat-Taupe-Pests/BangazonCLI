@@ -110,41 +110,6 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
-        // Checks to see if a product type table exists, if it doesn't it creates the table in the database.
-        public void CheckProductType ()
-        {
-            using (_connection)
-            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
-            using (SqliteCommand dbcmd = _connection.CreateCommand ())
-            {
-                _connection.Open();
-
-                // Query the productType table to see if table is created
-                dbcmd.CommandText = $"select productTypeID from productType";
-
-                try
-                {
-                    // Try to run the query. If it throws an exception, create the table
-                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
-                    {
-                        
-                    }
-                }
-                catch (Microsoft.Data.Sqlite.SqliteException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    if (ex.Message.Contains("no such table"))
-                    {
-                        dbcmd.CommandText = $@"create table productType (
-                            `productTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `name`	varchar(80) not null
-                        )";
-                        dbcmd.ExecuteNonQuery ();
-                    }
-                }
-                _connection.Close ();
-            }
-        }
         //Written By Chaz Henricks
         //DB checks if a Product Table exists
         public void CheckProduct ()
@@ -225,7 +190,43 @@ namespace BangazonCLI
             }
         }
 
-                // Checks to see if a customer table exists, if it doesn't it creates the table in the database.
+        //Checks for the existence of the productOrder table... creates it if table doesn't exist
+        public void CheckProductOrder ()
+        {
+            using (_connection)
+            // putting sqliteCommand in a using statement removes need to do a .Dispose throughout
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+
+                // Query the product table to see if table is created
+                dbcmd.CommandText = $"select productOrderID from productOrder";
+                try
+                {
+                    // Try to run the query. If it throws an exception, create the table
+                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
+                    {
+                        
+                    }
+                }
+                catch (Microsoft.Data.Sqlite.SqliteException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (ex.Message.Contains("no such table"))
+                    {
+                        dbcmd.CommandText = $@"create table productOrder (
+                            `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `OrderID`	integer not null,
+                            `ProductID`	integer not null,
+                            FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
+                            FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
+                        )";
+                        dbcmd.ExecuteNonQuery ();
+                    }
+                }
+                _connection.Close ();
+            }
+        }  
         public void CheckOrder ()
         {
             using (_connection)
@@ -251,11 +252,12 @@ namespace BangazonCLI
                     if (ex.Message.Contains("no such table"))
                     {
                         //double check syntax for all of the command below
-                        dbcmd.CommandText = $@"create table customer (
+                        dbcmd.CommandText = $@"create table order (
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `customerID`	integer not null,
                             FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
-                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`),
-                            FOREIGN KEY(`productID`) REFERENCES `productOrder`(`id`)
+                            `paymentTypeID`	integer not null,
+                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
