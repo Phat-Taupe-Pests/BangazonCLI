@@ -14,6 +14,7 @@ namespace BangazonCLI
         {
             // Seed the database if none exists
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
+            CustomerManager cm = new CustomerManager(db);
             db.CheckCustomer();
 
             // Present the main menu
@@ -30,25 +31,6 @@ namespace BangazonCLI
             // If option 1 was chosen, create a new customer account
             if (choice == 1)
             {
-                Console.WriteLine ("Enter customer first name");
-                Console.Write ("> ");
-                string firstName = Console.ReadLine();
-                Console.WriteLine ("Enter customer last name");
-                Console.Write ("> ");
-                string lastName = Console.ReadLine();
-                Console.WriteLine ("Enter customer city");
-                Console.Write ("> ");
-                string city = Console.ReadLine();
-                Console.WriteLine ("Enter customer state");
-                Console.Write ("> ");
-                string state = Console.ReadLine();
-                Console.WriteLine ("Enter customer postal code");
-                Console.Write ("> ");
-                string postalCode = Console.ReadLine();
-                Console.WriteLine ("Enter customer phone number");
-                Console.Write ("> ");
-                string phoneNumber = Console.ReadLine();
-                CustomerManager manager = new CustomerManager(db);
             }
         }
     }
