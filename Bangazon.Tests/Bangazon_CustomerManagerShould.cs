@@ -32,7 +32,7 @@ namespace BangazonCLI.Tests
                 newCustomer.phoneNumber= "555-123-4567"; 
             
 
-        var result = _cm.AddNewCustomer(newCustomer);
+            var result = _cm.AddNewCustomer(newCustomer);
 
             Assert.True(result !=0);
         }
