@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Sqlite;
 using System.Collections;
-using BangazonCLI.MenuActions;
 
 
 namespace BangazonCLI
