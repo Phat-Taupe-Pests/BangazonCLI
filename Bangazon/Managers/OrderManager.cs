@@ -8,8 +8,6 @@ namespace BangazonCLI
     // Manages order related methods
     public class OrderManager
     {
-        private string _connectionString = $"Data Source={Environment.GetEnvironmentVariable("BANGAZONCLI_DB")}";
-        private SqliteConnection _connection;
         private dbUtilities _db;
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
         public OrderManager(dbUtilities db)
