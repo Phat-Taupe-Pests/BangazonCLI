@@ -42,7 +42,7 @@ namespace BangazonCLI
             
              _db.Query("select * from Product",
                 (SqliteDataReader reader) => {
-                    _products.Clear();
+                    _products.Clear();  
                     while (reader.Read ())
                     {
                         _products.Add(new Product(){
@@ -61,5 +61,7 @@ namespace BangazonCLI
             return _products;
 
         }
+
+        public Product GetProduct (int id) =>  _products.SingleOrDefault(item => item.productID == id);
     }
 }
