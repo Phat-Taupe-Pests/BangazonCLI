@@ -17,7 +17,7 @@ namespace BangazonCLI
         }
         // Adds a new Product--passed in as an argument--to the database
         public int AddNewProduct(Product newProduct, int customer, int productType){
-             int id = _db.Insert( $"insert into Product values (null, '{newProduct.Name}', '{newProduct.Description}', '{newProduct.Price}', '{newProduct.DateCreated}', '{customerID}', '{productTypeID}')");
+             int id = _db.Insert( $"insert into Product values (null, '{newProduct.Name}', '{newProduct.Description}', '{newProduct.Price}', '{newProduct.DateCreated}', '{customer}', '{productType}')");
 
             _products.Add(
                 new Product()
