@@ -7,6 +7,7 @@ namespace BangazonCLI
     // Gets and sets public properties of a customer.
     public class Customer
     {
+        public int customerID {get; set;}
         public string firstName {get; set;}
         public string lastName {get; set;}
         public string streetAddress {get; set;}

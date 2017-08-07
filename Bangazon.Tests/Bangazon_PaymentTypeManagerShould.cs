@@ -20,11 +20,12 @@ namespace BangazonCLI.Tests
         }
         // Tests to see if payment types are really being added by our methods.
         [Fact]
-        public void AddNewPaymentType(Customer currentCustomer)
+        public void AddNewPaymentType()
         {
-            PaymentType newPaymentType = new PaymentType(){ customerID = currentCustomer.ID, accountNumber=12345, name="Visa" };
+            int newAccountNumber =  12345;
+            string newAccountName="Visa";
             
-            int paymentTypeID = _ptm.AddNewPaymentType(newPaymentType);
+            int paymentTypeID = _ptm.AddNewPaymentType(newAccountNumber, newAccountName);
 
             Assert.True(paymentTypeID !=0);
         }
