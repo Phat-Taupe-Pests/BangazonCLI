@@ -3,6 +3,7 @@ using System;
 
 namespace BangazonCLI
 {
+// Written by: Matt Augsburger
     public class MainMenu
     {
         public int ShowMainMenu()
