@@ -16,8 +16,8 @@ namespace BangazonCLI
             _db = db;
         }
         // Adds a new Product--passed in as an argument--to the database
-        public int AddNewProduct(Product newProduct, int customer, int productType){
-             int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{customer}', '{productType}')");
+        public int AddNewProduct(Product newProduct){
+             int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{newProduct.customerID}', '{newProduct.productTypeID}')");
 
             _products.Add(
                 new Product()
@@ -27,8 +27,8 @@ namespace BangazonCLI
                     description = newProduct.description,
                     price = newProduct.price,
                     dateCreated = newProduct.dateCreated,
-                    customerID = customer,
-                    productTypeID = productType,
+                    customerID = newProduct.customerID,
+                    productTypeID = newProduct.productTypeID,
 
                 }
             );
