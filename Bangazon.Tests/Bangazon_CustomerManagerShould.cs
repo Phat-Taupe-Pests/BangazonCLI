@@ -26,7 +26,7 @@ namespace BangazonCLI.Tests
             
                 newCustomer.firstName = "Brain"; 
                 newCustomer.lastName= "Pinky"; 
-                newCustomer.streetAddress = "112 Street Place"; 
+                newCustomer.streetAddress = "114 Street Place"; 
                 newCustomer.state= "Tennesseetopia"; 
                 newCustomer.postalCode= 55555; 
                 newCustomer.phoneNumber= "555-123-4567"; 

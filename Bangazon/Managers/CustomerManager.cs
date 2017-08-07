@@ -10,7 +10,6 @@ namespace BangazonCLI
         // Hold the Current Customer. -Matt Augsburger
         private Customer _currentCustomer;
 
-        // private List<Customer> _customers = new List <Customer>(); // NOT sure this is needed
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
         public CustomerManager(dbUtilities db)
         {
