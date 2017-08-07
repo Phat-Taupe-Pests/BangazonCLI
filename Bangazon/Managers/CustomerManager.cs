@@ -26,7 +26,7 @@ namespace BangazonCLI
 
             return id;
         }
-        // Gets a list of customers from the database
+        // Gets/returns a list of customers from the database
         public List<Customer> GetCustomerList()
         {
             _db.Query("SELECT customerId, firstName, lastName, streetAddress, state, postalCode, phoneNumber FROM Customer;", 
@@ -47,12 +47,13 @@ namespace BangazonCLI
                 });
             return _customerList;
         }
-
+        // Sets the current customer
+        //takes a customer as an argument
         public void SetCurrentCustomer(Customer customer)
         {
             _currentCustomer = customer;
         }
-
+        // Gets/returns the current customer
         public Customer GetCurrentCustomer()
         {
             _currentCustomer = new Customer();
