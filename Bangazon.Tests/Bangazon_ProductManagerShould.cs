@@ -31,13 +31,12 @@ namespace BangazonCLI.Tests
                 newProduct.description= desc; 
                 newProduct.price = price; 
                 newProduct.dateCreated= DateTime.Today; 
+                newProduct.customerID = 1;
+                newProduct.productTypeID = 1;
 
-
-            int customer = 1;
-            int productType = 1;
             
 
-        var result = _pm.AddNewProduct(newProduct, customer, productType);
+        var result = _pm.AddNewProduct(newProduct);
 
             Assert.True(result !=0);
         }
@@ -55,13 +54,11 @@ namespace BangazonCLI.Tests
                 newProduct.description= desc; 
                 newProduct.price = price; 
                 newProduct.dateCreated= DateTime.Today;
+                newProduct.customerID = 1;
+                newProduct.productTypeID = 1;
 
-            //attached customer id and product type to the product being added
-            //in production these valuses will be saved from a previous selection
-            int customer = 1;
-            int productType = 1;
 
-            _pm.AddNewProduct(newProduct, customer, productType);
+            _pm.AddNewProduct(newProduct);
 
             List<Product> ProductList = _pm.GetProductList();
             foreach(Product product in ProductList)
@@ -71,14 +68,7 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<Product>>(ProductList);
             Assert.True(ProductList.Count > 0);
         }
-
-
-
-
-
-
-
-
+        
         // Burns the database down because the paint color is wrong.
             public void Dispose()
         {
