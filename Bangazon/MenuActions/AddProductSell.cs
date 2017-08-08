@@ -38,17 +38,19 @@ namespace  BangazonCLI.MenuActions
             int choice;
 		    Int32.TryParse (Console.ReadLine(), out choice);
             int selectedTypeIndex = choice -1;
+            int quantity;
+            Console.Clear();
+            Console.WriteLine($"How many are you posting for sale?");
+            Int32.TryParse (Console.ReadLine(), out quantity);
 
             Product newProduct = new Product();
                 newProduct.name = name;
                 newProduct.description = desc;
                 newProduct.price = price;
                 newProduct.dateCreated= DateTime.Today;
-
+                newProduct.quantity = quantity;
                 newProduct.customerID = CustomerManager.currentCustomer.customerID;
                 newProduct.productTypeID = productTypeList[selectedTypeIndex].productTypeID;
-
-
                 products.AddNewProduct(newProduct);
                 productTypeList.Clear();
         }
