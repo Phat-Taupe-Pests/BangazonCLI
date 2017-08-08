@@ -17,6 +17,7 @@ namespace BangazonCLI
             CustomerManager cm = new CustomerManager(db);
             PaymentTypeManager ptm = new PaymentTypeManager(db);
             db.CheckCustomer();
+            db.CheckPaymentType();
 
             MainMenu menu = new MainMenu();
 
