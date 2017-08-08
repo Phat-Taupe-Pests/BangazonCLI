@@ -20,7 +20,7 @@ namespace BangazonCLI.MenuActions
             int productCounter = 0;
             foreach (Product product in products)
             {
-            Console.WriteLine(productCounter + ". " + product.name);
+            Console.WriteLine($"{productCounter}. {product.name}");
             productCounter++;
             }
             Console.WriteLine ("> ");
