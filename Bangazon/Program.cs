@@ -18,6 +18,7 @@ namespace BangazonCLI
             CustomerManager cm = new CustomerManager(db);
             ProductManager pm = new ProductManager(db);
             OrderManager om = new OrderManager(db);
+            PaymentTypeManager paytm = new PaymentTypeManager(db);
             db.CheckCustomer();
             db.CheckPaymentType();
             db.CheckOrder();
@@ -47,6 +48,7 @@ namespace BangazonCLI
                     case 2:
                         break;
                     case 3:
+                        CreatePayment.CreatePaymentMenu(paytm);
                         break;
                     case 4:
                         AddProductToSell.DoAction(pm, ptm, db, 1);
