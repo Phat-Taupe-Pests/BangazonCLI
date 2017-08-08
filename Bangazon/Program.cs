@@ -46,6 +46,7 @@ namespace BangazonCLI
                     case 4:
                         break;
                     case 5:
+                        AddProductOrder.AddProductToOrder(cm,  db, pm,  om);
                         break;
                     case 6:
                         break;
