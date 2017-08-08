@@ -37,9 +37,9 @@ namespace BangazonCLI
        
         }
         // Gets a list of Products.
-        public List<Product> GetProductList()
+        public List<Product> GetProductList(int custID)
         {
-            _db.Query("select * from Product;",
+                 _db.Query($"SELECT * FROM Product WHERE CustomerID = {custID};",
                 (SqliteDataReader reader) => {
                     _products.Clear();  
                     while (reader.Read ())
@@ -58,6 +58,11 @@ namespace BangazonCLI
                 }
             );
             return _products;
+        }
+
+        public void RemoveProductToSell(int prodID)
+        {
+            _db.Delete($"DELETE FROM Product WHERE ProductID = {prodID};");
         }
     }
 }

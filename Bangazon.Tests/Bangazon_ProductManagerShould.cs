@@ -61,13 +61,43 @@ namespace BangazonCLI.Tests
 
             _pm.AddNewProduct(newProduct);
 
-            List<Product> ProductList = _pm.GetProductList();
+            List<Product> ProductList = _pm.GetProductList(1);
             foreach(Product product in ProductList)
             {
                 Console.WriteLine($"{product.dateCreated}");
             }
             Assert.IsType<List<Product>>(ProductList);
             Assert.True(ProductList.Count > 0);
+        }
+
+
+
+        [Theory]
+        [InlineData("Ball", "Its a ball", 9000)]
+        [InlineData("Double Ball", "Its, like 2 balls", 8000)]
+        [InlineData("2 CHAINZ", "TRu", 19.99)]
+        public void RemoveAProductFromListOfCustomerProducts(string name, string desc, double price)
+        {
+            Product newProduct = new Product();
+                newProduct.name = name; 
+                newProduct.description= desc; 
+                newProduct.price = price; 
+                newProduct.dateCreated= DateTime.Today;
+                newProduct.customerID = 1;
+                newProduct.productTypeID = 1;
+            _pm.AddNewProduct(newProduct);
+            _pm.RemoveProductToSell(1);
+
+            List<Product> ProductList =  _pm.GetProductList(1);
+            List<int> ProductIdList = new List<int>();
+
+            foreach(Product item in ProductList)
+            {
+                ProductIdList.Add(item.productID);
+            }
+        
+            Assert.DoesNotContain(1, ProductIdList);
+
         }
         
         // Burns the database down because the paint color is wrong.

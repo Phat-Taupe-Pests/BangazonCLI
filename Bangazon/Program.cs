@@ -46,18 +46,20 @@ namespace BangazonCLI
                         CreateCustomer.CreateCustomerMenu(cm);
                         break;
                     case 2:
+                        ChooseCustomer.ChooseCustomerMenu(cm, db);
                         break;
                     case 3:
                         CreatePayment.CreatePaymentMenu(paytm);
                         break;
                     case 4:
-                        AddProductToSell.DoAction(pm, ptm, db, 1);
+                        AddProductToSell.DoAction(pm, ptm);
                         break;
                     case 5:
                         break;
                     case 6:
                         break;
                     case 7:
+                        RemoveProductToSell.RemoveProductToSellMenu(pm, 1);
                         break;
                     case 8:
                         break;
