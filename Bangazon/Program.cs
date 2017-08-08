@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Sqlite;
 using System.Collections;
+using BangazonCLI.MenuActions;
 
 
 namespace BangazonCLI
@@ -25,6 +26,11 @@ namespace BangazonCLI
 
             MainMenu menu = new MainMenu();
 
+            ProductManager pm = new ProductManager(db);
+            ProductTypeManager ptm = new ProductTypeManager(db);
+
+
+
             int choice;
 
             do
@@ -35,12 +41,15 @@ namespace BangazonCLI
                 switch (choice)
                 {
                     case 1:
+                        // Displays the Create Customer Menu
+                        CreateCustomer.CreateCustomerMenu(cm);
                         break;
                     case 2:
                         break;
                     case 3:
                         break;
                     case 4:
+                        AddProductToSell.DoAction(pm, ptm, db, 1);
                         break;
                     case 5:
                         break;
