@@ -19,7 +19,11 @@ namespace BangazonCLI
             PaymentTypeManager paytm = new PaymentTypeManager(db);
             db.CheckCustomer();
             db.CheckPaymentType();
+            db.CheckOrder();
+            db.CheckProductType();
             db.CheckProduct();
+            db.CheckProductOrder();
+            db.SeedTables();
 
             MainMenu menu = new MainMenu();
 

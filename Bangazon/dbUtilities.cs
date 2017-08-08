@@ -12,7 +12,7 @@ namespace BangazonCLI
     {
         private string _connectionString;
         private SqliteConnection _connection;
-        // Constructor methodm sets up the database. "Constructors the database"
+        // Constructor method sets up the database. "Constructors the database"
         public dbUtilities(string database)
         {
             string env = $"{Environment.GetEnvironmentVariable(database)}";
@@ -236,7 +236,7 @@ namespace BangazonCLI
                 _connection.Open();
 
                 // Query the order table to see if table is created
-                dbcmd.CommandText = $"select orderId from order";
+                dbcmd.CommandText = $"select orderId from `order`";
 
                 try
                 {
@@ -252,11 +252,11 @@ namespace BangazonCLI
                     if (ex.Message.Contains("no such table"))
                     {
                         //double check syntax for all of the command below
-                        dbcmd.CommandText = $@"create table order (
+                        dbcmd.CommandText = $@"create table `order` (
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             `customerID`	integer not null,
-                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
                             `paymentTypeID`	integer not null,
+                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
                             FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
                         )";
                         dbcmd.ExecuteNonQuery ();
@@ -305,5 +305,17 @@ namespace BangazonCLI
             }
         }
 
+        public void SeedTables()
+        {
+            string seedText = File.ReadAllText("./dbSeed.sqlite.sql"); // .sql file path
+            using (_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+                    dbcmd.CommandText = seedText;
+                    dbcmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
     }
 }
