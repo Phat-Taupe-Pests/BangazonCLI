@@ -62,6 +62,7 @@ namespace BangazonCLI
                         RemoveProductToSell.RemoveProductToSellMenu(pm);
                         break;
                     case 8:
+                        UpdateProduct.UpdateProductMenu(pm);
                         break;
                     case 9:
                         break;
