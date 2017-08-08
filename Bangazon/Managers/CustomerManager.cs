@@ -10,6 +10,7 @@ namespace BangazonCLI
 
         // Hold the Current Customer. -Matt Augsburger
         private Customer _currentCustomer;
+                    
         // Holds the list of Customers in the database
         private List<Customer> _customerList = new List<Customer>();
 
@@ -56,14 +57,6 @@ namespace BangazonCLI
         // Gets/returns the current customer
         public Customer GetCurrentCustomer()
         {
-                _currentCustomer = new Customer();
-                _currentCustomer.customerID = 1;
-                _currentCustomer.firstName = "Brain"; 
-                _currentCustomer.lastName= "Pinky"; 
-                _currentCustomer.streetAddress = "114 Street Place"; 
-                _currentCustomer.state= "Tennesseetopia"; 
-                _currentCustomer.postalCode= 55555; 
-                _currentCustomer.phoneNumber= "555-123-4567"; 
             return _currentCustomer;
         }
     }
