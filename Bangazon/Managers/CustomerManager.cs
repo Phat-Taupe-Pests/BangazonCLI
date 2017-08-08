@@ -9,7 +9,7 @@ namespace BangazonCLI
         private dbUtilities _db;
 
         // Hold the Current Customer. -Matt Augsburger
-        private static Customer _currentCustomer;
+        public static Customer currentCustomer;
                     
         // Holds the list of Customers in the database
         private List<Customer> _customerList = new List<Customer>();
@@ -48,16 +48,6 @@ namespace BangazonCLI
                 });
             return _customerList;
         }
-        // Sets the current customer
-        //takes a customer as an argument
-        public void SetCurrentCustomer(Customer customer)
-        {
-            _currentCustomer = customer;
-        }
-        // Gets/returns the current customer
-        public Customer GetCurrentCustomer()
-        {
-            return _currentCustomer;
-        }
+
     }
 }

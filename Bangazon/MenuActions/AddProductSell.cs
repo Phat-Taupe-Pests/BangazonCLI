@@ -9,7 +9,9 @@ namespace  BangazonCLI.MenuActions
     public class AddProductToSell
     {
         //Also need to pass in customer ID as an argument
-        public static void DoAction(ProductManager products, ProductTypeManager ptm, CustomerManager cm)
+
+        public static void DoAction(ProductManager products, ProductTypeManager ptm)
+
         {
             Console.Clear();
             Console.WriteLine("What is the name of the product you are selling?");
@@ -37,15 +39,15 @@ namespace  BangazonCLI.MenuActions
 		    Int32.TryParse (Console.ReadLine(), out choice);
             int selectedTypeIndex = choice -1;
 
-            Customer currentCustomer = cm.GetCurrentCustomer();
-            int currentCustID = currentCustomer.customerID;
             Product newProduct = new Product();
                 newProduct.name = name;
                 newProduct.description = desc;
                 newProduct.price = price;
                 newProduct.dateCreated= DateTime.Today;
-                newProduct.customerID = currentCustID;
-                newProduct.productTypeID = selectedTypeIndex;
+
+                newProduct.customerID = CustomerManager.currentCustomer.customerID;
+                newProduct.productTypeID = productTypeList[selectedTypeIndex].productTypeID;
+
 
                 products.AddNewProduct(newProduct);
                 productTypeList.Clear();
