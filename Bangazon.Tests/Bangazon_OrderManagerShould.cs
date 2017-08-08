@@ -30,7 +30,7 @@ namespace Bangazon.Tests
 
         public void Dispose()
         {
-            // _db.Delete("DELETE FROM productOrder");
+            _db.Delete("DELETE FROM productOrder");
         }
     }
 }
