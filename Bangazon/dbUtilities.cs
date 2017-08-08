@@ -12,7 +12,7 @@ namespace BangazonCLI
     {
         private string _connectionString;
         private SqliteConnection _connection;
-        // Constructor methodm sets up the database. "Constructors the database"
+        // Constructor method sets up the relationship with the database.
         public dbUtilities(string database)
         {
             string env = $"{Environment.GetEnvironmentVariable(database)}";
@@ -31,7 +31,6 @@ namespace BangazonCLI
                 _connection.Close();
             }
         }
-
         public void Query(string command, Action<SqliteDataReader> handler)
         {
             using (_connection)
@@ -47,7 +46,6 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
-
         public int Insert(string command)
         {
             int insertedItemId = 0;
