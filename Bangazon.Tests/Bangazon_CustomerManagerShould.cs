@@ -37,12 +37,23 @@ namespace BangazonCLI.Tests
             Assert.True(result !=0);
         }
         // Tests to see if our methods are getting a list of customers.
-        [Fact]
-        public void ListCustomers()
+        [Theory]
+        [InlineData("Matt", "Augsburger", "1309 60th Ave. N.", "Tenneesee", 37209, "615-497-3139")]
+        [InlineData("Chaz", "Henricks", "Somewhere", "Tenneesee", 37209, "555-555-5555")]
+        [InlineData("Ben", "Greaves", "Somewhere Else", "Tenneesee", 37209, "666-666-6666")]
+        public void ListCustomers(String firstName, String lastName, String streetAddress, String state, int postalCode, String phoneNumber)
         {
+            Customer cust = new Customer();
+            cust.firstName = firstName;
+            cust.lastName = lastName;
+            cust.streetAddress = streetAddress;
+            cust.state = state;
+            cust.postalCode = postalCode;
+            cust.phoneNumber = phoneNumber;
+
+            _cm.AddNewCustomer(cust);
 
             List<Customer> customerList = _cm.GetCustomerList();
-            customerList.Add(new Customer(){firstName="Brain", lastName="Pinky", streetAddress="114 Street Place", state= "Tennesseetopia", postalCode= 55555, phoneNumber= "555-123-4567"});
             Assert.IsType<List<Customer>>(customerList);
             Assert.True(customerList.Count > 0);
         }

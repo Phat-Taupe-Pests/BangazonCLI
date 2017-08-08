@@ -9,7 +9,7 @@ namespace BangazonCLI
         // Method displays the Create Customer Menu
         // Accepts Argument of an instance of CustomerManager
         // Adds Created Customer to DB
-         public void CreateCustomerMenu(CustomerManager cm)
+         public static void CreateCustomerMenu(CustomerManager cm)
         {
             Console.Clear();
             Console.WriteLine ("Enter customer first name");
