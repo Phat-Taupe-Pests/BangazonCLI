@@ -17,7 +17,12 @@ namespace BangazonCLI
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
             CustomerManager cm = new CustomerManager(db);
             db.CheckCustomer();
+            db.CheckPaymentType();
+            db.CheckOrder();
+            db.CheckProductType();
             db.CheckProduct();
+            db.CheckProductOrder();
+            db.SeedTables();
 
             MainMenu menu = new MainMenu();
 
