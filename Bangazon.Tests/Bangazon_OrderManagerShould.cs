@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Bangazon.Tests
 {
-    public class OrderManagerShould
+    public class OrderManagerShould : IDisposable
     {
 
         private readonly OrderManager _om;
@@ -16,16 +16,27 @@ namespace Bangazon.Tests
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _om = new OrderManager(_db);
             _db.CheckOrder();
+            _db.CheckProduct();
+            _db.CheckProductOrder();
+        }
+
+        [Fact]
+        public void GetCustomerOrders()
+        {
+            
         }
 
         [Fact]
         public void AddProductToOrder()
         {
-            Product basketball = new Product();
-            var result = _om.AddProductToOrder(basketball);
-            Assert.True(result);
+            ProductOrder newProductOrder = new ProductOrder(){orderID = 1, productID = 2};
+            var result = _om.AddProductToOrder(newProductOrder);
+            Assert.IsType<int>(result);
         }
 
-
+        public void Dispose()
+        {
+            _db.Delete("DELETE FROM productOrder");
+        }
     }
 }
