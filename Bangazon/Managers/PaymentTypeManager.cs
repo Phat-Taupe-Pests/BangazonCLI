@@ -16,7 +16,7 @@ namespace BangazonCLI
         // Adds a new PaymentType--passed in as an argument--to the database
         public int AddNewPaymentType(PaymentType newPaymentType){
             Customer activeCustomer = _cm.GetCurrentCustomer();
-            int returnedID = _db.Insert($"insert into paymentType values (null, {activeCustomer.customerID}, {newPaymentType.accountNumber}, '{newPaymentType.name}')");
+            int returnedID = _db.Insert($"insert into paymentType values (null,  {newPaymentType.accountNumber}, {activeCustomer.customerID}, '{newPaymentType.name}')");
             return returnedID;
         }
     }
