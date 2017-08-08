@@ -40,7 +40,7 @@ namespace BangazonCLI
         public List<Product> GetProductList()
         {
             
-             _db.Query("select * from Product;",
+                 _db.Query("select * from Product;",
                 (SqliteDataReader reader) => {
                     _products.Clear();  
                     while (reader.Read ())
