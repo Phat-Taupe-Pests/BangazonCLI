@@ -59,7 +59,7 @@ namespace BangazonCLI
             );
             return _products;
         }
-
+        //Removes an item from the database based on the productID passed as an argument. 
         public void RemoveProductToSell(int prodID)
         {
             _db.Delete($"DELETE FROM Product WHERE ProductID = {prodID};");

@@ -9,7 +9,9 @@ namespace  BangazonCLI.MenuActions
     public class AddProductToSell
     {
         //Also need to pass in customer ID as an argument
+
         public static void DoAction(ProductManager products, ProductTypeManager ptm)
+
         {
             Console.Clear();
             Console.WriteLine("What is the name of the product you are selling?");
