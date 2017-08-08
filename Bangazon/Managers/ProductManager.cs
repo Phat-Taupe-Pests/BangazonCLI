@@ -64,5 +64,10 @@ namespace BangazonCLI
         {
             _db.Delete($"DELETE FROM Product WHERE ProductID = {prodID};");
         }
+
+        public void UpdateProduct(String updateString)
+        {
+            _db.Update(updateString);
+        }
     }
 }
