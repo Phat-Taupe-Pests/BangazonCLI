@@ -5,6 +5,59 @@ DELETE FROM ProductOrder;
 DELETE FROM ProductType;
 DELETE FROM PaymentType;
 
+DROP TABLE Product;
+DROP TABLE `Order`;
+DROP TABLE Customer;
+DROP TABLE ProductOrder;
+DROP TABLE ProductType;
+DROP TABLE PaymentType;
+
+CREATE TABLE `customer`     (
+                            `customerID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `firstName`	varchar(80) not null, 
+                            `lastName`	varchar(80) not null, 
+                            `streetAddress`	varchar(160) not null, 
+                            `state`	varchar(80) not null, 
+                            `postalCode` integer not null,
+                            `phoneNumber`	varchar(20) not null
+                            );
+CREATE TABLE `paymentType`  (
+                            `PaymentTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `AccountNumber`	integer not null,
+                            `CustomerID`	integer not null,
+                            `Name`   varchar(80) not null,
+                            FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`)
+                            );
+CREATE TABLE `productType`  (
+                            `ProductTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `Name`	varchar(80) not null
+                            );
+CREATE TABLE `order`        (
+                            `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `customerID`	integer not null,
+                            `paymentTypeID`	integer not null,
+                            FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
+                            FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
+                            );
+CREATE TABLE `product`      (
+                            `ProductID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `Name`	varchar(80) not null, 
+                            `Description`	varchar(1000) not null, 
+                            `Price`	double not null,
+                            `DateCreated`   varchar(80) not null,
+                            `CustomerID`	integer not null,
+                            `ProductTypeID`	integer not null,
+                            FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`),
+                            FOREIGN KEY(`ProductTypeID`) REFERENCES `ProductType`(`ProductTypeID`)
+                            );
+CREATE TABLE `productOrder` (
+                            `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `OrderID`	integer not null,
+                            `ProductID`	integer not null,
+                            FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
+                            FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
+                            );
+
 INSERT INTO ProductType VALUES (null, 'Auto');
 INSERT INTO ProductType VALUES (null, 'Home');
 INSERT INTO ProductType VALUES (null, 'Groceries');
