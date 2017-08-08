@@ -16,7 +16,7 @@ namespace BangazonCLI
             // Seed the database if none exists
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
             CustomerManager cm = new CustomerManager(db);
-            PaymentTypeManager ptm = new PaymentTypeManager(db);
+            PaymentTypeManager paytm = new PaymentTypeManager(db);
             db.CheckCustomer();
             db.CheckPaymentType();
             db.CheckProduct();
@@ -44,7 +44,7 @@ namespace BangazonCLI
                     case 2:
                         break;
                     case 3:
-                        CreatePayment.CreatePaymentMenu(ptm);
+                        CreatePayment.CreatePaymentMenu(paytm);
                         break;
                     case 4:
                         AddProductToSell.DoAction(pm, ptm, db, 1);
