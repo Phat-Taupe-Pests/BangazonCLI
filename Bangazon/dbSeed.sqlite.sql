@@ -1,5 +1,5 @@
 DELETE FROM Product;
-DELETE FROM Order;
+DELETE FROM `Order`;
 DELETE FROM Customer;
 DELETE FROM ProductOrder;
 DELETE FROM ProductType;
@@ -37,24 +37,9 @@ INSERT INTO Product VALUES (null, "Linkin Park CD", "Probably not as good as you
 INSERT INTO Product VALUES (null, "Nintendo 64", "Bring back the memories", 6, 50, 3, 08-04-2015);
 INSERT INTO Product VALUES (null, "1950s TV", "Hope it's not haunted!", 10, 150, 3, 08-04-2016);
 
-INSERT INTO Order VALUES (null, 1, 1);
-INSERT INTO Order VALUES (null, 1, 2);
-INSERT INTO Order VALUES (null, 2, 3);
-INSERT INTO Order VALUES (null, 2, 4);
-INSERT INTO Order VALUES (null, 3, 5);
-INSERT INTO Order VALUES (null, 3, 6);
-
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
-INSERT INTO ProductOrder VALUES (null, 1, 5);
+INSERT INTO `Order` VALUES (null, 1, 1);
+INSERT INTO `Order` VALUES (null, 1, 2);
+INSERT INTO `Order` VALUES (null, 2, 3);
+INSERT INTO `Order` VALUES (null, 2, 4);
+INSERT INTO `Order` VALUES (null, 3, 5);
+INSERT INTO `Order` VALUES (null, 3, 6);
