@@ -36,7 +36,7 @@ namespace BangazonCLI.Tests
             _currentCustomer.state= "Tennesseetopia"; 
             _currentCustomer.postalCode= 55555; 
             _currentCustomer.phoneNumber= "555-123-4567";
-            _cm.SetCurrentCustomer(_currentCustomer);
+            CustomerManager.currentCustomer = _currentCustomer;
             
             PaymentType newPaymentType = new PaymentType(){ accountNumber= 12345, name="Visa" };
             

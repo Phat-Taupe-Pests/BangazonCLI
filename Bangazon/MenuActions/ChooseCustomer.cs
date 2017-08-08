@@ -33,7 +33,7 @@ namespace BangazonCLI
                 if(choiceInt == kvp.Key)
                 {
                     Console.WriteLine($"You selected {kvp.Value.firstName} {kvp.Value.lastName} as the current customer");
-                    cm.SetCurrentCustomer(kvp.Value);
+                    CustomerManager.currentCustomer = kvp.Value;
                 }
             }
 
