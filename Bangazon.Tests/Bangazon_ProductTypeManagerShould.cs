@@ -30,7 +30,7 @@ namespace BangazonCLI.Tests
         // Burns the database down because the paint color is wrong (deletes product type table from test.
             public void Dispose()
         {
-            _db.Delete("DELETE FROM productType");
+            // _db.Delete("DELETE FROM productType");
         }
     }
 }

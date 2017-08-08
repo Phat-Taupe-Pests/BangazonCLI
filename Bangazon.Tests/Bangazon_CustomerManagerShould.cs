@@ -66,7 +66,7 @@ namespace BangazonCLI.Tests
         // Burns the database down because the paint color is wrong.
             public void Dispose()
         {
-            _db.Delete("DELETE FROM customer");
+            // _db.Delete("DELETE FROM customer");
         }
     }
 }
