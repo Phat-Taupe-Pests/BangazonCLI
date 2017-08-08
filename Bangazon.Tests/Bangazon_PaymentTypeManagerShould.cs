@@ -22,10 +22,9 @@ namespace BangazonCLI.Tests
         [Fact]
         public void AddNewPaymentType()
         {
-            int newAccountNumber =  12345;
-            string newAccountName="Visa";
+            PaymentType newPaymentType = new PaymentType(){ accountNumber= 12345, name="Visa" };
             
-            int paymentTypeID = _ptm.AddNewPaymentType(newAccountNumber, newAccountName);
+            int paymentTypeID = _ptm.AddNewPaymentType(newPaymentType);
 
             Assert.True(paymentTypeID !=0);
         }
