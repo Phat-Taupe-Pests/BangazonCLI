@@ -23,6 +23,8 @@ namespace BangazonCLI
             db.CheckProductOrder();
 
             MainMenu menu = new MainMenu();
+            CustomerManager custManager = new CustomerManager(db);
+            CreateCustomer custCreate = new CreateCustomer();
 
             int choice;
 
@@ -34,6 +36,8 @@ namespace BangazonCLI
                 switch (choice)
                 {
                     case 1:
+                        // Displays the Create Customer Menu
+                        custCreate.CreateCustomerMenu(custManager);
                         break;
                     case 2:
                         break;
