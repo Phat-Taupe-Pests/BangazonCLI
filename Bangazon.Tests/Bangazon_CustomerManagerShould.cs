@@ -57,6 +57,16 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<Customer>>(customerList);
             Assert.True(customerList.Count > 0);
         }
+
+        //Tests to see if we can get a customer's revenue report
+        [Fact]
+        public void getRevenueReport()
+        {
+            int customerId = 1;
+            RevenueReport revenueReport = _cm.GetRevenueReport(customerId);
+
+            Assert.IsType<RevenueReport>(revenueReport);
+        }
         // Burns the database down because the paint color is wrong.
             public void Dispose()
         {

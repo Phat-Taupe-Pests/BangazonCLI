@@ -49,5 +49,12 @@ namespace BangazonCLI
             return _customerList;
         }
 
+        // Gets a customers revenue report
+        // Takes an argument of a customerID
+        public RevenueReport GetRevenueReport(int customerID)
+        {
+            return new RevenueReport();
+        }
+
     }
 }
