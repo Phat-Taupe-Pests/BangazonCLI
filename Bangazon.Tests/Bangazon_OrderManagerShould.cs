@@ -23,7 +23,9 @@ namespace Bangazon.Tests
         [Fact]
         public void GetCustomerOrders()
         {
-            
+            Product customerProduct = new Product();
+            var result = _om.GetCustomerOrders(customerProduct);
+
         }
 
         [Fact]

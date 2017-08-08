@@ -12,6 +12,11 @@ namespace BangazonCLI
         {
             _db = db;
         }
+
+        public bool GetCustomerOrders(Order order){
+            
+        }
+
         // Adds a product to the active customer's order
         public bool AddProductToOrder(Product product){
             return true;
