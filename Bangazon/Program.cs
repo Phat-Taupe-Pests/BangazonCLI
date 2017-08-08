@@ -52,7 +52,7 @@ namespace BangazonCLI
                         CreatePayment.CreatePaymentMenu(paytm);
                         break;
                     case 4:
-                        AddProductToSell.DoAction(pm, ptm, cm);
+                        AddProductToSell.DoAction(pm, ptm);
                         break;
                     case 5:
                         break;
