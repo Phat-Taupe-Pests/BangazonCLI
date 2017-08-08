@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Sqlite;
 using System.Collections;
+using BangazonCLI.MenuActions;
 
 
 namespace BangazonCLI
@@ -19,12 +20,13 @@ namespace BangazonCLI
             OrderManager om = new OrderManager(db);
             db.CheckCustomer();
             db.CheckProduct();
-            db.CheckOrder();
-            db.CheckProductOrder();
 
             MainMenu menu = new MainMenu();
-            CustomerManager custManager = new CustomerManager(db);
-            CreateCustomer custCreate = new CreateCustomer();
+
+            ProductManager pm = new ProductManager(db);
+            ProductTypeManager ptm = new ProductTypeManager(db);
+
+
 
             int choice;
 
@@ -37,13 +39,14 @@ namespace BangazonCLI
                 {
                     case 1:
                         // Displays the Create Customer Menu
-                        custCreate.CreateCustomerMenu(custManager);
+                        CreateCustomer.CreateCustomerMenu(cm);
                         break;
                     case 2:
                         break;
                     case 3:
                         break;
                     case 4:
+                        AddProductToSell.DoAction(pm, ptm, db, 1);
                         break;
                     case 5:
                         AddProductOrder.AddProductToOrder(cm,  db, pm,  om);
