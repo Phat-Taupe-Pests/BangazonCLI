@@ -26,8 +26,7 @@ namespace BangazonCLI.Tests
         [Fact]
         public void AddNewPaymentType()
         {
-            int newAccountNumber =  12345;
-            string newAccountName="Visa";
+
             // Sets the current customer so a payment type can be added
             Customer _currentCustomer = new Customer();
             _currentCustomer.customerID = 1;
@@ -38,9 +37,10 @@ namespace BangazonCLI.Tests
             _currentCustomer.postalCode= 55555; 
             _currentCustomer.phoneNumber= "555-123-4567";
             _cm.SetCurrentCustomer(_currentCustomer);
-
             
-            int paymentTypeID = _ptm.AddNewPaymentType(newAccountNumber, newAccountName);
+            PaymentType newPaymentType = new PaymentType(){ accountNumber= 12345, name="Visa" };
+            
+            int paymentTypeID = _ptm.AddNewPaymentType(newPaymentType);
 
             Assert.True(paymentTypeID !=0);
         }
