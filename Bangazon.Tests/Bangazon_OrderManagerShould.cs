@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using BangazonCLI;
 using Xunit;
 
@@ -20,12 +21,22 @@ namespace Bangazon.Tests
             _db.CheckProductOrder();
         }
 
-        [Fact]
-        public void GetCustomerOrders()
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void GetCustomerOrders(int customerID)
         {
-            Product customerProduct = new Product();
-            var result = _om.GetCustomerOrders(customerProduct);
+            List<Order> customerOrders = _om.GetCustomerOrders(customerID);
+            Assert.IsType<List<Order>>(customerOrders);
+        }
 
+        [Theory]
+        [InlineData(1)]
+        public void CreateNewOrder(int productID)
+        {
+            var result = _om.CreateNewOrder(productID);
+            Assert.IsType<int>(result);
         }
 
         [Fact]
