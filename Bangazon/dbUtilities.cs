@@ -140,10 +140,10 @@ namespace BangazonCLI
                             `ProductID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             `Name`	varchar(80) not null, 
                             `Description`	varchar(1000) not null, 
-                            `ProductTypeID`	integer not null,
                             `Price`	double not null,
-                            `CustomerID`	integer not null,
                             `DateCreated`   varchar(80) not null,
+                            `CustomerID`	integer not null,
+                            `ProductTypeID`	integer not null,
                             FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`),
                             FOREIGN KEY(`ProductTypeID`) REFERENCES `ProductType`(`ProductTypeID`)
                         )";
