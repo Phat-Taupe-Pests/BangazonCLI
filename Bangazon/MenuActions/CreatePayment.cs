@@ -14,7 +14,6 @@ namespace BangazonCLI
             Console.WriteLine($">");
 
             string paymentName = Console.ReadLine();
-            Console.WriteLine("paymentName" + paymentName);
 
             Console.ForegroundColor= ConsoleColor.Black;
             Console.WriteLine($"Enter Account Number");
@@ -22,12 +21,9 @@ namespace BangazonCLI
             Console.WriteLine($">");
 
             int accountNumber = int.Parse(Console.ReadLine());
-            Console.WriteLine("accountNumber" + accountNumber);
 
             Console.ForegroundColor= ConsoleColor.Black;
-
             PaymentType newPaymentType = new PaymentType() { accountNumber=accountNumber, name=paymentName };
-
             ptm.AddNewPaymentType(newPaymentType);
 
 
