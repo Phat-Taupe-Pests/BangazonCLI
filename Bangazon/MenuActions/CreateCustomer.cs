@@ -11,22 +11,27 @@ namespace BangazonCLI
         // Adds Created Customer to DB
          public void CreateCustomerMenu(CustomerManager cm)
         {
-
+            Console.Clear();
             Console.WriteLine ("Enter customer first name");
             Console.Write ("> ");
             string firstName = Console.ReadLine();
+            Console.Clear();
             Console.WriteLine ("Enter customer last name");
             Console.Write ("> ");
             string lastName = Console.ReadLine();
+            Console.Clear();
             Console.WriteLine ("Enter customer city");
             Console.Write ("> ");
+            Console.Clear();
             string streetAddress = Console.ReadLine();
             Console.WriteLine ("Enter customer state");
             Console.Write ("> ");
             string state = Console.ReadLine();
+            Console.Clear();
             Console.WriteLine ("Enter customer postal code");
             Console.Write ("> ");
             int postalCode = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
             Console.WriteLine ("Enter customer phone number");
             Console.Write ("> ");
             string phoneNumber = Console.ReadLine();
