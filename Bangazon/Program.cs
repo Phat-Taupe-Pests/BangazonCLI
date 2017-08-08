@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Sqlite;
 using System.Collections;
+using BangazonCLI.MenuActions;
 
 
 namespace BangazonCLI
@@ -16,8 +17,20 @@ namespace BangazonCLI
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
             CustomerManager cm = new CustomerManager(db);
             db.CheckCustomer();
+            db.CheckPaymentType();
+            db.CheckOrder();
+            db.CheckProductType();
+            db.CheckProduct();
+            db.CheckProductOrder();
+            db.SeedTables();
 
             MainMenu menu = new MainMenu();
+
+            ProductManager pm = new ProductManager(db);
+            ProductTypeManager ptm = new ProductTypeManager(db);
+
+
+
             int choice;
 
             do
@@ -37,6 +50,7 @@ namespace BangazonCLI
                     case 3:
                         break;
                     case 4:
+                        AddProductToSell.DoAction(pm, ptm, db, 1);
                         break;
                     case 5:
                         break;
