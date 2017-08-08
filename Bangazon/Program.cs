@@ -22,8 +22,6 @@ namespace BangazonCLI
             db.CheckProduct();
 
             MainMenu menu = new MainMenu();
-
-            ProductManager pm = new ProductManager(db);
             ProductTypeManager ptm = new ProductTypeManager(db);
 
 

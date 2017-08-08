@@ -1,7 +1,7 @@
 using System;
 
 
-namespace BangazonCLI
+namespace BangazonCLI.MenuActions
 {
     public class CreateCustomer
     {
