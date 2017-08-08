@@ -30,7 +30,8 @@ namespace BangazonCLI.Tests
                 newProduct.name = name; 
                 newProduct.description= desc; 
                 newProduct.price = price; 
-                newProduct.dateCreated= DateTime.Today; 
+                newProduct.dateCreated= DateTime.Today;
+                newProduct.quantity = 1;
                 newProduct.customerID = 1;
                 newProduct.productTypeID = 1;
 
@@ -51,12 +52,12 @@ namespace BangazonCLI.Tests
             // builds a new product to add
             Product newProduct = new Product();
                 newProduct.name = name; 
-                newProduct.description= desc; 
+                newProduct.description = desc; 
                 newProduct.price = price; 
-                newProduct.dateCreated= DateTime.Today;
+                newProduct.dateCreated = DateTime.Today;
+                newProduct.quantity = 1;
                 newProduct.customerID = 1;
                 newProduct.productTypeID = 1;
-
 
             _pm.AddNewProduct(newProduct);
 

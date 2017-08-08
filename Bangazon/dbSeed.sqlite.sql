@@ -27,15 +27,15 @@ INSERT INTO PaymentType VALUES (null, 5425232312, 2, "Venmo");
 INSERT INTO PaymentType VALUES (null, 6354654355, 3, "Paypal");
 INSERT INTO PaymentType VALUES (null, 8654733123, 3, "Amex");
 
-INSERT INTO Product VALUES (null, "Bananas", "Turn them into banana bread!", 0.99, "08-04-2017", 1, 3);
-INSERT INTO Product VALUES (null, "Pumped Up Kicks", "They better run, better run...", 15.50, "06-04-2017", 1, 8);
-INSERT INTO Product VALUES (null, "1987 BMW Motorcycle", "Does it even run?", 1500, "08-04-2016", 1, 1);
-INSERT INTO Product VALUES (null, "Fishnet Leg Lamp", "Weird? Oh yeah.", 50.75, "05-04-2017", 2, 2);
-INSERT INTO Product VALUES (null, "Monopoly", "Hate your friends, play monopoly!", 25, "08-04-2017", 2, 9);
-INSERT INTO Product VALUES (null, "Wheelbarrow", "Really good at breeding mosquitos", 35.95, "02-04-2017", 2, 7);
-INSERT INTO Product VALUES (null, "Linkin Park CD", "Probably not as good as you remember", 8.99, "04-04-2017", 3, 6);
-INSERT INTO Product VALUES (null, "Nintendo 64", "Bring back the memories", 50, "08-04-2015", 3, 4);
-INSERT INTO Product VALUES (null, "1950s TV", "Hope it's not haunted!", 150, "08-04-2016", 3, 10);
+INSERT INTO Product VALUES (null, "Bananas", "Turn them into banana bread!", 0.99, "08-04-2017", 56, 1, 3);
+INSERT INTO Product VALUES (null, "Pumped Up Kicks", "They better run, better run...", 15.50, "06-04-2017", 6, 1, 8);
+INSERT INTO Product VALUES (null, "1987 BMW Motorcycle", "Does it even run?", 1500, "08-04-2016", 1, 1, 1);
+INSERT INTO Product VALUES (null, "Fishnet Leg Lamp", "Weird? Oh yeah.", 50.75, "05-04-2017", 2, 2, 2);
+INSERT INTO Product VALUES (null, "Monopoly", "Hate your friends, play monopoly!", 25, "08-04-2017", 15, 2, 9);
+INSERT INTO Product VALUES (null, "Wheelbarrow", "Really good at breeding mosquitos", 35.95, "02-04-2017", 3, 2, 7);
+INSERT INTO Product VALUES (null, "Linkin Park's HyBrid Theory", "Probably not as good as you remember", 8.99, "04-04-2017", 200, 3, 6);
+INSERT INTO Product VALUES (null, "Nintendo 64", "Bring back the memories", 50, "08-04-2015", 3,  3, 4);
+INSERT INTO Product VALUES (null, "1950s TV", "Hope it's not haunted!", 150, "08-04-2016", 1, 3, 10);
 
 INSERT INTO `Order` VALUES (null, 1, 1);
 INSERT INTO `Order` VALUES (null, 1, 2);

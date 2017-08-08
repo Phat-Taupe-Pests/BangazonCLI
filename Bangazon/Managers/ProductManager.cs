@@ -17,7 +17,7 @@ namespace BangazonCLI
         }
         // Adds a new Product--passed in as an argument--to the database
         public int AddNewProduct(Product newProduct){
-             int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{newProduct.customerID}', '{newProduct.productTypeID}')");
+             int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{newProduct.quantity}', '{newProduct.customerID}', '{newProduct.productTypeID}')");
 
             _products.Add(
                 new Product()
@@ -27,9 +27,9 @@ namespace BangazonCLI
                     description = newProduct.description,
                     price = newProduct.price,
                     dateCreated = newProduct.dateCreated,
+                    quantity = newProduct.quantity,
                     customerID = newProduct.customerID,
-                    productTypeID = newProduct.productTypeID,
-
+                    productTypeID = newProduct.productTypeID
                 }
             );
 
@@ -39,8 +39,7 @@ namespace BangazonCLI
         // Gets a list of Products.
         public List<Product> GetProductList()
         {
-            
-                 _db.Query("select * from Product;",
+            _db.Query("select * from Product;",
                 (SqliteDataReader reader) => {
                     _products.Clear();  
                     while (reader.Read ())
@@ -51,15 +50,14 @@ namespace BangazonCLI
                             description = reader[2].ToString(),
                             price = reader.GetDouble(3),
                             dateCreated = reader.GetDateTime(4),
-                            customerID = reader.GetInt32(5),
-                            productTypeID = reader.GetInt32(6)
+                            quantity = reader.GetInt32(5),
+                            customerID = reader.GetInt32(6),
+                            productTypeID = reader.GetInt32(7)
                         });
                     }
                 }
             );
-
             return _products;
-
         }
     }
 }

@@ -142,6 +142,7 @@ namespace BangazonCLI
                             `Description`	varchar(1000) not null, 
                             `Price`	double not null,
                             `DateCreated`   varchar(80) not null,
+                            `Quantity`      integer not null,
                             `CustomerID`	integer not null,
                             `ProductTypeID`	integer not null,
                             FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`),
