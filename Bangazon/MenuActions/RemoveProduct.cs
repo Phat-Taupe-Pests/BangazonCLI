@@ -8,10 +8,11 @@ namespace  BangazonCLI.MenuActions
 {
     public class RemoveProductToSell
     {
-        public static void RemoveProductToSellMenu(ProductManager products, int custID)
+        public static void RemoveProductToSellMenu(ProductManager products)
         {
             Console.Clear();
             Console.WriteLine("Select a product you wish to remove from sale:");
+            int custID = CustomerManager.currentCustomer.customerID;
             List<Product> ProductList = products.GetProductList(custID);
             int counter = 1;
             foreach(Product item in ProductList)
