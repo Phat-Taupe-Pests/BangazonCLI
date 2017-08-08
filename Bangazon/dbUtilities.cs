@@ -12,7 +12,7 @@ namespace BangazonCLI
     {
         private string _connectionString;
         private SqliteConnection _connection;
-        // Constructor methodm sets up the database. "Constructors the database"
+        // Constructor method sets up the database. "Constructors the database"
         public dbUtilities(string database)
         {
             string env = $"{Environment.GetEnvironmentVariable(database)}";
@@ -305,5 +305,17 @@ namespace BangazonCLI
             }
         }
 
+        public void SeedTables()
+        {
+            string seedText = File.ReadAllText("./dbSeed.sqlite.sql"); // .sql file path
+            using (_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+                    dbcmd.CommandText = seedText;
+                    dbcmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
     }
 }
