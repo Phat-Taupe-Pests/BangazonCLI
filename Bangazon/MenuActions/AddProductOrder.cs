@@ -27,19 +27,8 @@ namespace BangazonCLI.MenuActions
             int index = choice -1;
 
             Product selectedProduct = products[index];
-
-            // add productChoice to customer's order
-            // ** set code below equal to something?
             
-            Product productToAdd = om.AddProductToOrder();
-
             // After the user selects a product to add to the customer's order, display the menu of products again. Make sure the last option provides the option to go back to main menu.
-
-
-            // Console.WriteLine ("Enter toy");
-            // Console.Write ("> ");
-            // string toyName = Console.ReadLine();
-            // bag.Add(toyName, kid);
         }
     }
 }
