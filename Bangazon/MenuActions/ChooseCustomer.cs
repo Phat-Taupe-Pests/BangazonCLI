@@ -16,10 +16,10 @@ namespace BangazonCLI
             Dictionary<int, Customer> custDictionary = new Dictionary<int, Customer>();
             Console.Clear();
             int counter = 1;
+            Console.WriteLine("Select customer");
             foreach(Customer c in custList)
             {
                 custDictionary.Add(counter, c);
-                Console.WriteLine("Select customer");
                 Console.WriteLine($"{counter}. {c.firstName} {c.lastName}");
                 counter++;
 
