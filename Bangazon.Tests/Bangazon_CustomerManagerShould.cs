@@ -16,7 +16,7 @@ namespace BangazonCLI.Tests
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _cm = new CustomerManager(_db);
-            _db.CheckCustomer();
+            _db.CheckTables();
         }
         // Tests to see if customers are really being added by our methods.
         [Fact]
@@ -40,7 +40,6 @@ namespace BangazonCLI.Tests
         [Fact]
         public void ListCustomers()
         {
-
             List<Customer> customerList = _cm.GetCustomerList();
             customerList.Add(new Customer(){firstName="Brain", lastName="Pinky", streetAddress="114 Street Place", state= "Tennesseetopia", postalCode= 55555, phoneNumber= "555-123-4567"});
             Assert.IsType<List<Customer>>(customerList);

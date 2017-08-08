@@ -16,7 +16,7 @@ namespace BangazonCLI.Tests
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _pm = new ProductManager(_db);
-            _db.CheckProduct();
+            _db.CheckTables();
         }
         // Tests to see if Products are really being added by our methods.
         [Theory]

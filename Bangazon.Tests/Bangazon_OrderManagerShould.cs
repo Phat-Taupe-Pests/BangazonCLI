@@ -15,7 +15,7 @@ namespace Bangazon.Tests
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _om = new OrderManager(_db);
-            _db.CheckOrder();
+            _db.CheckTables();
         }
 
         [Fact]

@@ -17,29 +17,12 @@ namespace BangazonCLI
         }
         // Adds a new Product--passed in as an argument--to the database
         public int AddNewProduct(Product newProduct){
-             int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{newProduct.customerID}', '{newProduct.productTypeID}')");
-
-            _products.Add(
-                new Product()
-                {
-                    productID = id,
-                    name = newProduct.name,
-                    description = newProduct.description,
-                    price = newProduct.price,
-                    dateCreated = newProduct.dateCreated,
-                    customerID = newProduct.customerID,
-                    productTypeID = newProduct.productTypeID,
-
-                }
-            );
-
-            return id;     
-       
+            int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{newProduct.customerID}', '{newProduct.productTypeID}')");
+            return id;
         }
         // Gets a list of Products.
         public List<Product> GetProductList()
         {
-            
              _db.Query("select * from Product;",
                 (SqliteDataReader reader) => {
                     _products.Clear();  
