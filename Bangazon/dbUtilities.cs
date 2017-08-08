@@ -105,82 +105,6 @@ namespace BangazonCLI
                     }
                 }
                 dbcmd.Dispose();
-                dbcmd.CommandText = $"select productID from product";
-                try
-                {
-                    // Try to run the query. If it throws an exception, create the table
-                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
-                    {
-                        
-                    }
-                }
-                catch (Microsoft.Data.Sqlite.SqliteException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    if (ex.Message.Contains("no such table"))
-                    {
-                        dbcmd.CommandText = $@"create table product (
-                            `ProductID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `Name`	varchar(80) not null, 
-                            `Description`	    varchar(1000) not null, 
-                            `ProductTypeID`	    integer not null,
-                            `Price`	            double not null,
-                            `CustomerID`	    integer not null,
-                            `DateCreated`       varchar(80) not null,
-                            FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`),
-                            FOREIGN KEY(`ProductTypeID`) REFERENCES `ProductType`(`ProductTypeID`)
-                        )";
-                        dbcmd.ExecuteNonQuery ();
-                    }
-                }
-                dbcmd.Dispose();
-                dbcmd.CommandText = $"select productTypeID from productType";
-                try
-                {
-                    // Try to run the query. If it throws an exception, create the table
-                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
-                    {
-                        
-                    }
-                }
-                catch (Microsoft.Data.Sqlite.SqliteException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    if (ex.Message.Contains("no such table"))
-                    {
-                        dbcmd.CommandText = $@"create table productType (
-                            `ProductTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `Name`	        varchar(80) not null
-                        )";
-                        dbcmd.ExecuteNonQuery ();
-                    }
-                }
-                dbcmd.Dispose();
-                dbcmd.CommandText = $"select productOrderID from productOrder";
-                try
-                {
-                    // Try to run the query. If it throws an exception, create the table
-                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
-                    {
-                        
-                    }
-                }
-                catch (Microsoft.Data.Sqlite.SqliteException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    if (ex.Message.Contains("no such table"))
-                    {
-                        dbcmd.CommandText = $@"create table productOrder (
-                            `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
-                            `OrderID`	        integer not null,
-                            `ProductID`	        integer not null,
-                            FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
-                            FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
-                        )";
-                        dbcmd.ExecuteNonQuery ();
-                    }
-                }
-                dbcmd.Dispose();
                 dbcmd.CommandText = $"select paymentTypeID from paymentType";
                 try
                 {
@@ -227,6 +151,82 @@ namespace BangazonCLI
                             `paymentTypeID`	integer not null,
                             FOREIGN KEY(`customerID`) REFERENCES `customer`(`customerID`),
                             FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`paymentTypeID`)
+                        )";
+                        dbcmd.ExecuteNonQuery ();
+                    }
+                }
+                dbcmd.Dispose();
+                dbcmd.CommandText = $"select productTypeID from productType";
+                try
+                {
+                    // Try to run the query. If it throws an exception, create the table
+                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
+                    {
+                        
+                    }
+                }
+                catch (Microsoft.Data.Sqlite.SqliteException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (ex.Message.Contains("no such table"))
+                    {
+                        dbcmd.CommandText = $@"create table productType (
+                            `ProductTypeID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `Name`	        varchar(80) not null
+                        )";
+                        dbcmd.ExecuteNonQuery ();
+                    }
+                }
+                dbcmd.Dispose();
+                dbcmd.CommandText = $"select productID from product";
+                try
+                {
+                    // Try to run the query. If it throws an exception, create the table
+                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
+                    {
+                        
+                    }
+                }
+                catch (Microsoft.Data.Sqlite.SqliteException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (ex.Message.Contains("no such table"))
+                    {
+                        dbcmd.CommandText = $@"create table product (
+                            `ProductID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `Name`	varchar(80) not null, 
+                            `Description`	    varchar(1000) not null, 
+                            `ProductTypeID`	    integer not null,
+                            `Price`	            double not null,
+                            `CustomerID`	    integer not null,
+                            `DateCreated`       varchar(80) not null,
+                            FOREIGN KEY(`CustomerID`) REFERENCES `Customer`(`CustomerID`),
+                            FOREIGN KEY(`ProductTypeID`) REFERENCES `ProductType`(`ProductTypeID`)
+                        )";
+                        dbcmd.ExecuteNonQuery ();
+                    }
+                }
+                dbcmd.Dispose();
+                dbcmd.CommandText = $"select productOrderID from productOrder";
+                try
+                {
+                    // Try to run the query. If it throws an exception, create the table
+                    using (SqliteDataReader reader = dbcmd.ExecuteReader())
+                    {
+                        
+                    }
+                }
+                catch (Microsoft.Data.Sqlite.SqliteException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (ex.Message.Contains("no such table"))
+                    {
+                        dbcmd.CommandText = $@"create table productOrder (
+                            `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `OrderID`	        integer not null,
+                            `ProductID`	        integer not null,
+                            FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
+                            FOREIGN KEY(`ProductID`) REFERENCES `Product`(`ProductID`)
                         )";
                         dbcmd.ExecuteNonQuery ();
                     }
