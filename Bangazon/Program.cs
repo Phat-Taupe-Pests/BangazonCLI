@@ -46,6 +46,7 @@ namespace BangazonCLI
                         CreateCustomer.CreateCustomerMenu(cm);
                         break;
                     case 2:
+                        ChooseCustomer.ChooseCustomerMenu(cm, db);
                         break;
                     case 3:
                         CreatePayment.CreatePaymentMenu(paytm);

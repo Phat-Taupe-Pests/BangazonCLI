@@ -22,8 +22,8 @@ namespace BangazonCLI
             Console.Clear();
             Console.WriteLine ("Enter customer city");
             Console.Write ("> ");
-            Console.Clear();
             string streetAddress = Console.ReadLine();
+            Console.Clear();
             Console.WriteLine ("Enter customer state");
             Console.Write ("> ");
             string state = Console.ReadLine();
