@@ -19,7 +19,12 @@ namespace BangazonCLI
             ProductManager pm = new ProductManager(db);
             OrderManager om = new OrderManager(db);
             db.CheckCustomer();
+            db.CheckPaymentType();
+            db.CheckOrder();
+            db.CheckProductType();
             db.CheckProduct();
+            db.CheckProductOrder();
+            db.SeedTables();
 
             MainMenu menu = new MainMenu();
             ProductTypeManager ptm = new ProductTypeManager(db);
