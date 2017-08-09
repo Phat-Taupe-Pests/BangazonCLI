@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BangazonCLI;
+using BangazonCLI.MenuActions;
 using Xunit;
 
 namespace Bangazon.Tests
@@ -35,12 +36,10 @@ namespace Bangazon.Tests
             _currentCustomer.phoneNumber= "555-123-4567";
             CustomerManager.currentCustomer = _currentCustomer;
 
-            List<int> ProductID = new List<int>();
-            ProductID.Add(1);
-            ProductID.Add(2);
+            int ProductID = 1;
             _om.CreateNewOrder(ProductID);
-            List<Order> customerOrders = _om.GetCustomerOrder(_currentCustomer.customerID);
-            Assert.IsType<List<Order>>(customerOrders);
+            Order customerOrders = _om.GetCustomerOrder(_currentCustomer.customerID);
+            Assert.IsType<Order>(customerOrders);
         }
 
         //Get the current customer and create a new order
@@ -57,9 +56,7 @@ namespace Bangazon.Tests
             _currentCustomer.phoneNumber= "555-123-4567";
             CustomerManager.currentCustomer = _currentCustomer;
 
-            List<int> ProductID = new List<int>();
-            ProductID.Add(1);
-            ProductID.Add(2);
+            int ProductID = 1;
             var result = _om.CreateNewOrder(ProductID);
             Assert.IsType<int>(result);
         }
@@ -78,9 +75,7 @@ namespace Bangazon.Tests
             _currentCustomer.phoneNumber= "555-123-4567";
             CustomerManager.currentCustomer = _currentCustomer;
 
-            List<int> ProductID = new List<int>();
-            ProductID.Add(1);
-            ProductID.Add(2);
+            int ProductID = 1;
             _om.CreateNewOrder(ProductID);
             var result = _om.AddProductToOrder(ProductID);
             Assert.IsType<int>(result);
