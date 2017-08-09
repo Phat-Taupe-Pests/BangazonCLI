@@ -36,6 +36,7 @@ CREATE TABLE `order`        (
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             `customerID`	integer not null,
                             `paymentTypeID`	integer not null,
+                            `DateCreated`   varchar(80) not null,
                             FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
                             FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
                             );
@@ -91,9 +92,9 @@ INSERT INTO Product VALUES (null, "Linkin Park's HyBrid Theory", "Probably not a
 INSERT INTO Product VALUES (null, "Nintendo 64", "Bring back the memories", 50, "08-04-2015", 3,  3, 4);
 INSERT INTO Product VALUES (null, "1950s TV", "Hope it's not haunted!", 150, "08-04-2016", 1, 3, 10);
 
-INSERT INTO `Order` VALUES (null, 1, 1);
-INSERT INTO `Order` VALUES (null, 1, 2);
-INSERT INTO `Order` VALUES (null, 2, 3);
-INSERT INTO `Order` VALUES (null, 2, 4);
-INSERT INTO `Order` VALUES (null, 3, 5);
-INSERT INTO `Order` VALUES (null, 3, 6);
+INSERT INTO `Order` VALUES (null, 1, 1, "08-04-2016");
+INSERT INTO `Order` VALUES (null, 1, 2, "08-04-2016");
+INSERT INTO `Order` VALUES (null, 2, 3, "08-04-2017");
+INSERT INTO `Order` VALUES (null, 2, 4, "08-04-2017");
+INSERT INTO `Order` VALUES (null, 3, 5, "06-04-2017");
+INSERT INTO `Order` VALUES (null, 3, 6, "08-04-2016");
