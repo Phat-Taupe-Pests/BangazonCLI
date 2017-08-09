@@ -31,6 +31,17 @@ namespace BangazonCLI
                 _connection.Close();
             }
         }
+        public void Update(string command)
+        {
+            using(_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+                dbcmd.CommandText = command;
+                dbcmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
 
         public void Query(string command, Action<SqliteDataReader> handler)
         {
@@ -70,6 +81,7 @@ namespace BangazonCLI
             }
             return insertedItemId;
         }
+        
         // Checks to see if a customer table exists, if it doesn't it creates the table in the database.
         public void CheckCustomer ()
         {
