@@ -9,6 +9,8 @@ using Microsoft.Data.Sqlite;
         public class OrderManager
         {
         private dbUtilities _db;
+
+        private List<Order> _orderList;
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
         public OrderManager(dbUtilities db)
         {
@@ -45,9 +47,18 @@ using Microsoft.Data.Sqlite;
         }
 
         // Adds a product to the active customer's order
-        public int AddProductToOrder(ProductOrder productOrder)
+        public int AddProductToOrder(List<int> productID)
         {
-            int id = _db.Insert( $"insert into productOrder values (null, '{productOrder.productID}', '{productOrder.orderID}')");
+            int customerID = CustomerManager.currentCustomer.customerID;
+            int orderID;
+            _db.Query($"SELECT orderID FROM order WHERE customerID = {customerID} and paymentType = null", (SqliteDataReader reader) => {
+                _orderList.Clear();
+                while (reader.Read())
+                {
+                    orderID = reader.GetInt32(0);
+                }
+            });
+            int id = _db.Insert( $"insert into productOrder values (null, '{productID}', {orderID})");
             return id;
         }
     }

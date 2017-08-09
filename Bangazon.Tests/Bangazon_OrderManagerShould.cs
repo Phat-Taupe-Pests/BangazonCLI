@@ -43,7 +43,7 @@ namespace Bangazon.Tests
             _currentCustomer.postalCode= 55555; 
             _currentCustomer.phoneNumber= "555-123-4567";
             CustomerManager.currentCustomer = _currentCustomer;
-            
+
             List<int> ProductID = new List<int>();
             ProductID.Add(1);
             ProductID.Add(2);
@@ -54,8 +54,20 @@ namespace Bangazon.Tests
         [Fact]
         public void AddProductToOrder()
         {
-            ProductOrder newProductOrder = new ProductOrder(){orderID = 1, productID = 2};
-            var result = _om.AddProductToOrder(newProductOrder);
+            Customer _currentCustomer = new Customer();
+            _currentCustomer.customerID = 1;
+            _currentCustomer.firstName = "Brain"; 
+            _currentCustomer.lastName= "Pinky"; 
+            _currentCustomer.streetAddress = "114 Street Place"; 
+            _currentCustomer.state= "Tennesseetopia"; 
+            _currentCustomer.postalCode= 55555; 
+            _currentCustomer.phoneNumber= "555-123-4567";
+            CustomerManager.currentCustomer = _currentCustomer;
+
+            List<int> ProductID = new List<int>();
+            ProductID.Add(1);
+            ProductID.Add(2);
+            var result = _om.AddProductToOrder(ProductID);
             Assert.IsType<int>(result);
         }
 
