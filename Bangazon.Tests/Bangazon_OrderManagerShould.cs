@@ -67,6 +67,7 @@ namespace Bangazon.Tests
             List<int> ProductID = new List<int>();
             ProductID.Add(1);
             ProductID.Add(2);
+            _om.CreateNewOrder(ProductID);
             var result = _om.AddProductToOrder(ProductID);
             Assert.IsType<int>(result);
         }
