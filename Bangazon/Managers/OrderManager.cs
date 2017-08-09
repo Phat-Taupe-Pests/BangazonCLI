@@ -26,7 +26,8 @@ using Microsoft.Data.Sqlite;
                 {
                     customerOrder.orderID = reader.GetInt32(0);
                     customerOrder.customerID = reader.GetInt32(1);
-                    customerOrder.paymentTypeID = reader.GetInt32(2);
+                    customerOrder.paymentTypeID = reader[2] as int? ?? null;
+                    customerOrder.dateCreated = reader.GetDateTime(3);
                 }
             });
             return customerOrder;

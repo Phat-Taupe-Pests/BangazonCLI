@@ -39,7 +39,7 @@ namespace Bangazon.Tests
             int ProductID = 1;
             _om.CreateNewOrder(ProductID);
             Order customerOrders = _om.GetCustomerOrder(_currentCustomer.customerID);
-            Assert.IsType<int>(customerOrders);
+            Assert.IsType<Order>(customerOrders);
         }
 
         //Get the current customer and create a new order
