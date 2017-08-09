@@ -38,8 +38,8 @@ namespace Bangazon.Tests
 
             int ProductID = 1;
             _om.CreateNewOrder(ProductID);
-            List<Order> customerOrders = _om.GetCustomerOrder(_currentCustomer.customerID);
-            Assert.IsType<List<Order>>(customerOrders);
+            Order customerOrders = _om.GetCustomerOrder(_currentCustomer.customerID);
+            Assert.IsType<int>(customerOrders);
         }
 
         //Get the current customer and create a new order

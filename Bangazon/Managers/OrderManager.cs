@@ -18,18 +18,15 @@ using Microsoft.Data.Sqlite;
         }
 
         //Passing in the currentCustomerID, returns the currentCustomer order (object) 
-        public List<Order> GetCustomerOrder(int customerID)
+        public Order GetCustomerOrder(int customerID)
         {
-            List<Order> customerOrder = new List<Order>();
+            Order customerOrder = new Order();
             _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID}", (SqliteDataReader reader) => {
-                customerOrder.Clear();
                 while (reader.Read())
                 {
-                    customerOrder.Add(new Order() {
-                        orderID = reader.GetInt32(0),
-                        customerID = reader.GetInt32(0),
-                        paymentTypeID = reader.GetInt32(0),
-                    });
+                    customerOrder.orderID = reader.GetInt32(0);
+                    customerOrder.customerID = reader.GetInt32(1);
+                    customerOrder.paymentTypeID = reader.GetInt32(2);
                 }
             });
             return customerOrder;
@@ -38,7 +35,7 @@ using Microsoft.Data.Sqlite;
         //Pass in product IDs of products to be added an order
         public int CreateNewOrder(int productID)
         {
-            int orderID = _db.Insert($"INSERT INTO `order` values (null, {CustomerManager.currentCustomer.customerID}, null)");
+            int orderID = _db.Insert($"INSERT INTO `order` values (null, {CustomerManager.currentCustomer.customerID}, null, '{DateTime.Now}')");
             _db.Insert($"INSERT INTO productOrder values (null, {productID}, {orderID})");
             return orderID;
         }
