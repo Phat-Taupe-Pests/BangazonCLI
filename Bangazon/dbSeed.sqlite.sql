@@ -91,9 +91,37 @@ INSERT INTO Product VALUES (null, "Linkin Park's HyBrid Theory", "Probably not a
 INSERT INTO Product VALUES (null, "Nintendo 64", "Bring back the memories", 50, "08-04-2015", 3,  3, 4);
 INSERT INTO Product VALUES (null, "1950s TV", "Hope it's not haunted!", 150, "08-04-2016", 1, 3, 10);
 
+INSERT INTO `Order` VALUES (null, 1);
+INSERT INTO `Order` VALUES (null, 2);
 INSERT INTO `Order` VALUES (null, 1, 1);
+INSERT INTO `Order` VALUES (null, 1, 2);
+INSERT INTO `Order` VALUES (null, 1, 1);
+INSERT INTO `Order` VALUES (null, 1, 2);
 INSERT INTO `Order` VALUES (null, 1, 2);
 INSERT INTO `Order` VALUES (null, 2, 3);
 INSERT INTO `Order` VALUES (null, 2, 4);
 INSERT INTO `Order` VALUES (null, 3, 5);
 INSERT INTO `Order` VALUES (null, 3, 6);
+
+INSERT INTO `ProductOrder` VALUE (null, 1, 1);
+INSERT INTO `ProductOrder` VALUE (null, 1, 1);
+INSERT INTO `ProductOrder` VALUE (null, 1, 1);
+INSERT INTO `ProductOrder` VALUE (null, 2, 3);
+INSERT INTO `ProductOrder` VALUE (null, 2, 5);
+INSERT INTO `ProductOrder` VALUE (null, 2, 8);
+INSERT INTO `ProductOrder` VALUE (null, 3, 2);
+INSERT INTO `ProductOrder` VALUE (null, 4, 4);
+INSERT INTO `ProductOrder` VALUE (null, 5, 6);
+INSERT INTO `ProductOrder` VALUE (null, 6, 7);
+INSERT INTO `ProductOrder` VALUE (null, 7, 9);
+INSERT INTO `ProductOrder` VALUE (null, 8, 8);
+INSERT INTO `ProductOrder` VALUE (null, 8, 1);
+INSERT INTO `ProductOrder` VALUE (null, 9, 3);
+INSERT INTO `ProductOrder` VALUE (null, 9, 6);
+INSERT INTO `ProductOrder` VALUE (null, 10, 7);
+INSERT INTO `ProductOrder` VALUE (null, 10, 9);
+INSERT INTO `ProductOrder` VALUE (null, 11, 7);
+INSERT INTO `ProductOrder` VALUE (null, 11, 9);
+INSERT INTO `ProductOrder` VALUE (null, 11, 1);
+
+
