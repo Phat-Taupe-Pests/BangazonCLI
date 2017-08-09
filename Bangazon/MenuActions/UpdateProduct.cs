@@ -29,9 +29,9 @@ namespace  BangazonCLI.MenuActions
             Console.Clear();
             Console.WriteLine("Select the field you wish to update:");
             Console.WriteLine($"1. Change Name: {selectedProduct.name}");
-            Console.WriteLine($"2.  Change Description: {selectedProduct.description}");
-            Console.WriteLine($"3.  Change Price: {selectedProduct.price}");
-            Console.WriteLine($"4.  Change Quantity: {selectedProduct.quantity}");
+            Console.WriteLine($"2. Change Description: {selectedProduct.description}");
+            Console.WriteLine($"3. Change Price: {selectedProduct.price}");
+            Console.WriteLine($"4. Change Quantity: {selectedProduct.quantity}");
             Console.Write("> ");
 
             int fieldChoice;

@@ -49,9 +49,17 @@ namespace BangazonCLI
                         ChooseCustomer.ChooseCustomerMenu(cm, db);
                         break;
                     case 3:
+                        if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
                         CreatePayment.CreatePaymentMenu(paytm);
                         break;
                     case 4:
+                        if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
                         AddProductToSell.DoAction(pm, ptm);
                         break;
                     case 5:
@@ -59,9 +67,17 @@ namespace BangazonCLI
                     case 6:
                         break;
                     case 7:
+                        if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
                         RemoveProductToSell.RemoveProductToSellMenu(pm);
                         break;
                     case 8:
+                        if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
                         UpdateProduct.UpdateProductMenu(pm);
                         break;
                     case 9:
