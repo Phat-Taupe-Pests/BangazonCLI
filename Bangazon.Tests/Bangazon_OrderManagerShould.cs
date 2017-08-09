@@ -21,16 +21,29 @@ namespace Bangazon.Tests
             _db.CheckProductOrder();
         }
 
-        [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        public void GetCustomerOrders(int customerID)
+        //Tests that you can get a list of orders from currentCustomer
+        [Fact]
+        public void GetCustomerOrder()
         {
-            List<Order> customerOrders = _om.GetCustomerOrders(customerID);
+            Customer _currentCustomer = new Customer();
+            _currentCustomer.customerID = 1;
+            _currentCustomer.firstName = "Brain"; 
+            _currentCustomer.lastName= "Pinky"; 
+            _currentCustomer.streetAddress = "114 Street Place"; 
+            _currentCustomer.state= "Tennesseetopia"; 
+            _currentCustomer.postalCode= 55555; 
+            _currentCustomer.phoneNumber= "555-123-4567";
+            CustomerManager.currentCustomer = _currentCustomer;
+
+            List<int> ProductID = new List<int>();
+            ProductID.Add(1);
+            ProductID.Add(2);
+            _om.CreateNewOrder(ProductID);
+            List<Order> customerOrders = _om.GetCustomerOrder(_currentCustomer.customerID);
             Assert.IsType<List<Order>>(customerOrders);
         }
 
+        //Get the current customer and create a new order
         [Fact]
         public void CreateNewOrder()
         {
@@ -51,6 +64,7 @@ namespace Bangazon.Tests
             Assert.IsType<int>(result);
         }
 
+        //Find an open order for current customer and add products to that order
         [Fact]
         public void AddProductToOrder()
         {

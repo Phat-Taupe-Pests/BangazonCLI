@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 
-    //Written by: Adam Reidelbach
+    //Written by: Adam Reidelbach, Matt Augsburger
     namespace BangazonCLI
     {
         // Manages order related methods
@@ -10,7 +10,6 @@ using Microsoft.Data.Sqlite;
         {
         private dbUtilities _db;
 
-        private List<Order> _orderList;
         private int _orderID;
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
         public OrderManager(dbUtilities db)
@@ -18,25 +17,25 @@ using Microsoft.Data.Sqlite;
             _db = db;
         }
 
-        public List<Order> GetCustomerOrders(int customerID)
+        //Passing in the currentCustomerID, returns the currentCustomer order (object) 
+        public List<Order> GetCustomerOrder(int customerID)
         {
-            List<Order> customerOrders = new List<Order>();
-            _db.Query($"SELECT * FROM order WHERE customerID = {customerID}", (SqliteDataReader reader) => {
-                customerOrders.Clear();
+            List<Order> customerOrder = new List<Order>();
+            _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID}", (SqliteDataReader reader) => {
+                customerOrder.Clear();
                 while (reader.Read())
                 {
-                    customerOrders.Add(new Order() {
+                    customerOrder.Add(new Order() {
                         orderID = reader.GetInt32(0),
                         customerID = reader.GetInt32(0),
                         paymentTypeID = reader.GetInt32(0),
                     });
                 }
             });
-            return customerOrders;
+            return customerOrder;
         }
 
-        //Pass in product ID of product to be added to order
-        //Customer will always be the active customer
+        //Pass in product IDs of products to be added an order
         public int CreateNewOrder(List<int> productID)
         {
             int orderID = _db.Insert($"INSERT INTO `order` values (null, {CustomerManager.currentCustomer.customerID}, null)");
