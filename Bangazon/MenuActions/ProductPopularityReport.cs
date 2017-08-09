@@ -12,18 +12,37 @@ namespace  BangazonCLI.MenuActions
         public static void ProductPopularityReportMenu()
         {
             Console.Clear();
-            String product = FormatPurchases("Products");
-            String orders = FormatOrders("Orders");
-            String purchasers = FormatPurchasersRevenue("Purchasers");
-            String revenue = FormatPurchasersRevenue("Revenue");
 
-            Console.WriteLine($"{product}{orders}{purchasers}{revenue}");
+            String product1 = FormatPurchases("This is a cool CD");
+            String product2 = FormatPurchases("Bananas");
+            String product3 = FormatPurchases("Im not sure what this is but its over 20 characters");
+
+            String orders1 = FormatOrders(23);
+            String orders2 = FormatOrders(500);
+            String orders3 = FormatOrders(3000);
+
+            String purchasers1 = FormatPurchasers(30);
+            String purchasers2 = FormatPurchasers(30);
+            String purchasers3 = FormatPurchasers(30);
+
+
+            String revenue1 = FormatRevenue(23, 30);
+            String revenue2 = FormatRevenue(500, 30);
+            String revenue3 = FormatRevenue(3000, 30);
+
+            String ordersTotal = FormatOrders((23 + 500 + 3000));
+            String purchasersTotal = FormatPurchasers((30 + 30 + 30));
+            String revenueTotal = FormatPurchasers((Int32.Parse(revenue1) +Int32.Parse(revenue2) + Int32.Parse(revenue3)));
+
+
+
+            Console.WriteLine($"Products            Orders     Purchasers     Revenue        ");
             Console.WriteLine($"*************************************************************");
-            // Console.WriteLine($"{product1}{orders1}{purchasers1}{revenue1}");
-            // Console.WriteLine($"{product2}{orders2}{purchasers2}{revenue2}");
-            // Console.WriteLine($"{product3}{orders3}{purchasers3}{revenue3}");
+            Console.WriteLine($"{product1}{orders1}{purchasers1}{revenue1}");
+            Console.WriteLine($"{product2}{orders2}{purchasers2}{revenue2}");
+            Console.WriteLine($"{product3}{orders3}{purchasers3}{revenue3}");
             Console.WriteLine($"*************************************************************");
-            // Console.WriteLine($"{productTotal}{ordersTotal}{purchasersTotal}{revenueTotal}");
+            Console.WriteLine($"Totals:             {ordersTotal}{purchasersTotal}{revenueTotal}");
             Console.WriteLine("Press Any Key To Exit");
 
             Console.ReadKey();
@@ -36,7 +55,7 @@ namespace  BangazonCLI.MenuActions
             String formattedString;
             if(toFormat.Length > 17)
             {
-                formattedString = toFormat.Remove(16) + "...";
+                formattedString = toFormat.Remove(17) + "...";
                 return formattedString;
             }
             else if(toFormat.Length < 20)
@@ -50,8 +69,9 @@ namespace  BangazonCLI.MenuActions
                 return toFormat;
             }
         }
-        public static string FormatOrders(String toFormat)
+        public static string FormatOrders(int number)
         {
+            String toFormat = number.ToString();
             String formattedString;
             if(toFormat.Length < 11)
             {
@@ -65,8 +85,25 @@ namespace  BangazonCLI.MenuActions
             }
         }
 
-        public static string FormatPurchasersRevenue(String toFormat)
+        public static string FormatPurchasers(int number)
         {
+            String toFormat = number.ToString();
+            String formattedString;
+            if(toFormat.Length < 15)
+            {
+                String paddingString = toFormat.PadRight(16, ' ');
+                formattedString = paddingString.Remove(15);
+                return formattedString;
+            }
+            else
+            {
+                return toFormat;
+            }
+        }
+        public static string FormatRevenue(int orders, int purchasers)
+        {
+            int revenue = orders * purchasers;
+            String toFormat = revenue.ToString();
             String formattedString;
             if(toFormat.Length < 15)
             {
