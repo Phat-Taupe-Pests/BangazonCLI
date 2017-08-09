@@ -11,7 +11,7 @@ namespace BangazonCLI
     {
         public int orderID { get; set; }
         public int customerID { get; set; }
-        public int paymentTypeID { get; set; }
+        public int? paymentTypeID { get; set; }
         public List<Product> products { get; set; }
    }
 }
