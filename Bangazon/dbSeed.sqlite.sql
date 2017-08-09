@@ -36,6 +36,7 @@ CREATE TABLE `order`        (
                             `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                             `customerID`	integer not null,
                             `paymentTypeID`	integer not null,
+                            `DateCreated`   varchar(80) not null,
                             FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
                             FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
                             );
