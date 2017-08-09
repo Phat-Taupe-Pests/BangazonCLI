@@ -43,6 +43,7 @@ namespace  BangazonCLI.MenuActions
             Console.WriteLine($"{product3}{orders3}{purchasers3}{revenue3}");
             Console.WriteLine($"*************************************************************");
             Console.WriteLine($"Totals:             {ordersTotal}{purchasersTotal}{revenueTotal}");
+            Console.WriteLine();
             Console.WriteLine("Press Any Key To Exit");
 
             Console.ReadKey();
