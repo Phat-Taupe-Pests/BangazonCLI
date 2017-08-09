@@ -123,5 +123,7 @@ INSERT INTO `ProductOrder` VALUE (null, 10, 9);
 INSERT INTO `ProductOrder` VALUE (null, 11, 7);
 INSERT INTO `ProductOrder` VALUE (null, 11, 9);
 INSERT INTO `ProductOrder` VALUE (null, 11, 1);
+INSERT INTO `ProductOrder` VALUE (null, 11, 1);
+INSERT INTO `ProductOrder` VALUE (null, 11, 2);
 
 
