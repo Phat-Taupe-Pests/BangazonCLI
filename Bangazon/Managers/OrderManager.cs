@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 
     //Written by: Adam Reidelbach, Matt Augsburger
-    namespace BangazonCLI.MenuActions
+    namespace BangazonCLI
     {
         // Manages order related methods
         public class OrderManager
@@ -18,10 +18,10 @@ using Microsoft.Data.Sqlite;
         }
 
         //Passing in the currentCustomerID, returns the currentCustomer order (object) 
-        public Order GetCustomerOrder(int customerID)
+        public Order GetActiveCustomerOrder(int customerID)
         {
             Order customerOrder = new Order();
-            _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID}", (SqliteDataReader reader) => {
+            _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID} AND paymenttypeID = null", (SqliteDataReader reader) => {
                 while (reader.Read())
                 {
                     customerOrder.orderID = reader.GetInt32(0);
@@ -33,7 +33,30 @@ using Microsoft.Data.Sqlite;
             return customerOrder;
         }
 
-        //Pass in product IDs of products to be added an order
+        public List <Order> GetAllClosedCustomersOrders(int customerID)
+        {
+            List <Order> customersOrders = new List <Order>();
+            _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID} AND paymenttypeID IS NOT null", (SqliteDataReader reader) => {
+                while (reader.Read())
+                {
+                    customersOrders.Add(new Order(){
+                        orderID = reader.GetInt32(0),
+                        customerID = reader.GetInt32(1),
+                        paymentTypeID = reader[2] as int? ?? null,
+                        dateCreated = reader.GetDateTime(3)
+                    });
+                    // Order thisOrder = new Order();
+                    // thisOrder.orderID = reader.GetInt32(0);
+                    // thisOrder.customerID = reader.GetInt32(1);
+                    // thisOrder.paymentTypeID = reader[2] as int? ?? null;
+                    // thisOrder.dateCreated = reader.GetDateTime(3);
+                    // customersOrders.Add(thisOrder);
+                }
+            });
+            return customersOrders;
+        }
+
+        //Pass in product ID of product to be added an order
         public int CreateNewOrder(int productID)
         {
             int orderID = _db.Insert($"INSERT INTO `order` values (null, {CustomerManager.currentCustomer.customerID}, null, '{DateTime.Now}')");

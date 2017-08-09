@@ -32,7 +32,6 @@ namespace BangazonCLI
             OrderManager om = new OrderManager(db);
 
 
-
             int choice;
 
             do
@@ -89,6 +88,11 @@ namespace BangazonCLI
                     case 9:
                         break;
                     case 10:
+                        if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
+                        RevenueReport.createRevenueReport(om, pm);
                         break;
                     case 11:
                         break;

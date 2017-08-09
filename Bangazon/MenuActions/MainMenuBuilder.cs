@@ -9,7 +9,7 @@ namespace BangazonCLI
         public int ShowMainMenu()
         {
              // Present the main menu
-            Console.Clear();
+            // Console.Clear();
             Console.WriteLine ("*************************************************");
             Console.WriteLine ("Welcome to Bangazon! Command Line Ordering System");
             Console.WriteLine ("*************************************************");
