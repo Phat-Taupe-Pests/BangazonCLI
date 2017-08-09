@@ -31,6 +31,17 @@ namespace BangazonCLI
                 _connection.Close();
             }
         }
+        public void Update(string command)
+        {
+            using(_connection)
+            using (SqliteCommand dbcmd = _connection.CreateCommand ())
+            {
+                _connection.Open();
+                dbcmd.CommandText = command;
+                dbcmd.ExecuteNonQuery();
+                _connection.Close();
+            }
+        }
 
         public void Query(string command, Action<SqliteDataReader> handler)
         {
@@ -70,6 +81,7 @@ namespace BangazonCLI
             }
             return insertedItemId;
         }
+        
         // Checks to see if a customer table exists, if it doesn't it creates the table in the database.
         public void CheckCustomer ()
         {
@@ -216,7 +228,7 @@ namespace BangazonCLI
                     if (ex.Message.Contains("no such table"))
                     {
                         dbcmd.CommandText = $@"create table productOrder (
-                            `ProductOrderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `ProductOrderID`	integer PRIMARY KEY AUTOINCREMENT,
                             `OrderID`	integer not null,
                             `ProductID`	integer not null,
                             FOREIGN KEY(`OrderID`) REFERENCES `Order`(`OrderID`),
@@ -254,9 +266,10 @@ namespace BangazonCLI
                     {
                         //double check syntax for all of the command below
                         dbcmd.CommandText = $@"create table `order` (
-                            `orderID`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                            `orderID`	integer PRIMARY KEY AUTOINCREMENT,
                             `customerID`	integer not null,
-                            `paymentTypeID`	integer not null,
+                            `paymentTypeID`	integer,
+                            'DateCreated' varchar(80) not null,
                             FOREIGN KEY(`customerID`) REFERENCES `customer`(`id`),
                             FOREIGN KEY(`paymentTypeID`) REFERENCES `paymentType`(`id`)
                         )";
