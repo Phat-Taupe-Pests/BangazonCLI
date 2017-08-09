@@ -31,11 +31,23 @@ namespace Bangazon.Tests
             Assert.IsType<List<Order>>(customerOrders);
         }
 
-        [Theory]
-        [InlineData(1)]
-        public void CreateNewOrder(int productID)
+        [Fact]
+        public void CreateNewOrder()
         {
-            var result = _om.CreateNewOrder(productID);
+            Customer _currentCustomer = new Customer();
+            _currentCustomer.customerID = 1;
+            _currentCustomer.firstName = "Brain"; 
+            _currentCustomer.lastName= "Pinky"; 
+            _currentCustomer.streetAddress = "114 Street Place"; 
+            _currentCustomer.state= "Tennesseetopia"; 
+            _currentCustomer.postalCode= 55555; 
+            _currentCustomer.phoneNumber= "555-123-4567";
+            CustomerManager.currentCustomer = _currentCustomer;
+            
+            List<int> ProductID = new List<int>();
+            ProductID.Add(1);
+            ProductID.Add(2);
+            var result = _om.CreateNewOrder(ProductID);
             Assert.IsType<int>(result);
         }
 
