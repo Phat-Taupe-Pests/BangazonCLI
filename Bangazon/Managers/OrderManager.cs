@@ -62,5 +62,25 @@ using Microsoft.Data.Sqlite;
             }
             return _orderID;
         }
+
+        public List<RevenueReport> GetCompletedOrders()
+        {
+            List<RevenueReport> revenueReports = new List<RevenueReport>();
+            int customerID = CustomerManager.currentCustomer.customerID;
+            _db.Query($"SELECT o.orderID, SUM(po.productOrderID), p.name, p.price FROM `Order` o, productOrder po, product p WHERE o.customerID = {customerID} AND o.orderID = po.orderId AND po.productID = p.productID",
+            (SqliteDataReader reader) => {
+                while(reader.Read())
+                {
+                    revenueReports.Add(new RevenueReport() {
+                        orderID = reader.GetInt32(0),
+                        quantity = reader.GetInt32(1),
+                        name = reader[2].ToString(),
+                        price = reader.GetDouble(3)
+                    });
+                }
+            });
+
+            return revenueReports;
+        }
     }
 }
