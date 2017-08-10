@@ -63,7 +63,7 @@ namespace BangazonCLI
         //Get a list of products NOT sold by the active customer
          public List<Product> GetProductsNotSoldByCustomer(int custID)
         {
-                 _db.Query($"SELECT * FROM Product WHERE CustomerID != {custID};",
+                 _db.Query($"SELECT * FROM Product WHERE CustomerID != {custID} and quantity != 0;",
                 (SqliteDataReader reader) => {
                     _products.Clear();  
                     while (reader.Read ())
