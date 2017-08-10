@@ -8,38 +8,35 @@ namespace  BangazonCLI.MenuActions
 {
     public class ProductPopularityReport
     {
-        private dbUtilities _db;
-        public ProductPopularityReport(dbUtilities db)
-        {
-            _db = db;
-        }
+  
         //writes the popularity report
-        public static void ProductPopularityReportMenu()
+        public static void ProductPopularityReportMenu(ProductManager pm)
         {
             Console.Clear();
 
+            List<PopProducts> PopularProducts = pm.GetPopularProducts();
 
 
-            String product1 = FormatPurchases("This is a cool CD");
-            String product2 = FormatPurchases("Bananas");
-            String product3 = FormatPurchases("Im not sure what this is but its over 20 characters");
+            String product1 = FormatPurchases(PopularProducts[0].name);
+            String product2 = FormatPurchases(PopularProducts[1].name);
+            String product3 = FormatPurchases(PopularProducts[2].name);
 
-            String orders1 = FormatOrders(23);
-            String orders2 = FormatOrders(500);
-            String orders3 = FormatOrders(3000);
+            String orders1 = FormatOrders(PopularProducts[0].orders);
+            String orders2 = FormatOrders(PopularProducts[1].orders);
+            String orders3 = FormatOrders(PopularProducts[2].orders);
 
-            String purchasers1 = FormatPurchasers(30);
-            String purchasers2 = FormatPurchasers(30);
-            String purchasers3 = FormatPurchasers(30);
+            String purchasers1 = FormatPurchasers(PopularProducts[0].purchasers);
+            String purchasers2 = FormatPurchasers(PopularProducts[1].purchasers);
+            String purchasers3 = FormatPurchasers(PopularProducts[2].purchasers);
 
 
-            String revenue1 = FormatRevenue(23, 30);
-            String revenue2 = FormatRevenue(500, 30);
-            String revenue3 = FormatRevenue(3000, 30);
+            String revenue1 = FormatRevenue(PopularProducts[0].orders, PopularProducts[0].price);
+            String revenue2 = FormatRevenue(PopularProducts[1].orders, PopularProducts[1].price);
+            String revenue3 = FormatRevenue(PopularProducts[2].orders, PopularProducts[2].price);
 
-            String ordersTotal = FormatOrders((23 + 500 + 3000));
-            String purchasersTotal = FormatPurchasers((30 + 30 + 30));
-            String revenueTotal = FormatPurchasers((Int32.Parse(revenue1) +Int32.Parse(revenue2) + Int32.Parse(revenue3)));
+            String ordersTotal = FormatOrders((PopularProducts[0].orders + PopularProducts[1].orders + PopularProducts[2].orders));
+            String purchasersTotal = FormatPurchasers((PopularProducts[0].purchasers + PopularProducts[1].purchasers + PopularProducts[2].purchasers));
+            String revenueTotal = FormatPurchasers((Convert.ToInt32(PopularProducts[0].orders * PopularProducts[0].price)) + (Convert.ToInt32(PopularProducts[1].orders * PopularProducts[1].price)) + (Convert.ToInt32(PopularProducts[2].orders * PopularProducts[2].price)));
 
 
 
@@ -108,9 +105,11 @@ namespace  BangazonCLI.MenuActions
                 return toFormat;
             }
         }
-        public static string FormatRevenue(int orders, int purchasers)
+        public static string FormatRevenue(int orders, double price)
         {
-            int revenue = orders * purchasers;
+
+            Convert.ToDouble(orders);
+            double revenue = orders * price;
             String toFormat = revenue.ToString();
             String formattedString;
             if(toFormat.Length < 15)
