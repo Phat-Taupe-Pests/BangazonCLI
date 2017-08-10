@@ -45,6 +45,14 @@ namespace BangazonCLI.Tests
             Assert.True(paymentTypeID !=0);
         }
 
+        public void GetCustomersPaymentTypes()
+        {
+            Customer _currentCustomer = new Customer();
+            _currentCustomer.customerID = 1;
+            CustomerManager.currentCustomer = _currentCustomer;
+            var result = _ptm.GetCustomersPaymentTypes(CustomerManager.currentCustomer.customerID);
+            Assert.IsType<List<PaymentType>>(result);
+        }
         // Burns the database down because the paint color is wrong (resets the test database).
             public void Dispose()
         {

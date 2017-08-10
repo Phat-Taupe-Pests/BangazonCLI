@@ -71,6 +71,11 @@ namespace BangazonCLI
                         AddProductOrder.AddProductToOrder(cm, db, pm, om);
                         break;
                     case 6:
+                         if (CustomerManager.currentCustomer == null)
+                            {
+                                ChooseCustomer.ChooseCustomerMenu(cm, db);  
+                            }
+                        CompleteOrder.CompleteOrderMenu(om, pm, paytm);
                         break;
                     case 7:
                         if (CustomerManager.currentCustomer == null)
