@@ -89,6 +89,11 @@ namespace BangazonCLI
                     case 9:
                         break;
                     case 10:
+                        if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
+                        RevenueReport.ShowRevenueReport(om);
                         break;
                     case 11:
                         break;

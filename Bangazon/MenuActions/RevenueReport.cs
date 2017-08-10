@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BangazonCLI.MenuActions;
 
 namespace BangazonCLI
 {
@@ -15,32 +16,26 @@ namespace BangazonCLI
         public static void ShowRevenueReport(OrderManager om)
         {
             double total = 0;
-            if (CustomerManager.currentCustomer == null)
-            {
-                return;
-            }
-            var orderList = om.GetCompletedOrders();
+            var completedOrderList = om.GetCompletedOrders();
             Console.Clear();
             Console.WriteLine($"Revenue Report for {CustomerManager.currentCustomer.firstName} {CustomerManager.currentCustomer.lastName}");
             Console.WriteLine("");
             
-            foreach(RevenueReport rr in orderList)
+            foreach(RevenueReport rr in completedOrderList)
             {
                 string dash = "-";
                 Console.WriteLine($"Order #{rr.orderID}");
-                Console.WriteLine(dash.PadLeft(24, '-'));
-                // foreach(RevenueReport r in rr)
-                // {
-                //     total += (rr2.price * rr2.quantity);
-                //     Console.WriteLine($"{rr2.name}{rr2.quantity.ToString().PadLeft(15, ' ')}{rr2.price.ToString().PadLeft(5, ' ')}");
-                //     Console.WriteLine("");
-                // }
+                Console.WriteLine(dash.PadLeft(29, '-'));
+
+                total += (rr.price * rr.quantity);
+                Console.WriteLine($"{rr.name}{rr.quantity.ToString().PadLeft(10, ' ')}     ${(rr.price*rr.quantity).ToString()}");
+                Console.WriteLine("");
+         
             }
             Console.WriteLine($"Total Revenue: ${total}");
+            Console.WriteLine("Press any key to return to main menu.");
+            Console.ReadKey();
         }
     
     }
-
-
-
 }

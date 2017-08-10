@@ -59,15 +59,15 @@ using Microsoft.Data.Sqlite;
         {
             List<RevenueReport> revenueReports = new List<RevenueReport>();
             int customerID = CustomerManager.currentCustomer.customerID;
-            _db.Query($"SELECT o.orderID, SUM(po.productOrderID), p.name, p.price FROM `Order` o, productOrder po, product p WHERE o.customerID = {customerID} AND o.orderID = po.orderId AND po.productID = p.productID",
+            _db.Query($"SELECT p.name, p.price, COUNT(po.productOrderID), o.orderID  FROM product p, productOrder po, `order` o WHERE p.customerID = {customerID} AND p.productID = po.productID AND po.orderID = o.orderID GROUP BY o.orderID",
             (SqliteDataReader reader) => {
                 while(reader.Read())
                 {
                     revenueReports.Add(new RevenueReport() {
-                        orderID = reader.GetInt32(0),
-                        quantity = reader.GetInt32(1),
-                        name = reader[2].ToString(),
-                        price = reader.GetDouble(3)
+                        name = reader[0].ToString(),
+                        price = reader.GetDouble(1),
+                        quantity = reader.GetInt32(2),
+                        orderID = reader.GetInt32(3)
                     });
                 }
             });
