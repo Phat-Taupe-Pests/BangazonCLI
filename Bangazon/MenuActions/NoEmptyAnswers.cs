@@ -10,11 +10,13 @@ namespace BangazonCLI
        // accepts an answer, and a thing to enter to determine if a user answer is an empty string.
         public static string notAOne(string answer, string thingToEnter){
             string input = answer;
-            do {
-                Console.WriteLine($"Please enter {thingToEnter}.");
-                Console.Write ("> ");
-                input = Console.ReadLine();
-            } while (input.Length == 0);
+            if (input.Length == 0){
+                do {
+                    Console.WriteLine($"Please enter {thingToEnter}.");
+                    Console.Write ("> ");
+                    input = Console.ReadLine();
+                } while (input.Length == 0);
+            }
             return input;
         }
     }

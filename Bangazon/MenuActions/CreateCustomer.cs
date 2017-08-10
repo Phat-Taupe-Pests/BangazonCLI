@@ -47,7 +47,7 @@ namespace BangazonCLI
                 Console.WriteLine ("Enter customer postal code");
                 Console.Write ("> ");
                 string stringPostalCode = Console.ReadLine();
-                if (stringPostalCode.Length < 5 || stringPostalCode.Length > 5){
+                if (stringPostalCode.Length < 5 || stringPostalCode.Length > 5 || stringPostalCode.Length == 1){
                     Console.WriteLine("Please enter a five digit postal code.");
                     Console.Write ("> ");
                     stringPostalCode = Console.ReadLine();
