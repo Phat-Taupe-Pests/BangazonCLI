@@ -28,9 +28,24 @@ namespace BangazonCLI
             Console.Write ("> ");
             string state = Console.ReadLine();
             Console.Clear();
-            Console.WriteLine ("Enter customer postal code");
-            Console.Write ("> ");
-            int postalCode = Convert.ToInt32(Console.ReadLine());
+            int postalCode = 0;
+            do {
+                Console.WriteLine ("Enter customer postal code");
+                Console.Write ("> ");
+                string stringPostalCode = Console.ReadLine();
+                if (stringPostalCode.Length < 5 || stringPostalCode.Length > 5){
+                    Console.WriteLine("Please enter a five digit postal code.");
+                    Console.Write ("> ");
+                    stringPostalCode = Console.ReadLine();
+                }
+                try{
+                    postalCode = Convert.ToInt32(stringPostalCode);
+
+                } catch {
+                    Console.WriteLine("Please enter a five digit postal code.");
+                }
+
+            } while (postalCode == 0);
             Console.Clear();
             Console.WriteLine ("Enter customer phone number");
             Console.Write ("> ");
