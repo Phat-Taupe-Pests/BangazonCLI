@@ -24,10 +24,16 @@ namespace BangazonCLI
             NoEmptyAnswers.notAOne(lastName, "a customer last name");
 
             Console.Clear();
-            Console.WriteLine ("Enter customer city");
+            Console.WriteLine ("Enter customer street address");
             Console.Write ("> ");
             string streetAddress = Console.ReadLine();
             NoEmptyAnswers.notAOne(streetAddress, "a customer street address");
+            
+            Console.Clear();
+            Console.WriteLine ("Enter customer city");
+            Console.Write ("> ");
+            string city = Console.ReadLine();
+            NoEmptyAnswers.notAOne(city, "a customer city");
 
             Console.Clear();
             Console.WriteLine ("Enter customer state");
@@ -65,6 +71,7 @@ namespace BangazonCLI
                 lastName = lastName,
                 streetAddress = streetAddress,
                 state = state,
+                city = city,
                 postalCode = postalCode,
                 phoneNumber = phoneNumber
             };
