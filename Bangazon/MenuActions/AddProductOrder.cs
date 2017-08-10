@@ -27,9 +27,6 @@ namespace BangazonCLI.MenuActions
                     products = pm.GetProductsNotSoldByCustomer(custID);
                     choice = DisplayProductList(products);
                 }
-                if (choice == 0) {
-                    return;
-                }
             } while(choice != 0);
             Console.WriteLine("Hit any key to return to the main menu");
             Console.ReadLine();
