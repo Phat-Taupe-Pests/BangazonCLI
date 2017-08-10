@@ -8,6 +8,7 @@ using Microsoft.Data.Sqlite;
         // Manages order related methods
         public class OrderManager
         {
+        private List<RevenueReport> _revenueReports = new List<RevenueReport>();
         private dbUtilities _db;
 
         private int _orderID;
@@ -76,6 +77,28 @@ using Microsoft.Data.Sqlite;
             });
             _db.Insert( $"insert into productOrder values (null, {productID}, {_orderID})");
             return _orderID;
+        }
+        
+        // Written By Matt Augsburger
+        //Gets/Returns a List of revenueReports from the currentCustomer
+        public List<RevenueReport> GetCompletedOrders()
+        {
+            _revenueReports.Clear();
+            int customerID = CustomerManager.currentCustomer.customerID;
+            _db.Query($"SELECT p.name, p.price, COUNT(po.productOrderID), o.orderID  FROM product p, productOrder po, `order` o WHERE p.customerID = {customerID} AND p.productID = po.productID AND po.orderID = o.orderID GROUP BY o.orderID",
+            (SqliteDataReader reader) => {
+                while(reader.Read())
+                {
+                    _revenueReports.Add(new RevenueReport() {
+                        name = reader[0].ToString(),
+                        price = reader.GetDouble(1),
+                        quantity = reader.GetInt32(2),
+                        orderID = reader.GetInt32(3)
+                    });
+                }
+            });
+
+            return _revenueReports;
         }
 
         // Gets stale products. Written by Eliza Meeks and Chaz Henricks.
