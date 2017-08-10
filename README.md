@@ -91,7 +91,7 @@ The following actions are available to the Bangazon customer representative thro
 
 ### Option 2 Choose an Active Customer
 1. This Method will write a list of previously added customers
-2. You will Choose a numThe selected customer is now the current actice customer
+2. Select a customer.
 
 ### Option 3 Create a Payment Option
 1. This Method will guide you through creating a new payment option
@@ -107,13 +107,13 @@ The following actions are available to the Bangazon customer representative thro
 1. This Method will guide you through adding an item to a shopping cart
 2. You are required to have chosen an active customer
 3. You will be provided with a list of products that are available to add, select one.
-4.Boom.
+4. Boom.
 
 ### Option 6 Complete an Order
 1. This Method will guide you through completing an Order
 2. You are required to have chosen an active customer
 3. It will ask you if you are sure, and provide you will your shopping cart total
-4. type Y or N to confirm
+4. Type Y or N to confirm
 
 ### Option 7 Remove a Customer's Product
 1. This Method will guide you through removing a customers product that is up for sale
@@ -130,11 +130,14 @@ The following actions are available to the Bangazon customer representative thro
 
 ### Option 9 Show Stale Products
 1. This Method will guide you through checking for a stale product
-2. You are required to have chosen an active customer
-3. The stale products will be displayed
+2. A stale product has a) never been added to an order, and has been in the system for more than 180 days
+b) Has been added to an order, but the order hasn't been completed, and the order was created more than 90 days ago
+c) Has been added to one, or more orders, and the order were completed, but there is remaining quantity for the product, and the product has been in the system for more than 180 days
+3. You are required to have chosen an active customer
+4. The stale products will be displayed
 
 ### Option 10 Show Customer Revenue Report
-1. This Method will guide you through checkung a revenue report
+1. This Method will guide you through checking a revenue report
 2. You are required to have chosen an active customer
 3. The Revenue Report will be displayed
 
