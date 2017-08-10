@@ -17,14 +17,37 @@ namespace  BangazonCLI.MenuActions
             List<Product> staleProducts = om.getStaleProducts();
             int c = 1;
             Customer currentCustomer = CustomerManager.currentCustomer;
-            Console.WriteLine($"Stale Products for {currentCustomer.firstName} {currentCustomer.lastName}");
+            //Products: 20 chars
+            Console.WriteLine($"Products            Quantity            Date Product Created ");
+            Console.WriteLine($"*************************************************************");
             foreach (Product thing in staleProducts)
             {
-                Console.WriteLine($"{c}. {thing.name}");
+                string formattedProduct = formatThings(thing.name);
+                string quantityString = thing.quantity.ToString();
+                string formattedQuantity = formatThings(quantityString);
+                string dateString = thing.dateCreated.ToString().Remove(7);
+                
+                string formattedDate = formatThings(dateString);
+                Console.WriteLine($"{formattedProduct}{formattedQuantity}{formattedDate}");
                 c++;
             }
+
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
+        }
+        
+        public static string formatThings(string thing)
+        {
+            string formattedThing;
+            if (thing.Length < 20)
+            {
+                string paddingString = thing.PadRight(22, ' ');
+                formattedThing = paddingString.Remove(20);
+                return formattedThing;
+            } else {
+                formattedThing = thing.Remove(17) + "...";
+                return formattedThing;
+            }
         }
     }
 }
