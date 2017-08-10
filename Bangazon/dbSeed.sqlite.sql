@@ -115,8 +115,6 @@ INSERT INTO `ProductOrder` VALUES (null, 4, 4);
 INSERT INTO `ProductOrder` VALUES (null, 5, 6);
 INSERT INTO `ProductOrder` VALUES (null, 6, 7);
 INSERT INTO `ProductOrder` VALUES (null, 7, 9);
-INSERT INTO `ProductOrder` VALUES (null, 8, 8);
-INSERT INTO `ProductOrder` VALUES (null, 8, 1);
 INSERT INTO `ProductOrder` VALUES (null, 9, 3);
 INSERT INTO `ProductOrder` VALUES (null, 9, 6);
 INSERT INTO `ProductOrder` VALUES (null, 10, 7);
