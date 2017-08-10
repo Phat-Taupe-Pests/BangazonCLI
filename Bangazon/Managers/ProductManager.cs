@@ -36,7 +36,7 @@ namespace BangazonCLI
             return id;     
        
         }
-        // Gets a list of Products.
+        // Gets a list of Products that are sold by the customer
         public List<Product> GetProductList(int custID)
         {
                  _db.Query($"SELECT * FROM Product WHERE CustomerID = {custID};",
@@ -59,6 +59,31 @@ namespace BangazonCLI
             );
             return _products;
         }
+
+        //Get a list of products NOT sold by the active customer
+         public List<Product> GetProductsNotSoldByCustomer(int custID)
+        {
+                 _db.Query($"SELECT * FROM Product WHERE CustomerID != {custID};",
+                (SqliteDataReader reader) => {
+                    _products.Clear();  
+                    while (reader.Read ())
+                    {
+                        _products.Add(new Product(){
+                            productID = reader.GetInt32(0),
+                            name = reader[1].ToString(),
+                            description = reader[2].ToString(),
+                            price = reader.GetDouble(3),
+                            dateCreated = reader.GetDateTime(4),
+                            quantity = reader.GetInt32(5),
+                            customerID = reader.GetInt32(6),
+                            productTypeID = reader.GetInt32(7)
+                        });
+                    }
+                }
+            );
+            return _products;
+        }
+
         //Removes an item from the database based on the productID passed as an argument. 
         public void RemoveProductToSell(int prodID)
         {
