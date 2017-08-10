@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
 //Written by: Eliza Meeks, Adam Reidelbach, Chaz Henricks, Ben Greaves, Matt Augsburger
 namespace BangazonCLI
+
 {
     // Manages PaymentType related methods
     public class PaymentTypeManager
@@ -12,6 +14,24 @@ namespace BangazonCLI
         {
             _cm = new CustomerManager(db);
             _db = db;
+        }
+
+         public List <PaymentType> GetCustomersPaymentTypes(int customerID) 
+        {
+            List <PaymentType> customersPaymentTypes = new List <PaymentType>();
+                _db.Query($"SELECT * FROM `paymentType` WHERE customerID = {customerID} ", (SqliteDataReader reader) => {
+                while (reader.Read())
+                {
+                    customersPaymentTypes.Add(new PaymentType()
+                    {
+                        paymentTypeID = reader.GetInt32(0),
+                        accountNumber = reader.GetInt32(1),
+                        customerID = reader.GetInt32(2),
+                        name = reader[3].ToString()
+                    });
+                }
+            });
+            return customersPaymentTypes;
         }
         // Adds a new PaymentType--passed in as an argument--to the database
         public int AddNewPaymentType(PaymentType newPaymentType){
