@@ -64,7 +64,7 @@ namespace BangazonCLI
             Console.WriteLine ("Enter customer phone number");
             Console.Write ("> ");
             string phoneNumber = Console.ReadLine();
-            NoEmptyAnswers.notAOne(phoneNumber, "a customer phone number");
+            NoEmptyAnswers.notAOne(phoneNumber, "Please enter a customer phone number");
             Customer newCustomer = new Customer()
             {
                 firstName = firstName,
