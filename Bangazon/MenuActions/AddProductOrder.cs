@@ -28,8 +28,6 @@ namespace BangazonCLI.MenuActions
                     choice = DisplayProductList(products);
                 }
             } while(choice != 0);
-            Console.WriteLine("Hit any key to return to the main menu");
-            Console.ReadLine();
             return;
         }
 
