@@ -55,7 +55,7 @@ using Microsoft.Data.Sqlite;
             return _orderID;
         }
 
-        // Gets stale products
+        // Gets stale products. Written by Eliza Meeks and Chaz Henricks.
         public List<Product> getStaleProducts()
         {
             int customerID = CustomerManager.currentCustomer.customerID;

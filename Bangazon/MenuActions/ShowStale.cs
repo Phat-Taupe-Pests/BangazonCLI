@@ -6,9 +6,11 @@ using Microsoft.Data.Sqlite;
 
 namespace  BangazonCLI.MenuActions
 {
+    // Menu action to show stale products for current user
+    //Written by Eliza Meeks
     public class ShowStale
     {
-        //Also need to pass in customer ID as an argument
+        // Displays stale products on the console, using the order manager which is passed in as an argument.
 
         public static void DoAction(OrderManager om)
 
@@ -35,7 +37,7 @@ namespace  BangazonCLI.MenuActions
             Console.WriteLine("Press any key to return to main menu.");
             Console.ReadKey();
         }
-        
+        // helper method to format the report, accepts strings to format.
         public static string formatThings(string thing)
         {
             string formattedThing;
