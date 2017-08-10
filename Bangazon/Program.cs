@@ -92,10 +92,16 @@ namespace BangazonCLI
                         UpdateProduct.UpdateProductMenu(pm);
                         break;
                     case 9:
+                        if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
+                        ShowStale.DoAction(om);
                         break;
                     case 10:
                         break;
                     case 11:
+                        ProductPopularityReport.ProductPopularityReportMenu(pm);
                         break;
                 }
 
