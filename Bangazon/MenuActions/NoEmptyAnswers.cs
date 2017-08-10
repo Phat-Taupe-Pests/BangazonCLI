@@ -12,7 +12,7 @@ namespace BangazonCLI
             string input = answer;
             if (input.Length == 0){
                 do {
-                    Console.WriteLine($"Please enter {thingToEnter}.");
+                    Console.WriteLine($"{thingToEnter}.");
                     Console.Write ("> ");
                     input = Console.ReadLine();
                 } while (input.Length == 0);
