@@ -16,7 +16,7 @@ namespace BangazonCLI
             Dictionary<int, Customer> custDictionary = new Dictionary<int, Customer>();
             Console.Clear();
             int counter = 1;
-            Console.WriteLine("Select customer");
+            Console.WriteLine("Please select a customer:");
             foreach(Customer c in custList)
             {
                 custDictionary.Add(counter, c);
@@ -27,7 +27,7 @@ namespace BangazonCLI
             Console.WriteLine(">");
             var choice = Console.ReadKey();
             string keyPressed = choice.KeyChar.ToString();
-            NoEmptyAnswers.notAOne(keyPressed, "Please select a customer");
+            NoEmptyAnswers.notAOne(keyPressed, "Please select a customer:");
             int choiceInt;
             int.TryParse(keyPressed, out choiceInt);
 
@@ -38,7 +38,7 @@ namespace BangazonCLI
                 {
                     Console.WriteLine($"You selected {kvp.Value.firstName} {kvp.Value.lastName} as the current customer");
                     CustomerManager.currentCustomer = kvp.Value;
-                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.WriteLine("Press any key to continue.");
                     Console.ReadKey();
                 }
             }
