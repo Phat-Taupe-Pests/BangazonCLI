@@ -15,36 +15,67 @@ namespace BangazonCLI
             Console.WriteLine ("Enter customer first name");
             Console.Write ("> ");
             string firstName = Console.ReadLine();
+            firstName = NoEmptyAnswers.notAOne(firstName, "Please enter a customer first name");
+
             Console.Clear();
             Console.WriteLine ("Enter customer last name");
             Console.Write ("> ");
             string lastName = Console.ReadLine();
+            lastName = NoEmptyAnswers.notAOne(lastName, "Please enter a customer last name");
+
+            Console.Clear();
+            Console.WriteLine ("Enter customer street address");
+            Console.Write ("> ");
+            string streetAddress = Console.ReadLine();
+            streetAddress = NoEmptyAnswers.notAOne(streetAddress, "Please enter a customer street address");
+            
             Console.Clear();
             Console.WriteLine ("Enter customer city");
             Console.Write ("> ");
-            string streetAddress = Console.ReadLine();
+            string city = Console.ReadLine();
+            city = NoEmptyAnswers.notAOne(city, "Please enter a customer city");
+
             Console.Clear();
             Console.WriteLine ("Enter customer state");
             Console.Write ("> ");
             string state = Console.ReadLine();
+            state = NoEmptyAnswers.notAOne(state, "Please enter a customer state");
+
             Console.Clear();
-            Console.WriteLine ("Enter customer postal code");
-            Console.Write ("> ");
-            int postalCode = Convert.ToInt32(Console.ReadLine());
+            int postalCode = 0;
+            do {
+                Console.WriteLine ("Enter customer postal code");
+                Console.Write ("> ");
+                string stringPostalCode = Console.ReadLine();
+                stringPostalCode = NoEmptyAnswers.notAOne(stringPostalCode, "Please enter a postal code");
+                try{
+                    
+                    postalCode = Convert.ToInt32(stringPostalCode);
+
+                } catch {
+                    Console.WriteLine("Please enter a five digit postal code.");
+                    stringPostalCode = Console.ReadLine();
+                    Int32.TryParse(stringPostalCode, out postalCode);
+                }
+
+            } while (postalCode == 0);
             Console.Clear();
             Console.WriteLine ("Enter customer phone number");
             Console.Write ("> ");
             string phoneNumber = Console.ReadLine();
+            phoneNumber = NoEmptyAnswers.notAOne(phoneNumber, "Please enter a customer phone number");
             Customer newCustomer = new Customer()
             {
                 firstName = firstName,
                 lastName = lastName,
                 streetAddress = streetAddress,
                 state = state,
+                city = city,
                 postalCode = postalCode,
                 phoneNumber = phoneNumber
             };
             cm.AddNewCustomer(newCustomer);
         }
+
     }
 }

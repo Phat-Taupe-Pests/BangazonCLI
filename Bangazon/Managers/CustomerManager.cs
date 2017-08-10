@@ -23,7 +23,7 @@ namespace BangazonCLI
         public int AddNewCustomer(Customer newCustomer){
             
             _customerList.Add(newCustomer);
-            int id = _db.Insert( $"insert into customer values (null, '{newCustomer.firstName}', '{newCustomer.lastName}', '{newCustomer.streetAddress}', '{newCustomer.state}', {newCustomer.postalCode}, '{newCustomer.phoneNumber}')");
+            int id = _db.Insert( $"insert into customer values (null, '{newCustomer.firstName}', '{newCustomer.lastName}', '{newCustomer.streetAddress}', '{newCustomer.city}', '{newCustomer.state}', {newCustomer.postalCode}, '{newCustomer.phoneNumber}')");
 
             return id;
         }
