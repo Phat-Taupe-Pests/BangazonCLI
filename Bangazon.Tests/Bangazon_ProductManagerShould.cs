@@ -9,6 +9,7 @@ namespace BangazonCLI.Tests
     public class ProductManagerShould : IDisposable
     {
         private readonly ProductManager _pm;
+        private readonly OrderManager _om;
         private readonly dbUtilities _db;
         // Creates a Product manager and connection with the database..
         
@@ -16,6 +17,7 @@ namespace BangazonCLI.Tests
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
             _pm = new ProductManager(_db);
+            _om = new OrderManager(_db);
             _db.CheckProduct();
         }
         // Tests to see if Products are really being added by our methods.
@@ -26,21 +28,26 @@ namespace BangazonCLI.Tests
         public void AddNewProduct(string name, string desc, double price)
         {
             Product newProduct = new Product();
-            
-                newProduct.name = name; 
-                newProduct.description= desc; 
-                newProduct.price = price; 
-                newProduct.dateCreated= DateTime.Today;
-                newProduct.quantity = 1;
-                newProduct.customerID = 1;
-                newProduct.productTypeID = 1;
-
-            
-
-        var result = _pm.AddNewProduct(newProduct);
-
+            newProduct.name = name; 
+            newProduct.description= desc; 
+            newProduct.price = price; 
+            newProduct.dateCreated= DateTime.Today;
+            newProduct.quantity = 1;
+            newProduct.customerID = 1;
+            newProduct.productTypeID = 1;
+            var result = _pm.AddNewProduct(newProduct);
             Assert.True(result !=0);
         }
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void getProductsOnOrder(int orderID)
+        {
+            _om.CreateNewOrder(1);
+            var result = _pm.GetProductsOnOrder(1);
+            Assert.IsType<List<Product>>(result);
+        }
+
         [Theory]
         [InlineData("Ball", "Its a ball", 9000)]
         [InlineData("Double Ball", "Its, like 2 balls", 8000)]
@@ -98,6 +105,17 @@ namespace BangazonCLI.Tests
         
             Assert.DoesNotContain(1, ProductIdList);
 
+        }
+        [Fact]
+        public void GetSingleProduct()
+        {
+            Product dummyProduct = new Product()
+            {
+                name = "Dummy"
+            };
+            int productID= _pm.AddNewProduct(dummyProduct);
+            var result = _pm.GetSingleProduct(1);
+            Assert.IsType<Product>(result);
         }
         
         // Burns the database down because the paint color is wrong.
