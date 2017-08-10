@@ -24,38 +24,33 @@ namespace Bangazon.Tests
 
         //Tests that you can get a list of orders from currentCustomer
         [Fact]
-        public void GetCustomerOrder()
+        public void GetActiveCustomerOrder()
         {
-            Customer _currentCustomer = new Customer();
-            _currentCustomer.customerID = 1;
-            _currentCustomer.firstName = "Brain"; 
-            _currentCustomer.lastName= "Pinky"; 
-            _currentCustomer.streetAddress = "114 Street Place"; 
-            _currentCustomer.state= "Tennesseetopia"; 
-            _currentCustomer.postalCode= 55555; 
-            _currentCustomer.phoneNumber= "555-123-4567";
-            CustomerManager.currentCustomer = _currentCustomer;
-
             int ProductID = 1;
             _om.CreateNewOrder(ProductID);
-            Order customerOrders = _om.GetCustomerOrder(_currentCustomer.customerID);
-            Assert.IsType<Order>(customerOrders);
+            Order customerOrder = _om.GetActiveCustomerOrder(1);
+            Assert.IsType<Order>(customerOrder);
+        }
+
+        [Fact]
+        public void GetAllClosedCustomersOrders()
+        {
+            Customer currentCustomer = new Customer(){customerID = 1};
+            CustomerManager.currentCustomer = currentCustomer;
+            int ProductID1 = 1;
+            int ProductID2 = 2;
+            _om.CreateNewOrder(ProductID1);
+            _om.CreateNewOrder(ProductID2);
+            List<Order> customerOrders = _om.GetAllClosedCustomersOrders(1);
+            Assert.IsType<List<Order>>(customerOrders);
         }
 
         //Get the current customer and create a new order
         [Fact]
         public void CreateNewOrder()
         {
-            Customer _currentCustomer = new Customer();
-            _currentCustomer.customerID = 1;
-            _currentCustomer.firstName = "Brain"; 
-            _currentCustomer.lastName= "Pinky"; 
-            _currentCustomer.streetAddress = "114 Street Place"; 
-            _currentCustomer.state= "Tennesseetopia"; 
-            _currentCustomer.postalCode= 55555; 
-            _currentCustomer.phoneNumber= "555-123-4567";
-            CustomerManager.currentCustomer = _currentCustomer;
-
+            Customer currentCustomer = new Customer(){customerID = 1};
+            CustomerManager.currentCustomer = currentCustomer;
             int ProductID = 1;
             var result = _om.CreateNewOrder(ProductID);
             Assert.IsType<int>(result);
@@ -78,6 +73,25 @@ namespace Bangazon.Tests
             int ProductID = 1;
             _om.CreateNewOrder(ProductID);
             var result = _om.AddProductToOrder(ProductID);
+            Assert.IsType<int>(result);
+        }
+        [Fact]
+        public void CompleteOrder()
+        {
+            Customer currentCustomer = new Customer(){customerID = 1};
+            CustomerManager.currentCustomer = currentCustomer;
+            
+            int ProductID = 1;
+            int orderID = _om.CreateNewOrder(ProductID);
+            
+            Order updatedOrder = new Order()
+            {
+                orderID = orderID,
+                paymentTypeID = 1,
+                customerID = CustomerManager.currentCustomer.customerID,
+                dateCreated = DateTime.Today
+            };
+            var result = _om.CompleteOrder(updatedOrder);
             Assert.IsType<int>(result);
         }
 

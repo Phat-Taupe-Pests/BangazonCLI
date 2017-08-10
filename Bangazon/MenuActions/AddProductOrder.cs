@@ -27,8 +27,6 @@ namespace BangazonCLI.MenuActions
             Product selectedProduct = products[index];
             om.AddProductToOrder(selectedProduct.productID);
 
-            
-            
             // After the user selects a product to add to the customer's order, display the menu of products again. Make sure the last option provides the option to go back to main menu.
         }
     }
