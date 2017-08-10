@@ -60,7 +60,7 @@ using Microsoft.Data.Sqlite;
         {
             int customerID = CustomerManager.currentCustomer.customerID;
             List<Product> staleProducts = new List<Product>();
-            _db.Query($"SELECT p.* FROM Product p INNER JOIN ProductOrder po On p.ProductID = po.ProductID INNER JOIN `Order` o ON po.OrderID = o.OrderID AND o.PaymentTypeID IS NOT NULL AND p.Quantity != 0 AND p.DateCreated < date('now','-180 days') UNION SELECT p.* FROM Product p, `Order` o INNER JOIN ProductOrder po ON p.productID = po.productID WHERE p.customerID = 1 AND o.paymentTypeID IS NULL AND o.DateCreated <= date('now', '-90 days') UNION SELECT p.* FROM Product p LEFT JOIN ProductOrder po ON p.ProductID = po.ProductID WHERE po.ProductID IS NULL AND p.DateCreated <= date('now','-180 days') GROUP BY p.Name;", (SqliteDataReader reader) => {
+            _db.Query($"SELECT p.* FROM Product p INNER JOIN ProductOrder po On p.ProductID = po.ProductID INNER JOIN `Order` o ON po.OrderID = o.OrderID WHERE p.customerID = {customerID} AND o.PaymentTypeID IS NOT NULL AND p.Quantity != 0 AND p.DateCreated < date('now','-180 days') UNION SELECT p.* FROM Product p, `Order` o INNER JOIN ProductOrder po ON p.productID = po.productID WHERE p.customerID = {customerID} AND o.paymentTypeID IS NULL AND o.DateCreated <= date('now', '-90 days') UNION SELECT p.* FROM Product p LEFT JOIN ProductOrder po ON p.ProductID = po.ProductID WHERE p.customerID = {customerID} AND po.ProductID IS NULL AND p.DateCreated <= date('now','-180 days') GROUP BY p.Name;", (SqliteDataReader reader) => {
                 while (reader.Read())
                 {
                     staleProducts.Add(new Product(){
