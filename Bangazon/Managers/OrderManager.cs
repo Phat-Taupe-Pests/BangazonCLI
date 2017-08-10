@@ -45,7 +45,7 @@ using Microsoft.Data.Sqlite;
         public int AddProductToOrder(int productID)
         {
             int customerID = CustomerManager.currentCustomer.customerID;
-            _db.Query($"SELECT orderID FROM `order` WHERE customerID = {customerID} and paymentTypeID = null", (SqliteDataReader reader) => {
+            _db.Query($"SELECT orderID FROM `order` WHERE customerID = {customerID} and paymentTypeID is null", (SqliteDataReader reader) => {
                 while (reader.Read())
                 {
                     _orderID = reader.GetInt32(0);
