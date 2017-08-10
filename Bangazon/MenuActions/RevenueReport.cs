@@ -13,6 +13,10 @@ namespace BangazonCLI
 
         // Written By : Matt Augsburger
 
+
+        // Formats the incoming revenue report 
+        // takes arguments of name, quantity, and price
+        // returns a formatted string to be printed to the console
         public static string FormatRevenueReport(string name, int quantity, double price)
         {
 
@@ -47,6 +51,10 @@ namespace BangazonCLI
 
             return formattedString;
         }
+
+        // Writes the Revenue Report of the currentCustomer
+        // Takes an argument of an instance of OrderManager
+
         public static void ShowRevenueReport(OrderManager om)
         {
             double total = 0;
@@ -63,8 +71,6 @@ namespace BangazonCLI
                 Console.WriteLine($"Order #{rr.orderID}");
                 Console.WriteLine(dash);
                 Console.WriteLine(formattedString);
-
-                // Console.WriteLine($"{rr.name}{rr.quantity.ToString().PadLeft(10, ' ')}     ${(rr.price*rr.quantity).ToString()}");
                 Console.WriteLine("");
                 total += (rr.price * rr.quantity);
          

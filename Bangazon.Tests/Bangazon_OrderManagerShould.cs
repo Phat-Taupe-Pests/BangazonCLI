@@ -83,6 +83,9 @@ namespace Bangazon.Tests
             var result = _om.AddProductToOrder(ProductID);
             Assert.IsType<int>(result);
         }
+
+        // Checks to see if the GetCompleteOrders method works
+        // This method returns a list of RevenueReports
         [Fact]
         public void GetCompletedOrders()
         {

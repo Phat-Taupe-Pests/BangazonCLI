@@ -54,7 +54,8 @@ using Microsoft.Data.Sqlite;
             _db.Insert( $"insert into productOrder values (null, {productID}, {_orderID})");
             return _orderID;
         }
-
+        
+        //Gets/Returns a List of revenueReports from the currentCustomer
         public List<RevenueReport> GetCompletedOrders()
         {
             List<RevenueReport> revenueReports = new List<RevenueReport>();
