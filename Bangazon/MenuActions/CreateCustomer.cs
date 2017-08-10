@@ -49,15 +49,13 @@ namespace BangazonCLI
                 string stringPostalCode = Console.ReadLine();
                 stringPostalCode = NoEmptyAnswers.notAOne(stringPostalCode, "Please enter a postal code");
                 try{
-                    do {
-                        Console.WriteLine("Please enter a five digit postal code.");
-                        Console.Write ("> ");
-                        stringPostalCode = Console.ReadLine();
-                    } while(stringPostalCode.Length < 5 || stringPostalCode.Length > 5);
+                    
                     postalCode = Convert.ToInt32(stringPostalCode);
 
                 } catch {
                     Console.WriteLine("Please enter a five digit postal code.");
+                    stringPostalCode = Console.ReadLine();
+                    Int32.TryParse(stringPostalCode, out postalCode);
                 }
 
             } while (postalCode == 0);
@@ -65,7 +63,7 @@ namespace BangazonCLI
             Console.WriteLine ("Enter customer phone number");
             Console.Write ("> ");
             string phoneNumber = Console.ReadLine();
-            NoEmptyAnswers.notAOne(phoneNumber, "Please enter a customer phone number");
+            phoneNumber = NoEmptyAnswers.notAOne(phoneNumber, "Please enter a customer phone number");
             Customer newCustomer = new Customer()
             {
                 firstName = firstName,
