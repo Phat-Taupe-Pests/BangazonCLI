@@ -101,6 +101,7 @@ namespace BangazonCLI
                     case 10:
                         break;
                     case 11:
+                        ProductPopularityReport.ProductPopularityReportMenu(pm);
                         break;
                 }
 
