@@ -26,14 +26,20 @@ namespace BangazonCLI
             }
             Console.WriteLine(">");
             var choice = Console.ReadKey();
-            var keyPressed = choice.KeyChar.ToString();
-            var choiceInt= int.Parse(keyPressed);
+            string keyPressed = choice.KeyChar.ToString();
+            NoEmptyAnswers.notAOne(keyPressed, "Please select a customer");
+            int choiceInt;
+            int.TryParse(keyPressed, out choiceInt);
+
+
             foreach(KeyValuePair<int, Customer> kvp in custDictionary)
             {
                 if(choiceInt == kvp.Key)
                 {
                     Console.WriteLine($"You selected {kvp.Value.firstName} {kvp.Value.lastName} as the current customer");
                     CustomerManager.currentCustomer = kvp.Value;
+                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.ReadKey();
                 }
             }
 
