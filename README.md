@@ -83,6 +83,65 @@ As of now, the database is going to be hosted on your local computer. There are 
 ```
 
 The Main menu is quite user-friendly.
-The following actions are available to the Bangazon customer representative
+The following actions are available to the Bangazon customer representative through the CLI
+
 ### Option 1 Create a Customer Account
 1. This Method will guide you through creating a new customer
+2. You are required to add a first name, last name, city, state, postal code, phonenumber
+
+### Option 2 Choose an Active Customer
+1. This Method will write a list of previously added customers
+2. You will Choose a numThe selected customer is now the current actice customer
+
+### Option 3 Create a Payment Option
+1. This Method will guide you through creating a new payment option
+2. You are required to have chosen an active customer
+3. You are required to add a Payment Type(e.g. AmEx, Visa, Checking), and an account number
+
+### Option 4 Add a Product to Sell
+1. This Method will guide you through adding a product to sell
+2. You are required to have chosen an active customer
+3. You will be required to provide a name, a short description, an asking price, a product type from a list, and how many you are posting for sale.
+
+### Option 5 Add a Product to Shopping Cart
+1. This Method will guide you through adding an item to a shopping cart
+2. You are required to have chosen an active customer
+3. You will be provided with a list of products that are available to add, select one.
+4.Boom.
+
+### Option 6 Complete an Order
+1. This Method will guide you through completing an Order
+2. You are required to have chosen an active customer
+3. It will ask you if you are sure, and provide you will your shopping cart total
+4. type Y or N to confirm
+
+### Option 7 Remove a Customer's Product
+1. This Method will guide you through removing a customers product that is up for sale
+2. You are required to have chosen an active customer
+3. A list of removable products will be presented
+4. Select one... Boom it's gone.
+
+### Option 8 Update Product Information
+1. This Method will guide you Updating product information
+2. You are required to have chosen an active customer
+3. You will be presented with a list of products you can update. Select one.
+4. Then select the field you would like to update
+5. Then update the field.
+
+### Option 9 Show Stale Products
+1. This Method will guide you through checking for a stale product
+2. You are required to have chosen an active customer
+3. The stale products will be displayed
+
+### Option 10 Show Customer Revenue Report
+1. This Method will guide you through checkung a revenue report
+2. You are required to have chosen an active customer
+3. The Revenue Report will be displayed
+
+### Option 11 Show Overall Product Popularity
+1. This Method will guide you through viewing product popularity
+2. Select the method and see the magic.
+
+### Option 12 Exit the Bangazon System
+1. This Method will exit the Bangazon CLI
+
