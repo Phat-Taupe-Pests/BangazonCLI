@@ -6,6 +6,12 @@ using Microsoft.Data.Sqlite;
 
 namespace  BangazonCLI.MenuActions
 {
+
+    // Written By : Chaz Henricks
+    // Method displays the Remove Product From Sale Menu
+    // Accepts Argument of an instance of ProductManager
+    // Shows a list of products offered for sales by the active customer.
+    // Deletes a product if one is selected
     public class RemoveProductToSell
     {
         public static void RemoveProductToSellMenu(ProductManager products)

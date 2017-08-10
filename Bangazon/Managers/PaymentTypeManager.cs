@@ -16,6 +16,7 @@ namespace BangazonCLI
             _db = db;
         }
 
+        //Get's a Customer's payment types so they can review them or complete an order. Takes the customerID
          public List <PaymentType> GetCustomersPaymentTypes(int customerID) 
         {
             List <PaymentType> customersPaymentTypes = new List <PaymentType>();

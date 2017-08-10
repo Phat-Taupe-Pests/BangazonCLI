@@ -14,7 +14,6 @@ namespace BangazonCLI.Tests
         // Customer Manager is initialized to proide a current customer when needed2
         private readonly CustomerManager _cm;
         // Creates a payment type manager and connection with the database..
-        
         public PaymentTypeManagerShould ()
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
@@ -26,7 +25,6 @@ namespace BangazonCLI.Tests
         [Fact]
         public void AddNewPaymentType()
         {
-
             // Sets the current customer so a payment type can be added
             Customer _currentCustomer = new Customer();
             _currentCustomer.customerID = 1;
@@ -44,7 +42,7 @@ namespace BangazonCLI.Tests
 
             Assert.True(paymentTypeID !=0);
         }
-
+        // Tests to see if this method returns a customer's saved payment types.
         public void GetCustomersPaymentTypes()
         {
             Customer _currentCustomer = new Customer();
@@ -56,7 +54,7 @@ namespace BangazonCLI.Tests
         // Burns the database down because the paint color is wrong (resets the test database).
             public void Dispose()
         {
-            // _db.Delete("DELETE FROM paymentType");
+            _db.Delete("DELETE FROM paymentType");
         }
     }
 }

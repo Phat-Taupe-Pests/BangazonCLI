@@ -11,7 +11,6 @@ namespace BangazonCLI.Tests
         private readonly CustomerManager _cm;
         private readonly dbUtilities _db;
         // Creates a customer manager and connection with the database..
-        
         public CustomerManagerShould ()
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
@@ -23,17 +22,13 @@ namespace BangazonCLI.Tests
         public void AddNewCustomer()
         {
             Customer newCustomer = new Customer();
-            
-                newCustomer.firstName = "Brain"; 
-                newCustomer.lastName= "Pinky"; 
-                newCustomer.streetAddress = "114 Street Place"; 
-                newCustomer.state= "Tennesseetopia"; 
-                newCustomer.postalCode= 55555; 
-                newCustomer.phoneNumber= "555-123-4567"; 
-            
-
+            newCustomer.firstName = "Brain"; 
+            newCustomer.lastName= "Pinky"; 
+            newCustomer.streetAddress = "114 Street Place"; 
+            newCustomer.state= "Tennesseetopia"; 
+            newCustomer.postalCode= 55555; 
+            newCustomer.phoneNumber= "555-123-4567"; 
             var result = _cm.AddNewCustomer(newCustomer);
-
             Assert.True(result !=0);
         }
         // Tests to see if our methods are getting a list of customers.
@@ -57,7 +52,6 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<Customer>>(customerList);
             Assert.True(customerList.Count > 0);
         }
-
         //Tests to see if we can get a customer's revenue report
         [Fact]
         public void getRevenueReport()

@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+//Written by Adam Reidelbach
 
 namespace BangazonCLI.MenuActions
     {
+    //Manages to the menu to add products to an order
     public class AddProductOrder
     {
+
+        //The primary functionality of this menu
         public static void AddProductToOrder(CustomerManager cm, dbUtilities db, ProductManager pm, OrderManager om)
         {
             Console.Clear();

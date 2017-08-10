@@ -6,6 +6,11 @@ using Microsoft.Data.Sqlite;
 
 namespace  BangazonCLI.MenuActions
 {
+    // Written By : Chaz Henricks
+    // Method displays the Update Product Menu
+    // Accepts Argument of an instance of ProductManager
+    // Requests info about the product to be updated.
+    // Updates the product in the database
     public class UpdateProduct
     {
         public static void UpdateProductMenu(ProductManager pm)

@@ -15,28 +15,12 @@ namespace BangazonCLI
         {
             _db = db;
         }
-        // Adds a new Product--passed in as an argument--to the database
+        // Adds a new Product--passed in as an argument--to the database. Returns the product's productID.
         public int AddNewProduct(Product newProduct){
-             int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{newProduct.quantity}', '{newProduct.customerID}', '{newProduct.productTypeID}')");
-
-            _products.Add(
-                new Product()
-                {
-                    productID = id,
-                    name = newProduct.name,
-                    description = newProduct.description,
-                    price = newProduct.price,
-                    dateCreated = newProduct.dateCreated,
-                    quantity = newProduct.quantity,
-                    customerID = newProduct.customerID,
-                    productTypeID = newProduct.productTypeID
-                }
-            );
-
+            int id = _db.Insert( $"insert into Product values (null, '{newProduct.name}', '{newProduct.description}', '{newProduct.price}', '{newProduct.dateCreated}', '{newProduct.quantity}', '{newProduct.customerID}', '{newProduct.productTypeID}')");
             return id;     
-       
         }
-        // Gets a list of Products.
+        // Gets a list of Products. Take a customerID. Returns a list of products.
         public List<Product> GetProductList(int custID)
         {
                  _db.Query($"SELECT * FROM Product WHERE CustomerID = {custID};",
@@ -60,6 +44,7 @@ namespace BangazonCLI
             return _products;
         }
 
+        //Gets all products on an order. Takes an orderID and returns a list of products.
         public List <Product> GetProductsOnOrder (int orderID)         {
             List<Product> ordersProducts = new List<Product>();
             List<ProductOrder> lineItems = new List<ProductOrder>();
@@ -82,7 +67,7 @@ namespace BangazonCLI
             }
             return ordersProducts;
         }
-
+        //Gets a single product. Takes a productID and returns a Product
         public Product GetSingleProduct(int productID)
         {
             Product finalProduct = new Product();
@@ -108,7 +93,7 @@ namespace BangazonCLI
         {
             _db.Delete($"DELETE FROM Product WHERE ProductID = {prodID};");
         }
-
+        //Updates a product detail, taking a SQL string and returning nothing.
         public void UpdateProduct(String updateString)
         {
             _db.Update(updateString);

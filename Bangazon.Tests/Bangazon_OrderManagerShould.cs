@@ -8,11 +8,9 @@ namespace Bangazon.Tests
 {
     public class OrderManagerShould : IDisposable
     {
-
         private readonly OrderManager _om;
         private readonly dbUtilities _db;
         // Creates a order manager and connection with the database..
-
         public OrderManagerShould()
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
@@ -21,8 +19,7 @@ namespace Bangazon.Tests
             _db.CheckProduct();
             _db.CheckProductOrder();
         }
-
-        //Tests that you can get a list of orders from currentCustomer
+        //Tests that you can get the list current Customer's orders
         [Fact]
         public void GetActiveCustomerOrder()        
         {
@@ -31,7 +28,7 @@ namespace Bangazon.Tests
             Order customerOrder = _om.GetActiveCustomerOrder(1);
             Assert.IsType<Order>(customerOrder);
         }
-
+        //Tests whether our method gets all closed customer orders.
         [Fact]
          public void GetAllClosedCustomersOrders()
          {
@@ -45,7 +42,7 @@ namespace Bangazon.Tests
              Assert.IsType<List<Order>>(customerOrders);
           }
 
-        //Get the current customer and create a new order
+        //Tests whether our method creates a new order and saves a product to it.
         [Fact]
         public void CreateNewOrder()
         {
@@ -55,7 +52,7 @@ namespace Bangazon.Tests
             var result = _om.CreateNewOrder(ProductID);
             Assert.IsType<int>(result);
         }
-
+        //Tests whether our method actually completes and order by updating an order with a paymentType
         public void CompleteOrder()
         {
             Customer currentCustomer = new Customer(){customerID = 1};
@@ -73,7 +70,7 @@ namespace Bangazon.Tests
             Assert.IsType<int>(result);
         }
 
-        //Find an open order for current customer and add products to that order
+        //Tests whether this method adds a product to an order (productOrder table).
         [Fact]
         public void AddProductToOrder()
         {
@@ -92,10 +89,12 @@ namespace Bangazon.Tests
             var result = _om.AddProductToOrder(ProductID);
             Assert.IsType<int>(result);
         }
-
+        // Burns the database down because the paint color is wrong.
         public void Dispose()
         {
             _db.Delete("DELETE FROM productOrder");
+            _db.Delete("DELETE FROM product");
+            _db.Delete("DELETE FROM order");
         }
     }
 }

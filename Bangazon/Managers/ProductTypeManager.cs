@@ -15,7 +15,6 @@ namespace BangazonCLI
         // Gets a list of ProductTypes.
         public List<ProductType> GetProductTypeList()
         {
-            
             List<ProductType> productTypeList = new List<ProductType>();
             productTypeList.Add(new ProductType(){name = "food"});
             productTypeList.Add(new ProductType(){name = "cars"});

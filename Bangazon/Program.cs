@@ -34,7 +34,7 @@ namespace BangazonCLI
 
 
             int choice;
-
+            //Shows the main menu until the user types 12 (exit)
             do
             {
                 // Show the Main Menu

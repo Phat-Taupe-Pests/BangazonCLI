@@ -4,7 +4,11 @@ using System.Linq;
 
 namespace BangazonCLI.MenuActions
 {
-    // A menu action to assist the user in completing a customer order
+    // Written By : Ben Greaves
+    // Method displays the Active Order and it's total and asks whether user wants to complete the order.
+    // Accepts Argument of an instance of OrderManager, PaymentTypeManager, and ProductManager
+    // Boots back to main menu if user declines to complete order.
+    // Completes order by saving selected payment type to the order object in the database.
     public class CompleteOrder
     {
         //Produces the actual menu the user will interact with. Utilizes the ordermanager, product manager, and paymenttype manager to get all relevant info to complete a customer's order.

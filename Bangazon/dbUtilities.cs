@@ -31,6 +31,7 @@ namespace BangazonCLI
                 _connection.Close();
             }
         }
+        // Updates an item in database based upon the command passed in as an argument.
         public void Update(string command)
         {
             using(_connection)
@@ -42,7 +43,7 @@ namespace BangazonCLI
                 _connection.Close();
             }
         }
-
+        // Executes a query using the SQL command provided. Processes the data using the handler provided.
         public void Query(string command, Action<SqliteDataReader> handler)
         {
             using (_connection)
@@ -58,7 +59,7 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
-
+        // Inserts a line item using the SQL command provided. Returns the ID of the inserted item.
         public int Insert(string command)
         {
             int insertedItemId = 0;
@@ -122,8 +123,8 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
-        //Written By Chaz Henricks
-        //DB checks if a Product Table exists
+        // Written By Chaz Henricks
+        // Checks to see if a product table exists, if it doesn't it creates the table in the database.
         public void CheckProduct ()
         {
             using (_connection)
@@ -166,8 +167,8 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }
-        //Written By Eliza Meeks
-        //DB checks if a Product Type Table exists
+        // Written By Eliza Meeks
+        // Checks to see if a productType table exists, if it doesn't it creates the table in the database.
         public void CheckProductType ()
         {
             using (_connection)
@@ -203,7 +204,7 @@ namespace BangazonCLI
             }
         }
 
-        //Checks for the existence of the productOrder table... creates it if table doesn't exist
+        // Checks to see if a productOrder table exists, if it doesn't it creates the table in the database.
         public void CheckProductOrder ()
         {
             using (_connection)
@@ -240,6 +241,8 @@ namespace BangazonCLI
                 _connection.Close ();
             }
         }  
+
+        // Checks to see if a order table exists, if it doesn't it creates the table in the database.
         public void CheckOrder ()
         {
             using (_connection)
@@ -280,7 +283,8 @@ namespace BangazonCLI
             }
 
         }
-        // Checks to see if PaymentType exists, if it doesn't it creates the table.
+
+        // Checks to see if a paymentType table exists, if it doesn't it creates the table in the database.
         public void CheckPaymentType ()
         {
             using (_connection)
@@ -319,6 +323,8 @@ namespace BangazonCLI
             }
         }
 
+        // Seeds the DB every time the the program is run.
+        // Executes an external file.
         public void SeedTables()
         {
             string seedText = File.ReadAllText("./dbSeed.sqlite.sql"); // .sql file path

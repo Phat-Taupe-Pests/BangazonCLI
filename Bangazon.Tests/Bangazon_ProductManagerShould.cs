@@ -12,7 +12,6 @@ namespace BangazonCLI.Tests
         private readonly OrderManager _om;
         private readonly dbUtilities _db;
         // Creates a Product manager and connection with the database..
-        
         public ProductManagerShould ()
         {
             _db = new dbUtilities("BANGAZONCLI_TEST_DB");
@@ -38,6 +37,7 @@ namespace BangazonCLI.Tests
             var result = _pm.AddNewProduct(newProduct);
             Assert.True(result !=0);
         }
+        //Tests whether our method gets products on an order
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -48,12 +48,12 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<Product>>(result);
         }
 
+        //Tests whether ListProducts returns a List of Products 
+        //Takes a name, description and a price as arguments
         [Theory]
         [InlineData("Ball", "Its a ball", 9000)]
         [InlineData("Double Ball", "Its, like 2 balls", 8000)]
         [InlineData("2 CHAINZ", "TRu", 19.99)]
-        //this test will add 3 products to the products table and then return a list of all the products added. 
-        //Takes a name, description and a price as arguments
         public void ListProducts(string name, string desc, double price)
         {
             // builds a new product to add
@@ -76,9 +76,7 @@ namespace BangazonCLI.Tests
             Assert.IsType<List<Product>>(ProductList);
             Assert.True(ProductList.Count > 0);
         }
-
-
-
+        // Tests to see if this method removes a product from the DB
         [Theory]
         [InlineData("Ball", "Its a ball", 9000)]
         [InlineData("Double Ball", "Its, like 2 balls", 8000)]
@@ -106,6 +104,7 @@ namespace BangazonCLI.Tests
             Assert.DoesNotContain(1, ProductIdList);
 
         }
+        // Tests to see if this method gets a single product
         [Fact]
         public void GetSingleProduct()
         {

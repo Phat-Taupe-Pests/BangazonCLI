@@ -33,6 +33,7 @@ using Microsoft.Data.Sqlite;
             return customerOrder;
         }
 
+        //Gets all Customer's orders that have been closed already, taking a customerID
         public List <Order> GetAllClosedCustomersOrders(int customerID)
         {
             List <Order> customersOrders = new List <Order>();
@@ -49,7 +50,7 @@ using Microsoft.Data.Sqlite;
             });
             return customersOrders;
         }
-
+        //Completes a customer's order by updating it with a paymenttypeID. Takes an entire order object.
         public int CompleteOrder(Order order)
         {
              _db.Insert($"UPDATE `order` SET paymentTypeID = {order.paymentTypeID} WHERE orderID = {order.orderID}");

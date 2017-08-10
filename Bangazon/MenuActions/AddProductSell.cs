@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.Sqlite;
 
-
 namespace  BangazonCLI.MenuActions
 {
     public class AddProductToSell
     {
-        //Also need to pass in customer ID as an argument
+        // Written By : Chaz Henricks
+        // Method displays the Add Product to Sell Menu
+        // Accepts Argument of an instance of ProductManager and ProductTypeManager
+        // Requests info about the product to be offered.
+        // Saves info as a new product in the database
 
         public static void DoAction(ProductManager products, ProductTypeManager ptm)
 
