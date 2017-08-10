@@ -51,7 +51,7 @@ using Microsoft.Data.Sqlite;
                     _orderID = reader.GetInt32(0);
                 }
             });
-            _db.Insert( $"insert into productOrder values (null, {productID}, {_orderID})");
+            _db.Insert( $"insert into productOrder values (null, {_orderID}, {productID})");
             return _orderID;
         }
     }
