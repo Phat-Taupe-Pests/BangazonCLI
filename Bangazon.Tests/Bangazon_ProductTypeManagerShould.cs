@@ -22,10 +22,8 @@ namespace BangazonCLI.Tests
         [Fact]
         public void GetProductTypeList()
         {
-
-            List<ProductType> productTypeList = _ptm.GetProductTypeList();
+            var productTypeList = _ptm.GetProductTypeList();
             Assert.IsType<List<ProductType>>(productTypeList);
-            Assert.True(productTypeList.Count > 0);
         }
         // Burns the database down because the paint color is wrong (deletes product type table from test.
             public void Dispose()
