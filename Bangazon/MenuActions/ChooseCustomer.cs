@@ -7,7 +7,7 @@ namespace BangazonCLI
     {
         // Written By : Matt Augsburger
         // Method displays the Choose Customer Menu
-        // Accepts Argument of an instance of CustomerManager
+        // Accepts Argument of an instance of CustomerManager and dbUtilities
         // Lists Customers in the database
         // Sets selected Customer to _currentCustomer
          public static void ChooseCustomerMenu(CustomerManager cm, dbUtilities db)
@@ -25,21 +25,32 @@ namespace BangazonCLI
 
             }
             Console.WriteLine(">");
-            var choice = Console.ReadKey();
-            string keyPressed = choice.KeyChar.ToString();
-            NoEmptyAnswers.notAOne(keyPressed, "Please select a customer");
-            int choiceInt;
-            int.TryParse(keyPressed, out choiceInt);
 
+           
+
+            int choiceInt = 0; 
+ 
+            while (!int.TryParse(Console.ReadLine(), out choiceInt))
+            {
+                 Console.WriteLine("Please Enter a valid numerical value!");
+            }
 
             foreach(KeyValuePair<int, Customer> kvp in custDictionary)
             {
                 if(choiceInt == kvp.Key)
                 {
+                    Console.Clear();
                     Console.WriteLine($"You selected {kvp.Value.firstName} {kvp.Value.lastName} as the current customer");
                     CustomerManager.currentCustomer = kvp.Value;
                     Console.WriteLine("Press any key to return to main menu.");
                     Console.ReadKey();
+                }else if (choiceInt > custDictionary.Count){
+                    Console.Clear();
+                    Console.WriteLine("That is not a valid option for a current customer, try again!");
+                    Console.ReadLine();
+                    ChooseCustomer.ChooseCustomerMenu(cm, db);
+
+                    return;
                 }
             }
 
