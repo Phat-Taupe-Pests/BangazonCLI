@@ -17,6 +17,7 @@ CREATE TABLE `customer`     (
                             `firstName`	varchar(80) not null, 
                             `lastName`	varchar(80) not null, 
                             `streetAddress`	varchar(160) not null, 
+                            `city` varchar(80) not null,
                             `state`	varchar(80) not null, 
                             `postalCode` integer not null,
                             `phoneNumber`	varchar(20) not null
@@ -71,9 +72,9 @@ INSERT INTO ProductType VALUES (null, 'Clothing');
 INSERT INTO ProductType VALUES (null, 'Toys and Games');
 INSERT INTO ProductType VALUES (null, 'Antiques');
 
-INSERT INTO Customer VALUES (null, "Kid", "Rock", "14 Bowling Green Ave, Nashville", "TN", "37211", "672-192-1967");
-INSERT INTO Customer VALUES (null, "Will", "Smith", "1591 Alison Place, New York", "NY", "92310", "827-192-3938");
-INSERT INTO Customer VALUES (null, "Bon", "Jovi", "918 Market Square", "CO", "67288", "682-391-1911");
+INSERT INTO Customer VALUES (null, "Kid", "Rock", "14 Bowling Green Ave", "Nashville", "TN", "37211", "672-192-1967");
+INSERT INTO Customer VALUES (null, "Will", "Smith", "1591 Alison Place", "New York", "NY", "92310", "827-192-3938");
+INSERT INTO Customer VALUES (null, "Bon", "Jovi", "918 Market Square", "Denver", "CO", "67288", "682-391-1911");
 
 INSERT INTO PaymentType VALUES (null, 1920192847, 1, "Visa");
 INSERT INTO PaymentType VALUES (null, 4901423323, 1, "Mastercard");

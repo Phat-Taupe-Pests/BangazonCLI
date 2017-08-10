@@ -112,6 +112,7 @@ namespace BangazonCLI
                             `firstName`	varchar(80) not null, 
                             `lastName`	varchar(80) not null, 
                             `streetAddress`	varchar(160) not null, 
+                            `city` varchar(80) not null,
                             `state`	varchar(80) not null, 
                             `postalCode` integer not null,
                             `phoneNumber`	varchar(20) not null
