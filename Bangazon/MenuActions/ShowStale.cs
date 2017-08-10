@@ -27,7 +27,6 @@ namespace  BangazonCLI.MenuActions
                 string formattedProduct = formatThings(thing.name);
                 string quantityString = thing.quantity.ToString();
                 string formattedQuantity = formatThings(quantityString);
-                string dateString = thing.dateCreated.ToString().Remove(7);
                 
                 string formattedDate = formatThings(dateString);
                 Console.WriteLine($"{formattedProduct}{formattedQuantity}{formattedDate}");
