@@ -68,7 +68,7 @@ namespace BangazonCLI
                         {
                             ChooseCustomer.ChooseCustomerMenu(cm, db);
                         }
-                        AddProductOrder.AddProductToOrder(cm, db, pm, om);
+                        AddProductOrder.AddProductToOrder(cm, pm, om);
                         break;
                     case 6:
                         break;
