@@ -60,7 +60,7 @@ using Microsoft.Data.Sqlite;
         public int CreateNewOrder(int productID)
         {
             int orderID = _db.Insert($"INSERT INTO `order` values (null, {CustomerManager.currentCustomer.customerID}, null, '{DateTime.Now}')");
-            _db.Insert($"INSERT INTO productOrder values (null, {productID}, {orderID})");
+            _db.Insert($"INSERT INTO productOrder values (null, {orderID}, {productID})");
             return orderID;
         }
 

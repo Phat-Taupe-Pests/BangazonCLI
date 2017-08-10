@@ -14,14 +14,22 @@ namespace BangazonCLI.MenuActions
             do
             {
                 int index = choice -1;
-                //call getActiveCustomerOrder
-                // if orderID = 0
-                // run CreateNewOrder
-                // else run the rest of this logic
-                om.AddProductToOrder(products[index].productID);
-                products = pm.GetProductsNotSoldByCustomer(custID);
-                Console.WriteLine("It worked");
-                DisplayProductList(products);
+                Order ActiveOrder = om.GetActiveCustomerOrder(custID);
+                if (ActiveOrder.orderID == 0) {
+                    om.CreateNewOrder(products[index].productID);
+                    Console.WriteLine($"{products[index].name} successfully added to your order");
+                    products = pm.GetProductsNotSoldByCustomer(custID);
+                    choice = DisplayProductList(products);
+                }
+                if (ActiveOrder.orderID != 0) {
+                    om.AddProductToOrder(products[index].productID);
+                    Console.WriteLine($"{products[index].name} successfully added to your order");
+                    products = pm.GetProductsNotSoldByCustomer(custID);
+                    choice = DisplayProductList(products);
+                }
+                if (choice == 0) {
+                    return;
+                }
             } while(choice != 0);
             Console.WriteLine("Hit any key to return to the main menu");
             Console.ReadLine();
