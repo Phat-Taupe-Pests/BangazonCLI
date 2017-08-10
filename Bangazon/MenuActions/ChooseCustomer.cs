@@ -16,7 +16,7 @@ namespace BangazonCLI
             Dictionary<int, Customer> custDictionary = new Dictionary<int, Customer>();
             Console.Clear();
             int counter = 1;
-            Console.WriteLine("Select customer");
+            Console.WriteLine("Please select a customer:");
             foreach(Customer c in custList)
             {
                 custDictionary.Add(counter, c);
@@ -25,9 +25,7 @@ namespace BangazonCLI
 
             }
             Console.WriteLine(">");
-
            
-
             int choiceInt = 0; 
  
             while (!int.TryParse(Console.ReadLine(), out choiceInt))
@@ -42,7 +40,7 @@ namespace BangazonCLI
                     Console.Clear();
                     Console.WriteLine($"You selected {kvp.Value.firstName} {kvp.Value.lastName} as the current customer");
                     CustomerManager.currentCustomer = kvp.Value;
-                    Console.WriteLine("Press any key to return to main menu.");
+                    Console.WriteLine("Press any key to continue.");
                     Console.ReadKey();
                 }else if (choiceInt > custDictionary.Count){
                     Console.Clear();
