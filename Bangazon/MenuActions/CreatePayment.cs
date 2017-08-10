@@ -26,7 +26,6 @@ namespace BangazonCLI
             while (!int.TryParse(Console.ReadLine(), out accountNumber))
             {
                 Console.WriteLine("Please Enter a valid numerical value!");
-                Console.WriteLine("Please Enter an ID number to search for:");
             }
 
             PaymentType newPaymentType = new PaymentType() { accountNumber=accountNumber, name=paymentName };
