@@ -17,12 +17,18 @@ namespace BangazonCLI.MenuActions
                 Order ActiveOrder = om.GetActiveCustomerOrder(custID);
                 if (ActiveOrder.orderID == 0) {
                     om.CreateNewOrder(products[index].productID);
+                    //decrement product quantity by one
+                    string updateString = $"UPDATE product SET quantity = {products[index].quantity - 1} WHERE productID = {products[index].productID} and quantity > 0";
+                    pm.UpdateProduct(updateString);
                     Console.WriteLine($"{products[index].name} successfully added to your order");
                     products = pm.GetProductsNotSoldByCustomer(custID);
                     choice = DisplayProductList(products);
                 }
                 if (ActiveOrder.orderID != 0) {
                     om.AddProductToOrder(products[index].productID);
+                    //decrement product quantity by one
+                    string updateString = $"UPDATE product SET quantity = {products[index].quantity - 1} WHERE productID = {products[index].productID} and quantity > 0";
+                    pm.UpdateProduct(updateString);
                     Console.WriteLine($"{products[index].name} successfully added to your order");
                     products = pm.GetProductsNotSoldByCustomer(custID);
                     choice = DisplayProductList(products);
