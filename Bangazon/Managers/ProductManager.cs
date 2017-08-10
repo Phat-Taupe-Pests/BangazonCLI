@@ -66,23 +66,6 @@ namespace BangazonCLI
                 Product thisProduct = GetSingleProduct(item.productID);
                 ordersProducts.Add(thisProduct);
             }
-            // _db.Query($"SELECT * FROM ProductOrder WHERE orderID = {orderID};",
-            //     (SqliteDataReader reader) => {
-            //         while (reader.Read ())
-            //         {
-            //             ordersProducts.Add(new Product(){
-            //                 productID = reader.GetInt32(0),
-            //                 name = reader[1].ToString(),
-            //                 description = reader[2].ToString(),
-            //                 price = reader.GetDouble(3),
-            //                 dateCreated = reader.GetDateTime(4),
-            //                 quantity = reader.GetInt32(5),
-            //                 customerID = reader.GetInt32(6),
-            //                 productTypeID = reader.GetInt32(7)
-            //             });
-            //         }
-            //     }
-            // );
             return ordersProducts;
         }
 

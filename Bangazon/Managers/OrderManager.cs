@@ -21,7 +21,7 @@ using Microsoft.Data.Sqlite;
         public Order GetActiveCustomerOrder(int customerID)
         {
             Order customerOrder = new Order();
-            _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID} AND paymenttypeID = null", (SqliteDataReader reader) => {
+            _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID} AND paymenttypeID IS null", (SqliteDataReader reader) => {
                 while (reader.Read())
                 {
                     customerOrder.orderID = reader.GetInt32(0);
@@ -45,12 +45,6 @@ using Microsoft.Data.Sqlite;
                         paymentTypeID = reader[2] as int? ?? null,
                         dateCreated = reader.GetDateTime(3)
                     });
-                    // Order thisOrder = new Order();
-                    // thisOrder.orderID = reader.GetInt32(0);
-                    // thisOrder.customerID = reader.GetInt32(1);
-                    // thisOrder.paymentTypeID = reader[2] as int? ?? null;
-                    // thisOrder.dateCreated = reader.GetDateTime(3);
-                    // customersOrders.Add(thisOrder);
                 }
             });
             return customersOrders;
@@ -76,6 +70,12 @@ using Microsoft.Data.Sqlite;
             });
             _db.Insert( $"insert into productOrder values (null, {productID}, {_orderID})");
             return _orderID;
+        }
+
+        public int CompleteOrder(Order order)
+        {
+             _db.Insert($"UPDATE `order` SET paymentTypeID = {order.paymentTypeID} WHERE orderID = {order.orderID}");
+            return order.orderID;
         }
     }
 }

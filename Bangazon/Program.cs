@@ -17,6 +17,9 @@ namespace BangazonCLI
             dbUtilities db = new dbUtilities("BANGAZONCLI_DB");
             CustomerManager cm = new CustomerManager(db);
             PaymentTypeManager paytm = new PaymentTypeManager(db);
+            ProductManager pm = new ProductManager(db);
+            ProductTypeManager ptm = new ProductTypeManager(db);
+            OrderManager om = new OrderManager(db);
             db.CheckCustomer();
             db.CheckPaymentType();
             db.CheckOrder();
@@ -27,9 +30,7 @@ namespace BangazonCLI
 
             MainMenu menu = new MainMenu();
 
-            ProductManager pm = new ProductManager(db);
-            ProductTypeManager ptm = new ProductTypeManager(db);
-            OrderManager om = new OrderManager(db);
+            
 
 
             int choice;
@@ -63,13 +64,18 @@ namespace BangazonCLI
                         AddProductToSell.DoAction(pm, ptm);
                         break;
                     case 5:
-                    if (CustomerManager.currentCustomer == null)
-                        {
-                            ChooseCustomer.ChooseCustomerMenu(cm, db);
-                        }
+                        if (CustomerManager.currentCustomer == null)
+                            {
+                                ChooseCustomer.ChooseCustomerMenu(cm, db);
+                            }
                         AddProductOrder.AddProductToOrder(cm, db, pm, om);
                         break;
                     case 6:
+                        if (CustomerManager.currentCustomer == null)
+                            {
+                                ChooseCustomer.ChooseCustomerMenu(cm, db);
+                            }
+                        CompleteOrder.CompleteOrderMenu(om, pm, paytm);
                         break;
                     case 7:
                         if (CustomerManager.currentCustomer == null)

@@ -107,16 +107,16 @@ namespace BangazonCLI.Tests
         
             Assert.DoesNotContain(1, ProductIdList);
         }
-
-        public void GetSingleProduct(int productID)
+        [Fact]
+        public void GetSingleProduct()
         {
             Product dummyProduct = new Product()
             {
                 name = "Dummy"
             };
-            _pm.AddNewProduct(dummyProduct);
+            int productID= _pm.AddNewProduct(dummyProduct);
             var result = _pm.GetSingleProduct(1);
-            Assert(IsType<Product>(result));
+            Assert.IsType<Product>(result);
         }
         
         // Burns the database down because the paint color is wrong.

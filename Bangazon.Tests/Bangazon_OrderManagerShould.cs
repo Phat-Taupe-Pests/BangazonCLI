@@ -75,6 +75,25 @@ namespace Bangazon.Tests
             var result = _om.AddProductToOrder(ProductID);
             Assert.IsType<int>(result);
         }
+        [Fact]
+        public void CompleteOrder()
+        {
+            Customer currentCustomer = new Customer(){customerID = 1};
+            CustomerManager.currentCustomer = currentCustomer;
+            
+            int ProductID = 1;
+            int orderID = _om.CreateNewOrder(ProductID);
+            
+            Order updatedOrder = new Order()
+            {
+                orderID = orderID,
+                paymentTypeID = 1,
+                customerID = CustomerManager.currentCustomer.customerID,
+                dateCreated = DateTime.Today
+            };
+            var result = _om.CompleteOrder(updatedOrder);
+            Assert.IsType<int>(result);
+        }
 
         public void Dispose()
         {
