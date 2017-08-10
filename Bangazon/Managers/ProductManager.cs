@@ -84,6 +84,51 @@ namespace BangazonCLI
             return _products;
         }
 
+        public List <Product> GetProductsOnOrder (int orderID)         
+        {
+            List<Product> ordersProducts = new List<Product>();
+            List<ProductOrder> lineItems = new List<ProductOrder>();
+            _db.Query($"SELECT * FROM ProductOrder WHERE orderID = {orderID};",
+                (SqliteDataReader reader) => {
+                    while (reader.Read ())
+                    {
+                        lineItems.Add(new ProductOrder(){
+                            productOrderID = reader.GetInt32(0),
+                            orderID = reader.GetInt32(1),
+                            productID = reader.GetInt32(2),
+                        });
+                    }
+                }
+            );
+            foreach(ProductOrder item in lineItems)
+            {
+                Product thisProduct = GetSingleProduct(item.productID);
+                ordersProducts.Add(thisProduct);
+            }
+            return ordersProducts;
+        }
+
+        public Product GetSingleProduct(int productID)
+        {
+            Product finalProduct = new Product();
+            _db.Query($"SELECT * FROM Product WHERE productID = {productID};",
+                (SqliteDataReader reader) => {
+                    while (reader.Read ())
+                    {
+                            finalProduct.productID = reader.GetInt32(0);
+                            finalProduct.name = reader[1].ToString();
+                            finalProduct.description = reader[2].ToString();
+                            finalProduct.price = reader.GetDouble(3);
+                            finalProduct.dateCreated = reader.GetDateTime(4);
+                            finalProduct.quantity = reader.GetInt32(5);
+                            finalProduct.customerID = reader.GetInt32(6);
+                            finalProduct.productTypeID = reader.GetInt32(7);
+                    }
+                }
+            );
+            return finalProduct;
+        }
+        
         //Removes an item from the database based on the productID passed as an argument. 
         public void RemoveProductToSell(int prodID)
         {
