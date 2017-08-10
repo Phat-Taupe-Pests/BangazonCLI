@@ -39,19 +39,23 @@ namespace BangazonCLI.MenuActions
 
         public static int DisplayProductList (List<Product>ProductList)
         {
-            int choice;
+            int choice = 0;
             //Get a list of products
-            Console.WriteLine ("Choose a product to add to the order");
-            //Display the list of products
-            int productCounter = 1;
-            foreach (Product product in ProductList)
-            {
-                Console.WriteLine($"{productCounter}. {product.name}");
-                productCounter++;
-            }
-            Console.WriteLine("Press 0 to exit");
-            Console.WriteLine ("> ");
-            choice = int.Parse(Console.ReadLine());
+            do {
+                Console.WriteLine ("Choose a product to add to the order");
+                //Display the list of products
+                int productCounter = 1;
+                foreach (Product product in ProductList)
+                {
+                    Console.WriteLine($"{productCounter}. {product.name}");
+                    productCounter++;
+                }
+                Console.WriteLine("Press 0 to exit");
+                Console.WriteLine ("> ");
+                // choice = int.Parse(Console.ReadLine());
+                Int32.TryParse(Console.ReadLine(), out choice);
+
+            } while (choice == 0);
 
             return choice;
         }
