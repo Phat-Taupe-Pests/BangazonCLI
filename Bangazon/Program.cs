@@ -29,6 +29,7 @@ namespace BangazonCLI
 
             ProductManager pm = new ProductManager(db);
             ProductTypeManager ptm = new ProductTypeManager(db);
+            OrderManager om = new OrderManager(db);
 
 
 
@@ -63,6 +64,11 @@ namespace BangazonCLI
                         AddProductToSell.DoAction(pm, ptm);
                         break;
                     case 5:
+                    if (CustomerManager.currentCustomer == null)
+                        {
+                            ChooseCustomer.ChooseCustomerMenu(cm, db);
+                        }
+                        AddProductOrder.AddProductToOrder(cm, db, pm, om);
                         break;
                     case 6:
                         break;

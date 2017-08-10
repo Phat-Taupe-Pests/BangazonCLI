@@ -2,37 +2,57 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Sqlite;
 
-    //Written by: Adam Reidelbach
-    namespace BangazonCLI
+    //Written by: Adam Reidelbach, Matt Augsburger
+    namespace BangazonCLI.MenuActions
     {
         // Manages order related methods
         public class OrderManager
         {
         private dbUtilities _db;
+
+        private int _orderID;
         // Constructor method to establish a connection with the database, database conenction is passed in as an argument..
         public OrderManager(dbUtilities db)
         {
             _db = db;
         }
 
-        public List<Order> GetCustomerOrders(int customerID)
+        //Passing in the currentCustomerID, returns the currentCustomer order (object) 
+        public Order GetCustomerOrder(int customerID)
         {
-            List<Order> customerOrders = new List<Order>();
-            return customerOrders;
+            Order customerOrder = new Order();
+            _db.Query($"SELECT * FROM `order` WHERE customerID = {customerID}", (SqliteDataReader reader) => {
+                while (reader.Read())
+                {
+                    customerOrder.orderID = reader.GetInt32(0);
+                    customerOrder.customerID = reader.GetInt32(1);
+                    customerOrder.paymentTypeID = reader[2] as int? ?? null;
+                    customerOrder.dateCreated = reader.GetDateTime(3);
+                }
+            });
+            return customerOrder;
         }
 
-        //Pass in product ID of product to be added to order
-        //Customer will always be the active customer
+        //Pass in product IDs of products to be added an order
         public int CreateNewOrder(int productID)
         {
-            return 5;
+            int orderID = _db.Insert($"INSERT INTO `order` values (null, {CustomerManager.currentCustomer.customerID}, null, '{DateTime.Now}')");
+            _db.Insert($"INSERT INTO productOrder values (null, {productID}, {orderID})");
+            return orderID;
         }
 
         // Adds a product to the active customer's order
-        public int AddProductToOrder(ProductOrder productOrder)
+        public int AddProductToOrder(int productID)
         {
-            int id = _db.Insert( $"insert into productOrder values (null, '{productOrder.productID}', '{productOrder.orderID}')");
-            return id;
+            int customerID = CustomerManager.currentCustomer.customerID;
+            _db.Query($"SELECT orderID FROM `order` WHERE customerID = {customerID} and paymentTypeID = null", (SqliteDataReader reader) => {
+                while (reader.Read())
+                {
+                    _orderID = reader.GetInt32(0);
+                }
+            });
+            _db.Insert( $"insert into productOrder values (null, {productID}, {_orderID})");
+            return _orderID;
         }
     }
 }
