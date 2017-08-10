@@ -8,10 +8,17 @@ namespace  BangazonCLI.MenuActions
 {
     public class ProductPopularityReport
     {
+        private dbUtilities _db;
+        public ProductPopularityReport(dbUtilities db)
+        {
+            _db = db;
+        }
         //writes the popularity report
         public static void ProductPopularityReportMenu()
         {
             Console.Clear();
+
+
 
             String product1 = FormatPurchases("This is a cool CD");
             String product2 = FormatPurchases("Bananas");
@@ -54,7 +61,7 @@ namespace  BangazonCLI.MenuActions
         public static string FormatPurchases(String toFormat)
         {
             String formattedString;
-            if(toFormat.Length > 17)
+            if(toFormat.Length > 20)
             {
                 formattedString = toFormat.Remove(17) + "...";
                 return formattedString;
