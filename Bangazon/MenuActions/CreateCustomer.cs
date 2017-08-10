@@ -15,25 +15,25 @@ namespace BangazonCLI
             Console.WriteLine ("Enter customer first name");
             Console.Write ("> ");
             string firstName = Console.ReadLine();
-            noEmptyAnswers(firstName, "a customer first name");
+            NoEmptyAnswers.notAOne(firstName, "a customer first name");
 
             Console.Clear();
             Console.WriteLine ("Enter customer last name");
             Console.Write ("> ");
             string lastName = Console.ReadLine();
-            noEmptyAnswers(lastName, "a customer last name");
+            NoEmptyAnswers.notAOne(lastName, "a customer last name");
 
             Console.Clear();
             Console.WriteLine ("Enter customer city");
             Console.Write ("> ");
             string streetAddress = Console.ReadLine();
-            noEmptyAnswers(streetAddress, "a customer street address");
+            NoEmptyAnswers.notAOne(streetAddress, "a customer street address");
 
             Console.Clear();
             Console.WriteLine ("Enter customer state");
             Console.Write ("> ");
             string state = Console.ReadLine();
-            noEmptyAnswers(state, "a customer state");
+            NoEmptyAnswers.notAOne(state, "a customer state");
 
             Console.Clear();
             int postalCode = 0;
@@ -58,7 +58,7 @@ namespace BangazonCLI
             Console.WriteLine ("Enter customer phone number");
             Console.Write ("> ");
             string phoneNumber = Console.ReadLine();
-            noEmptyAnswers(phoneNumber, "a customer phone number");
+            NoEmptyAnswers.notAOne(phoneNumber, "a customer phone number");
             Customer newCustomer = new Customer()
             {
                 firstName = firstName,
@@ -71,14 +71,5 @@ namespace BangazonCLI
             cm.AddNewCustomer(newCustomer);
         }
 
-        public static string noEmptyAnswers(string answer, string thingToEnter){
-            string input = answer;
-            do {
-                Console.WriteLine($"Please enter {thingToEnter}.");
-                Console.Write ("> ");
-                input = Console.ReadLine();
-            } while (input.Length == 0);
-            return input;
-        }
     }
 }
