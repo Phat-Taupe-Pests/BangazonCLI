@@ -13,23 +13,60 @@ namespace BangazonCLI
 
         // Written By : Matt Augsburger
 
+        public static string FormatRevenueReport(string name, int quantity, double price)
+        {
+
+            string frmString;
+            string padName;
+            if (name.Length > 20)
+            {
+                frmString = name.Remove(17) + "...";
+                padName = frmString.PadRight(32, ' ');
+            }else
+            {
+                int num = 32 - name.Length;
+                frmString = name.PadRight(num, ' ');
+                padName = frmString.PadRight(32, ' ');
+            };
+
+            string strQuantity;
+            string padStrQuantity;
+            if (quantity < 10)
+            {
+                strQuantity = quantity.ToString();
+                padStrQuantity = strQuantity.PadRight(10, ' ');
+            }else
+            {
+                strQuantity = quantity.ToString();
+                padStrQuantity = strQuantity.PadRight(9, ' ');
+            }
+
+            string strPrice = price.ToString();
+
+            string formattedString = padName+padStrQuantity+"$"+strPrice;
+
+            return formattedString;
+        }
         public static void ShowRevenueReport(OrderManager om)
         {
             double total = 0;
+            string dash = "";
+            dash = dash.PadLeft(52, '-');
             var completedOrderList = om.GetCompletedOrders();
             Console.Clear();
-            Console.WriteLine($"Revenue Report for {CustomerManager.currentCustomer.firstName} {CustomerManager.currentCustomer.lastName}");
+            Console.WriteLine($"Revenue Report for {CustomerManager.currentCustomer.firstName} {CustomerManager.currentCustomer.lastName}:");
             Console.WriteLine("");
             
             foreach(RevenueReport rr in completedOrderList)
             {
-                string dash = "-";
+                string formattedString = FormatRevenueReport(rr.name, rr.quantity, (rr.price * rr.quantity));
                 Console.WriteLine($"Order #{rr.orderID}");
-                Console.WriteLine(dash.PadLeft(29, '-'));
+                Console.WriteLine(dash);
+                Console.WriteLine(formattedString);
 
-                total += (rr.price * rr.quantity);
-                Console.WriteLine($"{rr.name}{rr.quantity.ToString().PadLeft(10, ' ')}     ${(rr.price*rr.quantity).ToString()}");
+                // Console.WriteLine($"{rr.name}{rr.quantity.ToString().PadLeft(10, ' ')}     ${(rr.price*rr.quantity).ToString()}");
                 Console.WriteLine("");
+                total += (rr.price * rr.quantity);
          
             }
             Console.WriteLine($"Total Revenue: ${total}");
