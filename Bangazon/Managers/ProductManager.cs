@@ -68,7 +68,7 @@ namespace BangazonCLI
 
         public List<PopProducts> GetPopularProducts()
         {
-            _db.Query($"SELECT p.name, count(po.productID) as Sold, Count(DISTINCT o.CustomerID) as Purchasers, p.price FROM Product p  INNER JOIN ProductOrder po ON p.ProductID = po.ProductID LEFT JOIN `Order` o  ON po.orderID = o.OrderID WHERE o.PaymentTypeID IS NOT NULL  GROUP BY p.name ORDER BY Sold desc Limit 3;",
+            _db.Query($"SELECT p.name, count(po.productID) as Sold, Count(DISTINCT o.CustomerID) as Purchasers, p.price, (Count (po.productID) * p.price) as Revenue FROM Product p  INNER JOIN ProductOrder po ON p.ProductID = po.ProductID LEFT JOIN `Order` o  ON po.orderID = o.OrderID WHERE o.PaymentTypeID IS NOT NULL  GROUP BY p.name ORDER BY Revenue desc Limit 3;",
                 (SqliteDataReader reader) => {
                     _popProducts.Clear();  
                     while (reader.Read ())
@@ -77,7 +77,8 @@ namespace BangazonCLI
                             name = reader[0].ToString(),
                             orders = reader.GetInt32(1),
                             purchasers = reader.GetInt32(2),
-                            price = reader.GetDouble(3)
+                            price = reader.GetDouble(3),
+                            revenue = reader.GetDouble(4)
                         });
                     }
                 }

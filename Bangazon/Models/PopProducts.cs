@@ -9,5 +9,6 @@ namespace BangazonCLI
         public int orders {get; set;}
         public int purchasers {get; set;}
         public double price {get; set;}
+        public double revenue {get; set;}
     }
 }
