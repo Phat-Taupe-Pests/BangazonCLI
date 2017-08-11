@@ -61,7 +61,7 @@ using Microsoft.Data.Sqlite;
         public int CreateNewOrder(int productID)
         {
             int orderID = _db.Insert($"INSERT INTO `order` values (null, {CustomerManager.currentCustomer.customerID}, null, '{DateTime.Now}')");
-            _db.Insert($"INSERT INTO productOrder values (null, {productID}, {orderID})");
+            _db.Insert($"INSERT INTO productOrder values (null, {orderID}, {productID})");
             return orderID;
         }
 
@@ -69,13 +69,13 @@ using Microsoft.Data.Sqlite;
         public int AddProductToOrder(int productID)
         {
             int customerID = CustomerManager.currentCustomer.customerID;
-            _db.Query($"SELECT orderID FROM `order` WHERE customerID = {customerID} and paymentTypeID = null", (SqliteDataReader reader) => {
+            _db.Query($"SELECT orderID FROM `order` WHERE customerID = {customerID} and paymentTypeID is null", (SqliteDataReader reader) => {
                 while (reader.Read())
                 {
                     _orderID = reader.GetInt32(0);
                 }
             });
-            _db.Insert( $"insert into productOrder values (null, {productID}, {_orderID})");
+            _db.Insert( $"insert into productOrder values (null, {_orderID}, {productID})");
             return _orderID;
         }
         
