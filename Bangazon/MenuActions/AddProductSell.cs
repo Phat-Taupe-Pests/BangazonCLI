@@ -19,14 +19,18 @@ namespace  BangazonCLI.MenuActions
         {
             Console.Clear();
             Console.WriteLine("What is the name of the product you are selling?");
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Write ("> ");
+            Console.ResetColor();
             string name = Console.ReadLine();
             //checks to make sure a name is entered
             name = NoEmptyAnswers.notAOne(name, "Please enter a name for the product you are selling");
 
             Console.Clear();
             Console.WriteLine($"Please provide a short description of {name}:");
-            Console.Write("> ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write ("> ");
+            Console.ResetColor();
             string desc = Console.ReadLine();
             desc = NoEmptyAnswers.notAOne(desc, "Please enter a description for your product");
             Double doublePrice = 0;
@@ -34,7 +38,9 @@ namespace  BangazonCLI.MenuActions
             do{
             Console.Clear();
             Console.WriteLine($"How much do you wish to sell {name} for?");
-            Console.Write("> ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write ("> ");
+            Console.ResetColor();
             string price = Console.ReadLine();
             price = NoEmptyAnswers.notAOne(price, "Please enter a price for your product");
             

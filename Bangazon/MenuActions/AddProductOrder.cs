@@ -79,7 +79,9 @@ namespace BangazonCLI.MenuActions
                     productCounter++;
                 }
                 Console.WriteLine($"Press {exitNum} to exit");
-                Console.WriteLine ("> ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write ("> ");
+                Console.ResetColor();
                 Int32.TryParse(Console.ReadLine(), out choice);
 
             } while (choice == 0);
