@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
 //Written by: Eliza Meeks, Adam Reidelbach, Chaz Henricks, Ben Greaves, Matt Augsburger
 namespace BangazonCLI
 {
@@ -17,11 +18,16 @@ namespace BangazonCLI
         {
             
             List<ProductType> productTypeList = new List<ProductType>();
-            productTypeList.Add(new ProductType(){name = "food"});
-            productTypeList.Add(new ProductType(){name = "cars"});
-            productTypeList.Add(new ProductType(){name = "stuffed animals"});
-            productTypeList.Add(new ProductType(){name = "dolls"});
-            productTypeList.Add(new ProductType(){name = "media"});
+            _db.Query("SELECT * FROM ProductType;", 
+                (SqliteDataReader reader) => {
+                    while (reader.Read())
+                    {
+                        productTypeList.Add(new ProductType() {
+                            productTypeID = reader.GetInt32(0),
+                            name = reader[1].ToString()
+                        });
+                    }
+                });
             return productTypeList;
         }
     }
