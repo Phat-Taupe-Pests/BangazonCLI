@@ -36,6 +36,7 @@ namespace BangazonCLI
             {
                 if(choiceInt == kvp.Key)
                 {
+                    Console.Clear();
                     Console.WriteLine($"You selected {kvp.Value.firstName} {kvp.Value.lastName} as the current customer");
                     CustomerManager.currentCustomer = kvp.Value;
                     Console.WriteLine("Press any key to continue.");
