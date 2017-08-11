@@ -15,15 +15,30 @@ namespace BangazonCLI
             Console.WriteLine($"Enter payment type (e.g. AmEx, Visa, Checking)");
             Console.WriteLine($">");
             string paymentName = Console.ReadLine();
+            paymentName = NoEmptyAnswers.notAOne(paymentName, "Please Enter a payment type.");
 
+            int accountNumber = 0;
             //Prompts and then takes account number
-            Console.WriteLine($"Enter Account Number");
-            Console.WriteLine($">");
+            do{
+                try{
+                    Console.WriteLine($"Enter Account Number");
+                    Console.WriteLine($">");
+                    accountNumber = Convert.ToInt32(Console.ReadLine());
+                    // int.TryParse(Console.ReadLine(), out accountNumber);
+                }catch{
+                    Console.WriteLine($"Enter Account Number");
+                    Console.WriteLine($">");
+                    Int32.TryParse(Console.ReadLine(), out accountNumber);
+                }
+                
 
-            int accountNumber = int.Parse(Console.ReadLine());
+            } while (accountNumber == 0);
 
+            // int accountNumber = int.Parse(Console.ReadLine());
             PaymentType newPaymentType = new PaymentType() { accountNumber=accountNumber, name=paymentName };
             ptm.AddNewPaymentType(newPaymentType);
+            Console.WriteLine("Payment type added. Press any key to continue.");
+            Console.ReadLine();
 
 
         }
