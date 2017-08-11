@@ -6,11 +6,14 @@ using Microsoft.Data.Sqlite;
 
 namespace  BangazonCLI.MenuActions
 {
+    //Written by: Chaz Henricks
     public class AddProductToSell
     {
         public static List<ProductType> productTypeList = new List<ProductType>();
         //Also need to pass in customer ID as an argument
 
+        //Does the add product for a customer to sell. 
+        //Needs a product manager and a product type manager
         public static void DoAction(ProductManager products, ProductTypeManager ptm)
 
         {
@@ -18,6 +21,7 @@ namespace  BangazonCLI.MenuActions
             Console.WriteLine("What is the name of the product you are selling?");
             Console.Write ("> ");
             string name = Console.ReadLine();
+            //checks to make sure a name is entered
             name = NoEmptyAnswers.notAOne(name, "Please enter a name for the product you are selling");
 
             Console.Clear();
@@ -26,6 +30,7 @@ namespace  BangazonCLI.MenuActions
             string desc = Console.ReadLine();
             desc = NoEmptyAnswers.notAOne(desc, "Please enter a description for your product");
             Double doublePrice = 0;
+            //do loop will check that value is an integer
             do{
             Console.Clear();
             Console.WriteLine($"How much do you wish to sell {name} for?");
@@ -48,12 +53,12 @@ namespace  BangazonCLI.MenuActions
             int counter = 1;
             int selectedTypeIndex;
             productTypeList = ptm.GetProductTypeList();
+            //Checks to make sure the selection is in the range of the availble product types
+            //Check the selected value agains the length of the list
             do{
                 do{
                 Console.WriteLine($"What kind of product is {name}?");
                 counter = 1;
-                // productTypeList.Clear();
-                
                 foreach(ProductType item in productTypeList)
                 {
                     Console.WriteLine($"{counter}. {item.name}");
@@ -65,8 +70,6 @@ namespace  BangazonCLI.MenuActions
                             intChoice = Convert.ToInt32(choice);
                         } catch {
                             Console.WriteLine("Please enter a number");
-                            // choice = Console.ReadLine();
-                            // Int32.TryParse(choice, out intChoice);
                         }
                 }while(intChoice == 0);
                 
