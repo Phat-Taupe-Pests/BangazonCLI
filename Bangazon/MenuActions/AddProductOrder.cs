@@ -10,13 +10,22 @@ namespace BangazonCLI.MenuActions
             Console.Clear();
             int custID = CustomerManager.currentCustomer.customerID;
             List<Product> products = pm.GetProductsNotSoldByCustomer(custID);
-            int choice = DisplayProductList(products);
+            int[] choice = DisplayProductList(products);
             do
             {
-                int index = choice -1;
+                int index = choice[0] -1;
                 Order ActiveOrder = om.GetActiveCustomerOrder(custID);
                 if (ActiveOrder.orderID == 0) {
-                    om.CreateNewOrder(products[index].productID);
+                    if (choice[0] < products.Count){
+                        om.CreateNewOrder(products[index].productID);
+                    } else if (choice[0] != choice[1]) {
+                        Console.Clear();
+                        Console.WriteLine("That is not a valid option for a product, press enter to continue!");
+                        Console.ReadLine();
+                        AddProductOrder.AddProductToOrder(cm, pm, om);
+                    } else if (choice[0] == choice[1]){
+                        break;
+                    }
                     //decrement product quantity by one
                     string updateString = $"UPDATE product SET quantity = {products[index].quantity - 1} WHERE productID = {products[index].productID} and quantity > 0";
                     pm.UpdateProduct(updateString);
@@ -25,7 +34,16 @@ namespace BangazonCLI.MenuActions
                     choice = DisplayProductList(products);
                 }
                 if (ActiveOrder.orderID != 0) {
-                    om.AddProductToOrder(products[index].productID);
+                    if (choice[0] < products.Count){
+                        om.CreateNewOrder(products[index].productID);
+                    } else if (choice[0] != choice[1]) {
+                        Console.Clear();
+                        Console.WriteLine("That is not a valid option for a product, press enter to continue!");
+                        Console.ReadLine();
+                        AddProductOrder.AddProductToOrder(cm, pm, om);
+                    } else if (choice[0] == choice[1]){
+                        break;
+                    }
                     //decrement product quantity by one
                     string updateString = $"UPDATE product SET quantity = {products[index].quantity - 1} WHERE productID = {products[index].productID} and quantity > 0";
                     pm.UpdateProduct(updateString);
@@ -33,13 +51,14 @@ namespace BangazonCLI.MenuActions
                     products = pm.GetProductsNotSoldByCustomer(custID);
                     choice = DisplayProductList(products);
                 }
-            } while(choice != 0);
+            } while(choice[0] != choice[1]);
             return;
         }
 
-        public static int DisplayProductList (List<Product>ProductList)
+        public static int[] DisplayProductList (List<Product>ProductList)
         {
             int choice = 0;
+            int exitNum = ProductList.Count + 1;
             //Get a list of products
             do {
                 Console.WriteLine ("Choose a product to add to the order");
@@ -50,14 +69,16 @@ namespace BangazonCLI.MenuActions
                     Console.WriteLine($"{productCounter}. {product.name}");
                     productCounter++;
                 }
-                Console.WriteLine("Press 0 to exit");
+                Console.WriteLine($"Press {exitNum} to exit");
                 Console.WriteLine ("> ");
                 // choice = int.Parse(Console.ReadLine());
                 Int32.TryParse(Console.ReadLine(), out choice);
 
             } while (choice == 0);
 
-            return choice;
+            int[] choiceArray = new int[]{choice, exitNum};
+
+            return choiceArray;
         }
     }
 }
