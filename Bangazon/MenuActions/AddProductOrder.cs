@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace BangazonCLI.MenuActions
     {
+    // Purpose: Allows user to add a product to an order
+    // Written By : Adam Reidelbach and Eliza Meeks
+    // Uses CustomerManger to get current customer, ProductManager for getting products not sold by the active customer, and OrderManager for creating a new order and adding a product to an order
     public class AddProductOrder
     {
         public static void AddProductToOrder(CustomerManager cm, ProductManager pm, OrderManager om)
@@ -10,19 +13,24 @@ namespace BangazonCLI.MenuActions
             Console.Clear();
             int custID = CustomerManager.currentCustomer.customerID;
             List<Product> products = pm.GetProductsNotSoldByCustomer(custID);
+            //int[] is an array of integers
             int[] choice = DisplayProductList(products);
             do
             {
                 int index = choice[0] -1;
                 Order ActiveOrder = om.GetActiveCustomerOrder(custID);
+                //if there is NOT an active customer, run this
                 if (ActiveOrder.orderID == 0) {
+                    //if user choice is less than product count, create a new order
                     if (choice[0] < products.Count){
                         om.CreateNewOrder(products[index].productID);
+                    //if user choice does not equal the exit number, run this menu again 
                     } else if (choice[0] != choice[1]) {
                         Console.Clear();
                         Console.WriteLine("That is not a valid option for a product, press enter to continue!");
                         Console.ReadLine();
                         AddProductOrder.AddProductToOrder(cm, pm, om);
+                    // if the user choice equals the exit number, exit the menu
                     } else if (choice[0] == choice[1]){
                         break;
                     }
@@ -33,9 +41,10 @@ namespace BangazonCLI.MenuActions
                     products = pm.GetProductsNotSoldByCustomer(custID);
                     choice = DisplayProductList(products);
                 }
+                //if there IS an active customer, run this
                 if (ActiveOrder.orderID != 0) {
                     if (choice[0] < products.Count){
-                        om.CreateNewOrder(products[index].productID);
+                        om.AddProductToOrder(products[index].productID);
                     } else if (choice[0] != choice[1]) {
                         Console.Clear();
                         Console.WriteLine("That is not a valid option for a product, press enter to continue!");
@@ -55,14 +64,14 @@ namespace BangazonCLI.MenuActions
             return;
         }
 
+        //Helper method to display list of products
         public static int[] DisplayProductList (List<Product>ProductList)
         {
+            //exitNum allows user to select the last number in the list to return to the main menu
             int choice = 0;
             int exitNum = ProductList.Count + 1;
-            //Get a list of products
             do {
                 Console.WriteLine ("Choose a product to add to the order");
-                //Display the list of products
                 int productCounter = 1;
                 foreach (Product product in ProductList)
                 {
@@ -71,7 +80,6 @@ namespace BangazonCLI.MenuActions
                 }
                 Console.WriteLine($"Press {exitNum} to exit");
                 Console.WriteLine ("> ");
-                // choice = int.Parse(Console.ReadLine());
                 Int32.TryParse(Console.ReadLine(), out choice);
 
             } while (choice == 0);
