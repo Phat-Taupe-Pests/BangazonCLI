@@ -74,7 +74,7 @@ namespace  BangazonCLI.MenuActions
                 }while(intChoice == 0);
                 
                 selectedTypeIndex = intChoice -1;
-            }while(selectedTypeIndex > productTypeList.Count);
+            }while(selectedTypeIndex + 1 > productTypeList.Count);
 
             Console.Clear();
             Console.WriteLine($"How many are you posting for sale?");
