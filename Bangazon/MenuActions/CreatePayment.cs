@@ -15,6 +15,7 @@ namespace BangazonCLI
             Console.WriteLine($"Enter payment type (e.g. AmEx, Visa, Checking)");
             Console.WriteLine($">");
             string paymentName = Console.ReadLine();
+            paymentName = NoEmptyAnswers.notAOne(paymentName, "Please Enter a payment type.");
 
             int accountNumber = 0;
             //Prompts and then takes account number
