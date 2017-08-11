@@ -24,7 +24,9 @@ namespace BangazonCLI
                 counter++;
 
             }
-            Console.WriteLine(">");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write ("> ");
+            Console.ResetColor();
            
             int choiceInt = 0; 
  

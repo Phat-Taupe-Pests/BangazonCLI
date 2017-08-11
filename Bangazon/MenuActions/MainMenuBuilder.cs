@@ -10,9 +10,13 @@ namespace BangazonCLI
         {
              // Present the main menu
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine ("*************************************************");
+            Console.ResetColor();
             Console.WriteLine ("Welcome to Bangazon! Command Line Ordering System");
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine ("*************************************************");
+            Console.ResetColor();
             Console.WriteLine ("1.  Create a customer account");
             Console.WriteLine ("2.  Choose active customer");
             Console.WriteLine ("3.  Create a payment option");
@@ -25,7 +29,9 @@ namespace BangazonCLI
             Console.WriteLine ("10. Show customer revenue report");
             Console.WriteLine ("11. Show overall product popularity");
             Console.WriteLine ("12. Leave Bangazon!");
-			Console.Write ("> ");
+			Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write ("> ");
+            Console.ResetColor();
 
 			// Read in the user's choice
 			int choice;

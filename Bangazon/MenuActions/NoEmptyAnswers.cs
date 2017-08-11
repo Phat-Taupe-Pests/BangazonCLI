@@ -13,7 +13,9 @@ namespace BangazonCLI
             if (input.Length == 0){
                 do {
                     Console.WriteLine($"{thingToEnter}.");
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write ("> ");
+                    Console.ResetColor();
                     input = Console.ReadLine();
                 } while (input.Length == 0);
             }

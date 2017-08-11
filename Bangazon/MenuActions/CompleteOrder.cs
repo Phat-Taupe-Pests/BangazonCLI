@@ -56,7 +56,9 @@ namespace BangazonCLI.MenuActions
             string selection;
             Console.WriteLine($"Your order total is ${total}. Complete this order?");
             Console.WriteLine("Y/N");
-            Console.WriteLine ("> ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write ("> ");
+            Console.ResetColor();
             selection = Console.ReadLine();
             return selection;
         }

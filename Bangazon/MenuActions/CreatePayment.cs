@@ -13,7 +13,9 @@ namespace BangazonCLI
             Console.Clear();
             //Prompt and then takes payment type
             Console.WriteLine($"Enter payment type (e.g. AmEx, Visa, Checking)");
-            Console.WriteLine($">");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write ("> ");
+            Console.ResetColor();
             string paymentName = Console.ReadLine();
             paymentName = NoEmptyAnswers.notAOne(paymentName, "Please Enter a payment type.");
 
@@ -22,12 +24,16 @@ namespace BangazonCLI
             do{
                 try{
                     Console.WriteLine($"Enter Account Number");
-                    Console.WriteLine($">");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write ("> ");
+                    Console.ResetColor();
                     accountNumber = Convert.ToInt32(Console.ReadLine());
                     // int.TryParse(Console.ReadLine(), out accountNumber);
                 }catch{
                     Console.WriteLine($"Enter Account Number");
-                    Console.WriteLine($">");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write ("> ");
+                    Console.ResetColor();
                     Int32.TryParse(Console.ReadLine(), out accountNumber);
                 }
                 
