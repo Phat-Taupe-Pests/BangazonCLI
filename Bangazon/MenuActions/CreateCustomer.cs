@@ -75,6 +75,11 @@ namespace BangazonCLI
                 phoneNumber = phoneNumber
             };
             cm.AddNewCustomer(newCustomer);
+
+            Console.Clear();
+            Console.WriteLine($"You have created a customer! {newCustomer.firstName} {newCustomer.lastName} is now in the Bangazon System");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
         }
 
     }
