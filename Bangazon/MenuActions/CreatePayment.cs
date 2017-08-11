@@ -36,6 +36,8 @@ namespace BangazonCLI
             // int accountNumber = int.Parse(Console.ReadLine());
             PaymentType newPaymentType = new PaymentType() { accountNumber=accountNumber, name=paymentName };
             ptm.AddNewPaymentType(newPaymentType);
+            Console.WriteLine("Payment type added. Press any key to continue.");
+            Console.ReadLine();
 
 
         }
