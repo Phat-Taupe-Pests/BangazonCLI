@@ -42,9 +42,11 @@ namespace  BangazonCLI.MenuActions
             }while(doublePrice == 0);
 
             Console.Clear();
-            Console.WriteLine($"What kind of product is {name}?");
             List<ProductType> productTypeList = ptm.GetProductTypeList();
+            int intChoice = 0;
             int counter = 1;
+            do{
+            Console.WriteLine($"What kind of product is {name}?");
             foreach(ProductType item in productTypeList)
             {
                 Console.WriteLine($"{counter}. {item.name}");
@@ -52,18 +54,15 @@ namespace  BangazonCLI.MenuActions
             }
             string choice = Console.ReadLine();
             choice = NoEmptyAnswers.notAOne(choice, "Please select a number for a value type");
-            int intChoice = 0;
-            do{
-             try{
-                    
-                    intChoice = Convert.ToInt32(choice);
-
-                } catch {
-                    Console.WriteLine("Please enter a number");
-                    choice = Console.ReadLine();
-                    Int32.TryParse(choice, out intChoice);
-                }
+                try{ 
+                        intChoice = Convert.ToInt32(choice);
+                    } catch {
+                        Console.WriteLine("Please enter a number");
+                        choice = Console.ReadLine();
+                        Int32.TryParse(choice, out intChoice);
+                    }
             }while(intChoice == 0);
+            
             int selectedTypeIndex = intChoice -1;
 
             Console.Clear();
@@ -95,3 +94,14 @@ namespace  BangazonCLI.MenuActions
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
