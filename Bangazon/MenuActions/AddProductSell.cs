@@ -8,6 +8,7 @@ namespace  BangazonCLI.MenuActions
 {
     public class AddProductToSell
     {
+        public static List<ProductType> productTypeList = new List<ProductType>();
         //Also need to pass in customer ID as an argument
 
         public static void DoAction(ProductManager products, ProductTypeManager ptm)
@@ -42,28 +43,35 @@ namespace  BangazonCLI.MenuActions
             }while(doublePrice == 0);
 
             Console.Clear();
-            List<ProductType> productTypeList = ptm.GetProductTypeList();
+            
             int intChoice = 0;
             int counter = 1;
+            int selectedTypeIndex;
+            productTypeList = ptm.GetProductTypeList();
             do{
-            Console.WriteLine($"What kind of product is {name}?");
-            foreach(ProductType item in productTypeList)
-            {
-                Console.WriteLine($"{counter}. {item.name}");
-                counter++;
-            }
-            string choice = Console.ReadLine();
-            choice = NoEmptyAnswers.notAOne(choice, "Please select a number for a value type");
-                try{ 
-                        intChoice = Convert.ToInt32(choice);
-                    } catch {
-                        Console.WriteLine("Please enter a number");
-                        choice = Console.ReadLine();
-                        Int32.TryParse(choice, out intChoice);
-                    }
-            }while(intChoice == 0);
-            
-            int selectedTypeIndex = intChoice -1;
+                do{
+                Console.WriteLine($"What kind of product is {name}?");
+                counter = 1;
+                // productTypeList.Clear();
+                
+                foreach(ProductType item in productTypeList)
+                {
+                    Console.WriteLine($"{counter}. {item.name}");
+                    counter++;
+                }
+                string choice = Console.ReadLine();
+                choice = NoEmptyAnswers.notAOne(choice, "Please select a number for a value type");
+                    try{ 
+                            intChoice = Convert.ToInt32(choice);
+                        } catch {
+                            Console.WriteLine("Please enter a number");
+                            // choice = Console.ReadLine();
+                            // Int32.TryParse(choice, out intChoice);
+                        }
+                }while(intChoice == 0);
+                
+                selectedTypeIndex = intChoice -1;
+            }while(selectedTypeIndex > productTypeList.Count);
 
             Console.Clear();
             Console.WriteLine($"How many are you posting for sale?");
@@ -80,6 +88,7 @@ namespace  BangazonCLI.MenuActions
                 }
 
             }while(intQuantity == 0);
+           
 
             Product newProduct = new Product();
                 newProduct.name = name;
@@ -90,7 +99,9 @@ namespace  BangazonCLI.MenuActions
                 newProduct.customerID = CustomerManager.currentCustomer.customerID;
                 newProduct.productTypeID = productTypeList[selectedTypeIndex].productTypeID;
                 products.AddNewProduct(newProduct);
-                productTypeList.Clear();
+                Console.Clear();
+               Console.WriteLine($"{newProduct.name} was successfully added! Press any key to continue");
+               Console.ReadKey();
         }
     }
 }
